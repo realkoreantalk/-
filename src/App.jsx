@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, User, BookOpen, Award, Globe } from 'lucide-react';
+import { db } from './firebase';
+import { collection, addDoc, getDocs, deleteDoc, doc, setDoc, onSnapshot } from 'firebase/firestore';
 
 const KoreanLearningSite = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -7,6 +9,43 @@ const KoreanLearningSite = () => {
   const [classPrice, setClassPrice] = useState(2);
   const [bookings, setBookings] = useState([]);
   const [timeSlots, setTimeSlots] = useState({});
+
+  // Firebase에서 시간 슬롯 실시간 로드
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'timeSlots'), (snapshot) => {
+      const slots = {};
+      snapshot.forEach((doc) => {
+        slots[doc.id] = doc.data().slots || [];
+      });
+      setTimeSlots(slots);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Firebase에서 예약 실시간 로드
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, 'bookings'), (snapshot) => {
+      const bookingsList = [];
+      snapshot.forEach((doc) => {
+        bookingsList.push({ id: doc.id, ...doc.data() });
+      });
+      setBookings(bookingsList);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Firebase에서 가격 로드
+  useEffect(() => {
+    const loadPrice = async () => {
+      const priceDoc = await getDocs(collection(db, 'settings'));
+      priceDoc.forEach((doc) => {
+        if (doc.id === 'classPrice') {
+          setClassPrice(doc.data().value || 2);
+        }
+      });
+    };
+    loadPrice();
+  }, []);
 
   const Navigation = () => (
     <nav className="bg-gradient-to-r from-amber-950 to-amber-900 text-white p-4 shadow-lg">
@@ -238,26 +277,35 @@ const KoreanLearningSite = () => {
       setAllSlots(upd);
     };
 
-    const submit = () => {
+    const submit = async () => {
       const total = Object.values(allSlots).flat().length;
       if (!name || !email || total === 0) {
         alert('Please fill all info');
         return;
       }
-      Object.keys(allSlots).forEach(date => {
-        setBookings(prev => [...prev, {
-          id: Date.now() + Math.random(),
-          name, email, date,
-          slots: allSlots[date],
-          bookedAt: new Date().toISOString()
-        }]);
-      });
-      alert('Thanks for booking! Check your email to complete payment.');
-      setName('');
-      setEmail('');
-      setAllSlots({});
-      setSelDate(null);
-      setAgreed(false);
+      
+      try {
+        // Firebase에 예약 저장
+        for (const date of Object.keys(allSlots)) {
+          await addDoc(collection(db, 'bookings'), {
+            name,
+            email,
+            date,
+            slots: allSlots[date],
+            bookedAt: new Date().toISOString()
+          });
+        }
+        
+        alert('Thanks for booking! Check your email to complete payment.');
+        setName('');
+        setEmail('');
+        setAllSlots({});
+        setSelDate(null);
+        setAgreed(false);
+      } catch (error) {
+        console.error('Error booking:', error);
+        alert('Booking failed. Please try again.');
+      }
     };
 
     const avail = selDate ? (timeSlots[selDate] || []) : [];
@@ -591,7 +639,7 @@ const KoreanLearningSite = () => {
       return slots;
     };
 
-    const add = () => {
+    const add = async () => {
       if (!m || !d || !sh || !eh) return alert('Fill all');
       const st = `${String(sh).padStart(2, '0')}:${String(sm).padStart(2, '0')}`;
       const et = `${String(eh).padStart(2, '0')}:${String(em).padStart(2, '0')}`;
@@ -600,18 +648,28 @@ const KoreanLearningSite = () => {
       const sd = new Date(y, m - 1, d);
       const dow = sd.getDay();
       const slots = genSlots(sh, sm, eh, em);
-      const upd = { ...timeSlots };
-      for (let day = 1; day <= 31; day++) {
-        const curr = new Date(y, m - 1, day);
-        if (curr.getMonth() === m - 1 && curr.getDay() === dow) {
-          const ds = `${curr.getFullYear()}-${String(curr.getMonth() + 1).padStart(2, '0')}-${String(curr.getDate()).padStart(2, '0')}`;
-          if (!upd[ds]) upd[ds] = [];
-          slots.forEach(s => { if (!upd[ds].includes(s)) upd[ds].push(s); });
-          upd[ds].sort();
+      
+      try {
+        const upd = { ...timeSlots };
+        for (let day = 1; day <= 31; day++) {
+          const curr = new Date(y, m - 1, day);
+          if (curr.getMonth() === m - 1 && curr.getDay() === dow) {
+            const ds = `${curr.getFullYear()}-${String(curr.getMonth() + 1).padStart(2, '0')}-${String(curr.getDate()).padStart(2, '0')}`;
+            if (!upd[ds]) upd[ds] = [];
+            slots.forEach(s => { if (!upd[ds].includes(s)) upd[ds].push(s); });
+            upd[ds].sort();
+            
+            // Firebase에 저장
+            await setDoc(doc(db, 'timeSlots', ds), {
+              slots: upd[ds]
+            });
+          }
         }
+        alert(`Added ${slots.length} slots to all ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][dow]}s in month ${m}`);
+      } catch (error) {
+        console.error('Error adding slots:', error);
+        alert('Failed to add slots. Please try again.');
       }
-      setTimeSlots(upd);
-      alert(`Added ${slots.length} slots to all ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][dow]}s in month ${m}`);
     };
 
     if (!isAdminAuth) {
@@ -639,8 +697,14 @@ const KoreanLearningSite = () => {
           <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
             <h3 className="text-xl font-bold mb-4">Price</h3>
             <div className="flex gap-3">
-              <button onClick={() => setClassPrice(2)} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-sky-200' : 'bg-stone-100'}`}>$2</button>
-              <button onClick={() => setClassPrice(3)} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-sky-200' : 'bg-stone-100'}`}>$3</button>
+              <button onClick={async () => {
+                setClassPrice(2);
+                await setDoc(doc(db, 'settings', 'classPrice'), { value: 2 });
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-sky-200' : 'bg-stone-100'}`}>$2</button>
+              <button onClick={async () => {
+                setClassPrice(3);
+                await setDoc(doc(db, 'settings', 'classPrice'), { value: 3 });
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-sky-200' : 'bg-stone-100'}`}>$3</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
@@ -667,9 +731,14 @@ const KoreanLearningSite = () => {
 
   const AdminBookingsPage = () => {
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
-    const del = (id) => { 
+    const del = async (id) => { 
       if (window.confirm('Delete this booking?')) {
-        setBookings(prevBookings => prevBookings.filter(b => b.id !== id));
+        try {
+          await deleteDoc(doc(db, 'bookings', id));
+        } catch (error) {
+          console.error('Error deleting booking:', error);
+          alert('Failed to delete booking. Please try again.');
+        }
       }
     };
     return (
