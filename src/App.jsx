@@ -22,7 +22,7 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-gradient-to-b from-stone-200 to-stone-100">
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
         <div className="text-center mb-8 md:mb-16">
-          <h1 className="text-3xl md:text-5xl font-bold text-amber-950 mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
+          <h1 className="text-xl md:text-5xl font-bold text-amber-950 mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
           <p className="text-lg md:text-xl text-stone-700">With certified expert tutor Hannah!</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-6xl mx-auto">
@@ -65,7 +65,7 @@ const KoreanLearningSite = () => {
           <div className="bg-gradient-to-r from-sky-100 to-sky-200 border-2 border-sky-300 rounded-lg p-4 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3">
               <User size={24} className="md:w-7 md:h-7 text-amber-950" />
-              <h2 className="text-xl md:text-2xl font-bold text-amber-950">15-min Real Korean 1:1 Chat</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-amber-950">15-min 1:1 Chat</h2>
               <User size={24} className="md:w-7 md:h-7 text-amber-950" />
             </div>
             <p className="text-sm md:text-base text-gray-600 mt-2">(Beginner–Advanced)</p>
@@ -351,12 +351,12 @@ const KoreanLearningSite = () => {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <div className="bg-gradient-to-r from-pink-100 to-pink-200 border-2 border-pink-300 rounded-lg p-4 mb-6 text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-amber-950">🌸 Real Korean with Hannah 🌸</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-amber-950">Real Korean with Hannah</h2>
             <p className="text-sm md:text-base text-gray-700 mt-2">Learn to speak naturally with a certified Korean tutor.</p>
           </div>
 
           <div className="mb-6 md:mb-8">
-            <p className="text-base md:text-lg text-gray-700 mb-3">Hello! I'm Hannah</p>
+            <p className="text-base md:text-lg text-gray-700 mb-3">🌸 Hello! I'm Hannah</p>
             <p className="text-base md:text-lg text-gray-700 mb-4">
               I'm a certified Korean tutor with <span className="font-bold text-amber-950">4 years of experience</span> teaching Korean to foreign learners.
             </p>
@@ -364,7 +364,7 @@ const KoreanLearningSite = () => {
               Since 2022, I've been teaching online to students from Indonesia 🇮🇩, Vietnam 🇻🇳, Nicaragua 🇳🇮, Ukraine 🇺🇦, Venezuela 🇻🇪, and Colombia 🇨🇴.
             </p>
             <p className="text-sm md:text-base text-gray-700">
-              I'm friendly, patient, and responsible, and I'll help you speak Korean naturally and confidently.
+              <span className="font-bold">I'm friendly, patient, and responsible</span>, and I'll help you speak Korean naturally and confidently.
             </p>
           </div>
 
@@ -395,7 +395,7 @@ const KoreanLearningSite = () => {
           </div>
 
           <p className="text-base md:text-lg font-bold text-amber-950 text-center mb-6">
-            Until your Korean becomes truly natural — start now!
+            <span className="font-bold">Until your Korean becomes truly natural — start now!</span>
           </p>
 
           <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-sky-200 to-sky-300 text-amber-950 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-sky-300 hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
