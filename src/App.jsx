@@ -308,7 +308,16 @@ const KoreanLearningSite = () => {
       }
     };
 
-    const avail = selDate ? (timeSlots[selDate] || []) : [];
+    // 예약된 슬롯 필터링
+    const getAvailableSlots = (date) => {
+      const allSlots = timeSlots[date] || [];
+      const bookedSlots = bookings
+        .filter(b => b.date === date)
+        .flatMap(b => b.slots || []);
+      return allSlots.filter(slot => !bookedSlots.includes(slot));
+    };
+
+    const avail = selDate ? getAvailableSlots(selDate) : [];
     const curr = allSlots[selDate] || [];
     const total = Object.values(allSlots).flat().length;
 
@@ -344,7 +353,8 @@ const KoreanLearningSite = () => {
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => <div key={i} className="text-center text-sm font-bold py-2">{d}</div>)}
                   {getDays(month).map((day, i) => {
                     const ds = day ? `${month.getFullYear()}-${String(month.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}` : null;
-                    const hasS = ds && timeSlots[ds]?.length > 0;
+                    const availableSlots = ds ? getAvailableSlots(ds) : [];
+                    const hasS = availableSlots.length > 0;
                     const hasSel = ds && allSlots[ds]?.length > 0;
                     return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-sky-200 font-bold' : hasSel ? 'bg-sky-100 font-bold' : 'bg-stone-50 hover:bg-sky-100'}`}>{day}</button>;
                   })}
