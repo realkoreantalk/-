@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, User, BookOpen, Award, Globe } from 'lucide-react';
 import { db } from './firebase';
 import { collection, addDoc, getDocs, deleteDoc, doc, setDoc, onSnapshot } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
 
 const KoreanLearningSite = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -295,6 +296,44 @@ const KoreanLearningSite = () => {
             bookedAt: new Date().toISOString()
           });
         }
+        
+        // 예약 정보 정리
+        const bookingDates = Object.keys(allSlots).join(', ');
+        const allTimeSlots = Object.entries(allSlots)
+          .map(([date, slots]) => `${date}: ${slots.join(', ')}`)
+          .join('\n');
+        const totalPrice = total * classPrice;
+        
+        // EmailJS 초기화
+        emailjs.init('1eD9dTRJPfHenqguL');
+        
+        // 관리자에게 이메일 전송
+        await emailjs.send(
+          'service_c58vlqm',
+          'template_cahc4d6',
+          {
+            student_name: name,
+            student_email: email,
+            booking_date: bookingDates,
+            time_slots: allTimeSlots,
+            total_sessions: total,
+            total_price: totalPrice
+          }
+        );
+        
+        // 학생에게 확인 이메일 전송
+        await emailjs.send(
+          'service_c58vlqm',
+          'template_zwh6zxw',
+          {
+            student_name: name,
+            student_email: email,
+            booking_date: bookingDates,
+            time_slots: allTimeSlots,
+            total_sessions: total,
+            total_price: totalPrice
+          }
+        );
         
         alert('Thanks for booking! Check your email to complete payment.');
         setName('');
@@ -633,7 +672,7 @@ const KoreanLearningSite = () => {
     const [em, setEm] = useState('0');
 
     const login = () => {
-      if (pwd === 'admin1234') setIsAdminAuth(true);
+      if (pwd === 'jesus48^') setIsAdminAuth(true);
       else alert('Wrong password');
     };
 
