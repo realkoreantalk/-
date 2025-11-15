@@ -109,6 +109,14 @@ const KoreanLearningSite = () => {
             <h3 className="text-base md:text-xl font-bold text-amber-950">Group Lesson</h3>
           </button>
         </div>
+        <div className="text-center mt-12 pb-8">
+          <a 
+            href="mailto:koreanteacherhannah@gmail.com" 
+            className="inline-block text-lg md:text-xl text-amber-950 hover:text-amber-800 font-medium transition-all hover:scale-105"
+          >
+            Any questions? Contact me, Hannah! 💌
+          </a>
+        </div>
       </div>
     </div>
   );
@@ -362,13 +370,35 @@ const KoreanLearningSite = () => {
       }
     };
 
-    // 예약된 슬롯 필터링
+    // 예약된 슬롯 필터링 및 지나간 시간 제외
     const getAvailableSlots = (date) => {
       const allSlots = timeSlots[date] || [];
       const bookedSlots = bookings
         .filter(b => b.date === date)
         .flatMap(b => b.slots || []);
-      return allSlots.filter(slot => !bookedSlots.includes(slot));
+      
+      // 현재 날짜와 시간 확인
+      const now = new Date();
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+      
+      return allSlots.filter(slot => {
+        // 이미 예약된 슬롯 제외
+        if (bookedSlots.includes(slot)) return false;
+        
+        // 오늘 날짜인 경우에만 시간 체크
+        if (date === today) {
+          const [slotHour, slotMinute] = slot.split(':').map(Number);
+          const slotTime = slotHour * 60 + slotMinute;
+          const currentTime = currentHour * 60 + currentMinute;
+          
+          // 현재 시간 + 60분(1시간) 이후만 표시
+          return slotTime >= currentTime + 60;
+        }
+        
+        return true;
+      });
     };
 
     const avail = selDate ? getAvailableSlots(selDate) : [];
@@ -389,11 +419,25 @@ const KoreanLearningSite = () => {
                   <li>• Late arrival = ends at scheduled time.</li>
                 </ul>
               </div>
+              <div className="mb-6 text-gray-700 space-y-2 text-sm md:text-base">
+                <p>• You can only book <span className="font-bold">1:1 Chat</span> sessions here.</p>
+                <p>• For <span className="font-bold">Group Lessons</span>, please register on the Group Lesson page.</p>
+                <p>• Each session is <span className="font-bold">15 minutes</span>.</p>
+                <p>• Example: If you select the 9:00 slot, your class time is <span className="font-bold">09:00–09:15</span>.</p>
+                <p>• All times are in <span className="font-bold">Korea Standard Time (KST)</span>.</p>
+              </div>
+              <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
+                <p className="text-amber-950 font-bold mb-2">🌍 Time Zone Tip:</p>
+                <p className="text-gray-700 text-sm md:text-base">All times shown are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+              </div>
               <button onClick={() => setAgreed(true)} className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300">OK</button>
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex justify-between items-center mb-6">
+                <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-amber-950 font-medium flex items-center gap-1">
+                  ← Back
+                </button>
                 <h2 className="text-2xl font-bold text-amber-950">Book 1:1 Chat</h2>
                 <div className="text-lg font-bold text-amber-950">🕐 KST</div>
               </div>
@@ -527,28 +571,32 @@ const KoreanLearningSite = () => {
         q: '저는 매일 학교__ 갑니다.',
         options: ['는', '이', '에', '가'],
         correct: 2,
-        explanation: '장소를 나타내는 조사는 "에"입니다. "학교에 갑니다"가 맞습니다.'
+        explanation: '장소를 나타내는 조사는 "에"입니다. "학교에 갑니다"가 맞습니다.',
+        explanationEn: 'The particle for location is "에" (to/at). The correct answer is "학교에 갑니다" (I go to school).'
       },
       {
         instruction: 'Choose the most natural expression for the blank.',
         q: '날씨가 너무 ____ 창문을 열었어요.',
         options: ['덥워서', '더워서', '더어서', '더아서'],
         correct: 1,
-        explanation: '"덥다"의 활용형은 "더워서"입니다.'
+        explanation: '"덥다"의 활용형은 "더워서"입니다.',
+        explanationEn: 'The conjugated form of "덥다" (hot) is "더워서" (because it\'s hot).'
       },
       {
         instruction: 'What time is it?',
         q: '21:50',
         options: ['스물한시 오십분이에요.', '이십일시 십분 전이에요.', '아홉시 쉰분이에요.', '열시 십분전이에요.'],
         correct: 3,
-        explanation: '21:50은 "밤 9시 50분" 또는 "열 시 십 분 전"으로 표현합니다.'
+        explanation: '21:50은 "밤 9시 50분" 또는 "열 시 십 분 전"으로 표현합니다.',
+        explanationEn: '21:50 is expressed as "9:50 PM" or "ten minutes before 10" in Korean.'
       },
       {
         instruction: 'Choose the word with the closest meaning to the underlined word.',
         q: '이 음식은 정말 맛없어요.',
         options: ['맛있어요', '좋아요', '괜찮아요', '별로예요'],
         correct: 3,
-        explanation: '"맛없어요"는 부정적인 표현이므로 "별로예요"가 가장 가까운 의미입니다.'
+        explanation: '"맛없어요"는 부정적인 표현이므로 "별로예요"가 가장 가까운 의미입니다.',
+        explanationEn: '"맛없어요" (not tasty) is a negative expression, so "별로예요" (not really/not good) has the closest meaning.'
       },
       {
         instruction: 'Read the passage and answer the question.',
@@ -556,7 +604,8 @@ const KoreanLearningSite = () => {
         extraQ: 'What did you do first when you came home?',
         options: ['저녁을 먹었어요', '커피를 마셨어요', '텔레비전을 봤어요', '학교에 갔어요'],
         correct: 2,
-        explanation: '"집에 돌아오자마자 티비를 봤다"라고 했으므로 정답은 3번입니다.'
+        explanation: '"집에 돌아오자마자 티비를 봤다"라고 했으므로 정답은 3번입니다.',
+        explanationEn: 'The passage says "집에 돌아오자마자 티비를 봤다" (watched TV as soon as I got home), so the answer is #3.'
       },
       {
         instruction: 'Read the passage. True (O) or False (X)?',
@@ -564,14 +613,16 @@ const KoreanLearningSite = () => {
         extraQ: '옷이 마음에 안 든다.',
         options: ['O', 'X'],
         correct: 0,
-        explanation: '옷이 작고 다른 옷을 보고 싶다고 했으므로 마음에 안 드는 것이 맞습니다.'
+        explanation: '옷이 작고 다른 옷을 보고 싶다고 했으므로 마음에 안 드는 것이 맞습니다.',
+        explanationEn: 'The passage says the clothes are too small and wants to see other options, so "doesn\'t like the clothes" is True (O).'
       },
       {
         instruction: 'Fill in the blanks with the correct words.',
         q: '저는 ____ 한국에 왔습니다. 한국은 아주 예쁘고 좋았습니다. 저는 ____ 고향으로 돌아갑니다. 그래서 ____ 마지막으로 한국 친구를 만나려고 합니다.',
         options: ['다음주에 - 오늘 - 오늘', '오늘 - 지난주 - 내일', '내일 - 다음주 - 오늘', '지난주에 - 내일 - 오늘'],
         correct: 3,
-        explanation: '시간 순서상 "지난주 왔고, 내일 돌아가고, 오늘 친구를 만난다"가 자연스럽습니다.'
+        explanation: '시간 순서상 "지난주 왔고, 내일 돌아가고, 오늘 친구를 만난다"가 자연스럽습니다.',
+        explanationEn: 'In chronological order: "came last week, leaving tomorrow, meeting friends today" makes the most sense.'
       }
     ];
 
@@ -619,7 +670,8 @@ const KoreanLearningSite = () => {
                   answers[i] !== q.correct && (
                     <div key={i} className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-3">
                       <p className="font-bold text-amber-950 mb-2">Question {i + 1}</p>
-                      <p className="text-sm text-gray-700">{q.explanation}</p>
+                      <p className="text-sm text-gray-700 mb-2">{q.explanation}</p>
+                      <p className="text-sm text-gray-600 italic">{q.explanationEn}</p>
                     </div>
                   )
                 ))}
