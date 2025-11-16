@@ -363,7 +363,7 @@ const KoreanLearningSite = () => {
         setEmail('');
         setAllSlots({});
         setSelDate(null);
-        setAgreed(false);
+        // setAgreed(false)를 제거하여 달력 화면에 계속 머물도록 함
       } catch (error) {
         console.error('Error booking:', error);
         alert('Booking failed. Please try again.');
@@ -414,6 +414,7 @@ const KoreanLearningSite = () => {
               <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6">
                 <ul className="space-y-3 text-gray-700">
                   <li>• Classes are non-refundable.</li>
+                  <li>• <span className="font-bold text-red-700">Bookings will be cancelled if payment is not received within 24 hours.</span></li>
                   <li>• You can reschedule once with at least 1 hour's notice.</li>
                   <li>• Missed classes are marked as completed.</li>
                   <li>• Late arrivals still end at the scheduled time.</li>
@@ -973,6 +974,8 @@ const KoreanLearningSite = () => {
 
   const AdminBookingsPage = () => {
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
+    const [showOverdue, setShowOverdue] = useState(false);
+    
     const del = async (id) => { 
       if (window.confirm('Delete this booking?')) {
         try {
@@ -983,16 +986,176 @@ const KoreanLearningSite = () => {
         }
       }
     };
+
+    const confirmPayment = async (booking) => {
+      if (window.confirm(`Confirm payment for ${booking.name}?`)) {
+        try {
+          // Firebase에 결제 확인 상태 업데이트
+          await setDoc(doc(db, 'bookings', booking.id), {
+            ...booking,
+            paymentConfirmed: true,
+            paymentConfirmedAt: new Date().toISOString()
+          });
+
+          // EmailJS 초기화
+          emailjs.init('1eD9dTRJPfHenqguL');
+
+          // 학생에게 확정 이메일 발송 (관리자 참조 포함)
+          await emailjs.send(
+            'service_c58vlqm',
+            'template_confirm',
+            {
+              to_email: booking.email,
+              cc_email: 'koreanteacherhannah@gmail.com',
+              student_name: booking.name,
+              booking_date: booking.date,
+              time_slots: booking.slots.join(', '),
+              message: `Thank you for your payment! Your class has been confirmed.\n\nClass details:\nDate: ${booking.date}\nTime: ${booking.slots.join(', ')} (KST)\n\nYou will receive the Zoom link 5 minutes before the class starts.\n\nSee you in class!\n\nBest regards,\nHannah`
+            }
+          );
+
+          alert('Payment confirmed! Confirmation email sent to student.');
+        } catch (error) {
+          console.error('Error confirming payment:', error);
+          alert('Failed to confirm payment. Please try again.');
+        }
+      }
+    };
+
+    // 24시간 이상 경과한 미결제 예약 필터링
+    const getOverdueBookings = () => {
+      const now = new Date();
+      return bookings.filter(b => {
+        if (b.paymentConfirmed) return false;
+        const bookedTime = new Date(b.bookedAt);
+        const hoursPassed = (now - bookedTime) / (1000 * 60 * 60);
+        return hoursPassed >= 24;
+      });
+    };
+
+    const overdueBookings = getOverdueBookings();
+    const displayBookings = showOverdue ? overdueBookings : bookings;
+
+    const deleteAllOverdue = async () => {
+      if (window.confirm(`Delete all ${overdueBookings.length} overdue bookings?`)) {
+        try {
+          for (const booking of overdueBookings) {
+            await deleteDoc(doc(db, 'bookings', booking.id));
+          }
+          alert(`Deleted ${overdueBookings.length} overdue bookings.`);
+        } catch (error) {
+          console.error('Error deleting overdue bookings:', error);
+          alert('Failed to delete some bookings. Please try again.');
+        }
+      }
+    };
+
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold">Bookings ({bookings.length})</h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Bookings ({displayBookings.length})</h2>
             <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
           </div>
+
+          {/* 필터 버튼 */}
+          <div className="bg-white rounded-xl shadow-lg p-4 mb-4">
+            <div className="flex gap-3 items-center flex-wrap">
+              <button 
+                onClick={() => setShowOverdue(false)} 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${!showOverdue ? 'bg-sky-200 text-amber-950' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+              >
+                All Bookings ({bookings.length})
+              </button>
+              <button 
+                onClick={() => setShowOverdue(true)} 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${showOverdue ? 'bg-red-200 text-red-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+              >
+                Overdue 24h+ ({overdueBookings.length})
+              </button>
+              {showOverdue && overdueBookings.length > 0 && (
+                <button 
+                  onClick={deleteAllOverdue}
+                  className="ml-auto bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-200"
+                >
+                  Delete All Overdue
+                </button>
+              )}
+            </div>
+          </div>
+
           <div className="bg-white rounded-xl shadow-lg p-6">
-            {bookings.length === 0 ? <p className="text-center text-gray-500 py-8">No bookings</p> : (
-              <div className="overflow-x-auto"><table className="w-full"><thead className="bg-stone-100"><tr><th className="px-4 py-3 text-left text-sm">Name</th><th className="px-4 py-3 text-left text-sm">Email</th><th className="px-4 py-3 text-left text-sm">Date & Time</th><th className="px-4 py-3 text-left text-sm">Action</th></tr></thead><tbody>{bookings.map(b => <tr key={b.id} className="border-t"><td className="px-4 py-3 text-sm">{b.name}</td><td className="px-4 py-3 text-sm">{b.email}</td><td className="px-4 py-3 text-sm">{b.date} | {b.slots.join(', ')}</td><td className="px-4 py-3"><button onClick={() => del(b.id)} className="text-red-600 font-bold hover:text-red-800">Del</button></td></tr>)}</tbody></table></div>
+            {displayBookings.length === 0 ? (
+              <p className="text-center text-gray-500 py-8">
+                {showOverdue ? 'No overdue bookings' : 'No bookings'}
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-stone-100">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-sm">Name</th>
+                      <th className="px-4 py-3 text-left text-sm">Email</th>
+                      <th className="px-4 py-3 text-left text-sm">Date & Time</th>
+                      <th className="px-4 py-3 text-left text-sm">Booked At</th>
+                      <th className="px-4 py-3 text-left text-sm">Status</th>
+                      <th className="px-4 py-3 text-left text-sm">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {displayBookings.map(b => {
+                      const bookedTime = new Date(b.bookedAt);
+                      const hoursPassed = ((new Date() - bookedTime) / (1000 * 60 * 60)).toFixed(1);
+                      
+                      return (
+                        <tr key={b.id} className="border-t">
+                          <td className="px-4 py-3 text-sm">{b.name}</td>
+                          <td className="px-4 py-3 text-sm">{b.email}</td>
+                          <td className="px-4 py-3 text-sm">{b.date} | {b.slots.join(', ')}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <div className="text-xs text-gray-500">
+                              {bookedTime.toLocaleString('en-US', { 
+                                month: 'short', 
+                                day: 'numeric', 
+                                hour: '2-digit', 
+                                minute: '2-digit' 
+                              })}
+                              <div className={hoursPassed >= 24 ? 'text-red-600 font-medium' : ''}>
+                                ({hoursPassed}h ago)
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            {b.paymentConfirmed ? (
+                              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium">Confirmed</span>
+                            ) : (
+                              <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium">Pending</span>
+                            )}
+                          </td>
+                          <td className="px-4 py-3">
+                            <div className="flex gap-2">
+                              {!b.paymentConfirmed && (
+                                <button 
+                                  onClick={() => confirmPayment(b)} 
+                                  className="bg-green-100 text-green-700 px-3 py-1 rounded text-sm font-medium hover:bg-green-200"
+                                >
+                                  Confirm
+                                </button>
+                              )}
+                              <button 
+                                onClick={() => del(b.id)} 
+                                className="text-red-600 font-bold hover:text-red-800 text-sm"
+                              >
+                                Del
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>
