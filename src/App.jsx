@@ -414,21 +414,17 @@ const KoreanLearningSite = () => {
               <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6">
                 <ul className="space-y-3 text-gray-700">
                   <li>• Classes are non-refundable.</li>
-                  <li>• Notify 1hr before to reschedule once.</li>
-                  <li>• Missed class counts as completed.</li>
-                  <li>• Late arrival = ends at scheduled time.</li>
+                  <li>• You can reschedule once with at least 1 hour's notice.</li>
+                  <li>• Missed classes are marked as completed.</li>
+                  <li>• Late arrivals still end at the scheduled time.</li>
                 </ul>
               </div>
               <div className="mb-6 text-gray-700 space-y-2 text-sm md:text-base">
-                <p>• You can only book <span className="font-bold">1:1 Chat</span> sessions here.</p>
-                <p>• For <span className="font-bold">Group Lessons</span>, please register on the Group Lesson page.</p>
-                <p>• Each session is <span className="font-bold">15 minutes</span>.</p>
-                <p>• Example: If you select the 9:00 slot, your class time is <span className="font-bold">09:00–09:15</span>.</p>
-                <p>• All times are in <span className="font-bold">Korea Standard Time (KST)</span>.</p>
-              </div>
-              <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
-                <p className="text-amber-950 font-bold mb-2">🌍 Time Zone Tip:</p>
-                <p className="text-gray-700 text-sm md:text-base">All times shown are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+                <p>Only <span className="font-bold">1:1 Chat</span> sessions can be booked here.</p>
+                <p>For <span className="font-bold">Group Lessons</span>, please use the Group Lesson page.</p>
+                <p>Each session is <span className="font-bold">15 minutes</span>.</p>
+                <p>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</p>
+                <p>All times are in <span className="font-bold">KST</span>.</p>
               </div>
               <button onClick={() => setAgreed(true)} className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300">OK</button>
             </div>
@@ -440,6 +436,10 @@ const KoreanLearningSite = () => {
                 </button>
                 <h2 className="text-2xl font-bold text-amber-950">Book 1:1 Chat</h2>
                 <div className="text-lg font-bold text-amber-950">🕐 KST</div>
+              </div>
+              <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
+                <p className="text-amber-950 font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
+                <p className="text-gray-700 text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
@@ -639,11 +639,41 @@ const KoreanLearningSite = () => {
     };
 
     const getRecommendation = () => {
-      const score = getScore();
-      const percentage = (score / questions.length) * 100;
-      if (percentage >= 85) return {level: 'Advanced', class: '1:1 Chat'};
-      if (percentage >= 60) return {level: 'Intermediate', class: 'Group Class'};
-      return {level: 'Beginner', class: 'Group Class'};
+      // 난이도별 문제 번호 (0-based index)
+      const beginner = [0, 2]; // 1번, 3번
+      const preBeginner = [4, 6]; // 5번, 7번
+      const intermediate = [1, 3, 5]; // 2번, 4번, 6번
+      
+      // 각 난이도별 맞춘 개수 계산
+      const beginnerCorrect = beginner.filter(i => answers[i] === questions[i].correct).length;
+      const preBeginnerCorrect = preBeginner.filter(i => answers[i] === questions[i].correct).length;
+      const intermediateCorrect = intermediate.filter(i => answers[i] === questions[i].correct).length;
+      
+      // 난이도별 이해도 계산 (%)
+      const beginnerRate = (beginnerCorrect / beginner.length) * 100;
+      const preBeginnerRate = (preBeginnerCorrect / preBeginner.length) * 100;
+      const intermediateRate = (intermediateCorrect / intermediate.length) * 100;
+      
+      // 이해도 판단 함수
+      const getUnderstanding = (rate) => {
+        if (rate <= 33) return 'low';
+        if (rate <= 66) return 'partial';
+        return 'good';
+      };
+      
+      const beginnerLevel = getUnderstanding(beginnerRate);
+      const intermediateLevel = getUnderstanding(intermediateRate);
+      
+      // 레벨 판단
+      if (beginnerLevel === 'low') {
+        return { level: 'Beginner', class: 'Group Class' };
+      } else if (beginnerLevel === 'partial') {
+        return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Chat' };
+      } else if (beginnerLevel === 'good' && intermediateCorrect > 0) {
+        return { level: 'Intermediate+', class: '1:1 Chat' };
+      } else {
+        return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Chat' };
+      }
     };
 
     const reset = () => {
@@ -668,7 +698,7 @@ const KoreanLearningSite = () => {
                 <h3 className="text-xl font-bold text-amber-950 mb-4">Review</h3>
                 {questions.map((q, i) => (
                   answers[i] !== q.correct && (
-                    <div key={i} className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-3">
+                    <div key={i} className="bg-stone-100 border-2 border-stone-300 rounded-lg p-4 mb-3">
                       <p className="font-bold text-amber-950 mb-2">Question {i + 1}</p>
                       <p className="text-sm text-gray-700 mb-2">{q.explanation}</p>
                       <p className="text-sm text-gray-600 italic">{q.explanationEn}</p>
@@ -682,7 +712,14 @@ const KoreanLearningSite = () => {
               </div>
               <div className="flex gap-3">
                 <button onClick={reset} className="flex-1 bg-stone-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-stone-300">Retake Test</button>
-                <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">View Recommended Class</button>
+                {rec.class === 'Group Class or 1:1 Chat' ? (
+                  <>
+                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Group Class</button>
+                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">1:1 Chat</button>
+                  </>
+                ) : (
+                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Go to Class</button>
+                )}
               </div>
             </div>
           </div>
@@ -709,7 +746,7 @@ const KoreanLearningSite = () => {
               )}
               <div className="space-y-3">
                 {q.options.map((opt, i) => (
-                  <button key={i} onClick={() => selectAnswer(i)} className={`w-full p-4 rounded-lg border-2 text-left transition-all ${answers[currentQ] === i ? 'bg-sky-200 border-sky-400 font-bold' : 'bg-stone-50 border-stone-200 hover:bg-sky-100'}`}>
+                  <button key={i} onClick={() => selectAnswer(i)} className={`w-full p-4 rounded-lg border-2 text-left transition-all ${answers[currentQ] === i ? 'bg-stone-300 border-stone-400 font-bold' : 'bg-stone-50 border-stone-200 hover:bg-stone-200'}`}>
                     {i + 1}. {opt}
                   </button>
                 ))}
