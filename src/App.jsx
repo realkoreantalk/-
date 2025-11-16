@@ -159,7 +159,7 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-xl md:text-2xl font-bold text-sky-600">$2 for Dec (promo price)</p>
+              <p className="text-xl md:text-2xl font-bold text-sky-600">$2 for December (promo price)</p>
               <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
             </div>
             <p className="text-xs md:text-sm text-gray-700 mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
@@ -226,11 +226,11 @@ const KoreanLearningSite = () => {
             <p className="text-sm md:text-base font-bold text-gray-700 mb-3">Group Zoom (50 min)</p>
             <p className="text-xs md:text-sm text-gray-600 mb-4">Group classes are monthly packages — all sessions must be booked for the month.</p>
             <div className="space-y-3">
-              <div className="bg-white rounded-lg p-3 border-2 border-sky-200">
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-sky-200">
                 <p className="text-lg md:text-xl font-bold text-sky-600">$15 per month → 4 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Once a week, 6–8 students</p>
               </div>
-              <div className="bg-white rounded-lg p-3 border-2 border-sky-200">
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-sky-200">
                 <p className="text-lg md:text-xl font-bold text-sky-600">$28 per month → 8 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Twice a week, 6–8 students</p>
               </div>
@@ -420,11 +420,11 @@ const KoreanLearningSite = () => {
                 </ul>
               </div>
               <div className="mb-6 text-gray-700 space-y-2 text-sm md:text-base">
-                <p>Only <span className="font-bold">1:1 Chat</span> sessions can be booked here.</p>
-                <p>For <span className="font-bold">Group Lessons</span>, please use the Group Lesson page.</p>
-                <p>Each session is <span className="font-bold">15 minutes</span>.</p>
-                <p>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</p>
-                <p>All times are in <span className="font-bold">KST</span>.</p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Only <span className="font-bold">1:1 Chat</span> sessions can be booked here.</span></p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>For <span className="font-bold">Group Lessons</span>, please use the Group Lesson page.</span></p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Each session is <span className="font-bold">15 minutes</span>.</span></p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</span></p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>All times are in <span className="font-bold">KST</span>.</span></p>
               </div>
               <button onClick={() => setAgreed(true)} className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300">OK</button>
             </div>
@@ -773,6 +773,13 @@ const KoreanLearningSite = () => {
     const [sm, setSm] = useState('0');
     const [eh, setEh] = useState('12');
     const [em, setEm] = useState('0');
+    // 슬롯 삭제용 상태
+    const [delM, setDelM] = useState('');
+    const [delD, setDelD] = useState('');
+    const [delSh, setDelSh] = useState('');
+    const [delSm, setDelSm] = useState('0');
+    const [delEh, setDelEh] = useState('');
+    const [delEm, setDelEm] = useState('0');
 
     const loginWithGoogle = async () => {
       try {
@@ -841,6 +848,47 @@ const KoreanLearningSite = () => {
       }
     };
 
+    const deleteSlot = async () => {
+      if (!delM || !delD || !delSh || !delEh) return alert('Fill all fields');
+      const st = `${String(delSh).padStart(2, '0')}:${String(delSm).padStart(2, '0')}`;
+      const et = `${String(delEh).padStart(2, '0')}:${String(delEm).padStart(2, '0')}`;
+      if (st >= et) return alert('Invalid time');
+      
+      const y = new Date().getFullYear();
+      const ds = `${y}-${String(delM).padStart(2, '0')}-${String(delD).padStart(2, '0')}`;
+      const slotsToDelete = genSlots(delSh, delSm, delEh, delEm);
+      
+      try {
+        const currentSlots = timeSlots[ds] || [];
+        const updatedSlots = currentSlots.filter(slot => !slotsToDelete.includes(slot));
+        
+        if (updatedSlots.length === currentSlots.length) {
+          return alert('No matching slots found to delete');
+        }
+        
+        if (updatedSlots.length === 0) {
+          // 모든 슬롯이 삭제되면 문서 자체를 삭제
+          await deleteDoc(doc(db, 'timeSlots', ds));
+        } else {
+          // 일부 슬롯만 삭제
+          await setDoc(doc(db, 'timeSlots', ds), {
+            slots: updatedSlots
+          });
+        }
+        
+        alert(`Deleted ${currentSlots.length - updatedSlots.length} slot(s) from ${ds}`);
+        setDelM('');
+        setDelD('');
+        setDelSh('');
+        setDelSm('0');
+        setDelEh('');
+        setDelEm('0');
+      } catch (error) {
+        console.error('Error deleting slots:', error);
+        alert('Failed to delete slots. Please try again.');
+      }
+    };
+
     if (!isAdminAuth) {
       return (
         <div className="min-h-screen bg-stone-100 p-8 flex items-center justify-center">
@@ -899,6 +947,23 @@ const KoreanLearningSite = () => {
                 <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={em} onChange={(e) => setEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
               </div>
               <button onClick={add} className="w-full bg-sky-200 font-bold py-3 rounded-lg">Add</button>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
+            <h3 className="text-xl font-bold mb-4">Delete Slots</h3>
+            <p className="text-sm text-gray-600 mb-4">Delete specific slots from a single date</p>
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div><label className="block text-sm mb-2">Month</label><input type="number" min="1" max="12" value={delM} onChange={(e) => setDelM(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
+                <div><label className="block text-sm mb-2">Day</label><input type="number" min="1" max="31" value={delD} onChange={(e) => setDelD(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
+              </div>
+              <div className="grid grid-cols-4 gap-2">
+                <div><label className="block text-sm mb-2">Start Hour</label><input type="number" min="0" max="23" value={delSh} onChange={(e) => setDelSh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="9" /></div>
+                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={delSm} onChange={(e) => setDelSm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
+                <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={delEh} onChange={(e) => setDelEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
+                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={delEm} onChange={(e) => setDelEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
+              </div>
+              <button onClick={deleteSlot} className="w-full bg-red-100 text-red-700 font-bold py-3 rounded-lg hover:bg-red-200">Delete</button>
             </div>
           </div>
         </div>
