@@ -12,6 +12,17 @@ const KoreanLearningSite = () => {
   const [classPrice, setClassPrice] = useState(2);
   const [bookings, setBookings] = useState([]);
   const [timeSlots, setTimeSlots] = useState({});
+  const [bookingId, setBookingId] = useState(null);
+
+  // URL 파라미터에서 booking ID 확인
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('booking');
+    if (id) {
+      setBookingId(id);
+      setCurrentPage('studentBooking');
+    }
+  }, []);
 
   // Firebase Auth 상태 감지
   useEffect(() => {
@@ -309,15 +320,21 @@ const KoreanLearningSite = () => {
       }
       
       try {
-        // Firebase에 예약 저장
+        const bookingIds = [];
+        
+        // Firebase에 예약 저장 (UUID 포함)
         for (const date of Object.keys(allSlots)) {
-          await addDoc(collection(db, 'bookings'), {
+          const bookingId = crypto.randomUUID(); // UUID 생성
+          await setDoc(doc(db, 'bookings', bookingId), {
+            id: bookingId,
             name,
             email,
             date,
             slots: allSlots[date],
-            bookedAt: new Date().toISOString()
+            bookedAt: new Date().toISOString(),
+            rescheduleCount: 0 // 변경 횟수 추적
           });
+          bookingIds.push(bookingId);
         }
         
         // 예약 정보 정리
@@ -330,7 +347,7 @@ const KoreanLearningSite = () => {
         // EmailJS 초기화
         emailjs.init('1eD9dTRJPfHenqguL');
         
-        // 관리자에게 이메일 전송
+        // 관리자에게만 이메일 전송
         await emailjs.send(
           'service_c58vlqm',
           'template_cahc4d6',
@@ -344,21 +361,7 @@ const KoreanLearningSite = () => {
           }
         );
         
-        // 학생에게 확인 이메일 전송
-        await emailjs.send(
-          'service_c58vlqm',
-          'template_zwh6zxw',
-          {
-            student_name: name,
-            student_email: email,
-            booking_date: bookingDates,
-            time_slots: allTimeSlots,
-            total_sessions: total,
-            total_price: totalPrice
-          }
-        );
-        
-        alert('Thanks for booking! Check your email to complete payment.');
+        alert('Thanks for booking! The admin will send you payment instructions via email shortly.');
         setName('');
         setEmail('');
         setAllSlots({});
@@ -767,6 +770,281 @@ const KoreanLearningSite = () => {
     );
   };
 
+  const StudentBookingPage = () => {
+    const [booking, setBooking] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [availableSlots, setAvailableSlots] = useState([]);
+    const [selectedSlot, setSelectedSlot] = useState(null);
+
+    useEffect(() => {
+      const loadBooking = async () => {
+        if (!bookingId) return;
+        
+        try {
+          const bookingDoc = await getDocs(collection(db, 'bookings'));
+          let foundBooking = null;
+          bookingDoc.forEach((doc) => {
+            if (doc.id === bookingId) {
+              foundBooking = { id: doc.id, ...doc.data() };
+            }
+          });
+          
+          if (foundBooking) {
+            setBooking(foundBooking);
+            // 1주일 이내의 사용 가능한 슬롯 찾기
+            findAvailableSlots(foundBooking);
+          }
+        } catch (error) {
+          console.error('Error loading booking:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      loadBooking();
+    }, [bookingId]);
+
+    const findAvailableSlots = (currentBooking) => {
+      const now = new Date();
+      const oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const available = [];
+
+      // 현재 예약 날짜와 시간
+      const currentDate = currentBooking.date;
+      const currentSlot = currentBooking.slots[0];
+
+      // 모든 슬롯을 순회하며 1주일 이내의 슬롯 찾기
+      Object.keys(timeSlots).forEach(date => {
+        const slotDate = new Date(date);
+        
+        // 1주일 이내인지 확인
+        if (slotDate >= now && slotDate <= oneWeekLater) {
+          const bookedSlotsOnDate = bookings
+            .filter(b => b.date === date && b.id !== bookingId)
+            .flatMap(b => b.slots || []);
+
+          timeSlots[date].forEach(slot => {
+            // 이미 예약된 슬롯이 아니고, 현재 예약과 다른 슬롯만
+            if (!bookedSlotsOnDate.includes(slot) && 
+                !(date === currentDate && slot === currentSlot)) {
+              
+              // 1시간 후 슬롯만 표시
+              const [slotHour, slotMinute] = slot.split(':').map(Number);
+              const slotDateTime = new Date(date);
+              slotDateTime.setHours(slotHour, slotMinute, 0, 0);
+              
+              const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
+              
+              if (slotDateTime > oneHourLater) {
+                available.push({ date, slot });
+              }
+            }
+          });
+        }
+      });
+
+      setAvailableSlots(available);
+    };
+
+    const reschedule = async () => {
+      if (!selectedSlot || !booking) return;
+
+      // 변경 가능 여부 확인
+      if (booking.rescheduleCount >= 1) {
+        alert('You have already used your one-time reschedule. Please contact the admin for further changes.');
+        return;
+      }
+
+      // 수업 시간 1시간 전 확인
+      const classDateTime = new Date(booking.date);
+      const [classHour, classMinute] = booking.slots[0].split(':').map(Number);
+      classDateTime.setHours(classHour, classMinute, 0, 0);
+      
+      const now = new Date();
+      const oneHourBefore = new Date(classDateTime.getTime() - 60 * 60 * 1000);
+      
+      if (now > oneHourBefore) {
+        alert('Cannot reschedule within 1 hour of class time. Please contact the admin.');
+        return;
+      }
+
+      if (!window.confirm(`Reschedule to ${selectedSlot.date} at ${selectedSlot.slot}?`)) {
+        return;
+      }
+
+      try {
+        // 예약 업데이트 (이메일 발송 없이 Firebase만 업데이트)
+        await setDoc(doc(db, 'bookings', bookingId), {
+          ...booking,
+          oldDate: booking.date, // 이전 날짜 저장
+          oldSlots: booking.slots, // 이전 시간 저장
+          date: selectedSlot.date,
+          slots: [selectedSlot.slot],
+          rescheduleCount: (booking.rescheduleCount || 0) + 1,
+          rescheduledAt: new Date().toISOString(),
+          rescheduled: true // 변경됨 표시
+        });
+
+        alert('Class rescheduled successfully! The admin will be notified.');
+        
+        // 페이지 새로고침
+        window.location.reload();
+      } catch (error) {
+        console.error('Error rescheduling:', error);
+        alert('Failed to reschedule. Please try again or contact the admin.');
+      }
+    };
+
+    if (loading) {
+      return (
+        <div className="min-h-screen bg-stone-100 flex items-center justify-center">
+          <div className="text-xl text-gray-600">Loading...</div>
+        </div>
+      );
+    }
+
+    if (!booking) {
+      return (
+        <div className="min-h-screen bg-stone-100 p-8">
+          <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Booking Not Found</h2>
+            <p className="text-gray-600 mb-6">The booking link is invalid or has been deleted.</p>
+            <button onClick={() => window.location.href = '/'} className="bg-sky-200 text-amber-950 px-6 py-3 rounded-lg font-bold hover:bg-sky-300">
+              Go to Home
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    const canReschedule = (booking.rescheduleCount || 0) < 1;
+    const classDateTime = new Date(booking.date);
+    const [classHour, classMinute] = booking.slots[0].split(':').map(Number);
+    classDateTime.setHours(classHour, classMinute, 0, 0);
+    const oneHourBefore = new Date(classDateTime.getTime() - 60 * 60 * 1000);
+    const isWithinOneHour = new Date() > oneHourBefore;
+
+    return (
+      <div className="min-h-screen bg-stone-100 p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-amber-950">My Booking</h2>
+              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-amber-950">
+                ← Home
+              </button>
+            </div>
+
+            {/* 예약 정보 */}
+            <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-bold text-amber-950 mb-4">Class Information</h3>
+              <div className="space-y-2 text-gray-700">
+                <p><span className="font-bold">Name:</span> {booking.name}</p>
+                <p><span className="font-bold">Email:</span> {booking.email}</p>
+                <p><span className="font-bold">Date:</span> {booking.date}</p>
+                <p><span className="font-bold">Time:</span> {booking.slots.join(', ')} (KST)</p>
+                <p><span className="font-bold">Status:</span> {
+                  booking.paymentConfirmed ? 
+                    <span className="text-green-700 font-medium">Confirmed ✓</span> : 
+                    <span className="text-amber-700 font-medium">Payment Pending</span>
+                }</p>
+                {booking.rescheduleCount > 0 && (
+                  <p className="text-sm text-gray-500">
+                    You have already rescheduled this class.
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* 시간 변경 섹션 */}
+            {!booking.paymentConfirmed ? (
+              <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6">
+                <p className="text-amber-800">
+                  Please complete payment within 24 hours to confirm your booking.
+                </p>
+              </div>
+            ) : (
+              <div>
+                <h3 className="text-xl font-bold text-amber-950 mb-4">Reschedule Class</h3>
+                
+                {!canReschedule ? (
+                  <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
+                    <p className="text-red-700 font-medium">
+                      You have already used your one-time reschedule option.
+                    </p>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Please contact the admin at koreanteacherhannah@gmail.com if you need to make further changes.
+                    </p>
+                  </div>
+                ) : isWithinOneHour ? (
+                  <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
+                    <p className="text-red-700 font-medium">
+                      Cannot reschedule within 1 hour of class time.
+                    </p>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Please contact the admin at koreanteacherhannah@gmail.com for urgent changes.
+                    </p>
+                  </div>
+                ) : availableSlots.length === 0 ? (
+                  <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6">
+                    <p className="text-amber-800 font-medium mb-2">
+                      No available slots within the next 7 days.
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Please contact the admin at koreanteacherhannah@gmail.com to reschedule your class.
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-green-800">
+                        ✓ You can reschedule <span className="font-bold">once</span> for free
+                      </p>
+                      <p className="text-sm text-green-800">
+                        ✓ Available slots within the next 7 days are shown below
+                      </p>
+                    </div>
+
+                    <div className="mb-6">
+                      <p className="text-sm text-gray-600 mb-3">
+                        Select a new time slot (showing slots 1+ hours from now):
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
+                        {availableSlots.map((slot, i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedSlot(slot)}
+                            className={`p-4 rounded-lg border-2 text-left transition-all ${
+                              selectedSlot?.date === slot.date && selectedSlot?.slot === slot.slot
+                                ? 'bg-sky-200 border-sky-400 font-bold'
+                                : 'bg-stone-50 border-stone-200 hover:bg-sky-100'
+                            }`}
+                          >
+                            <div className="font-bold text-amber-950">{slot.date}</div>
+                            <div className="text-gray-700">{slot.slot} KST</div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {selectedSlot && (
+                      <button
+                        onClick={reschedule}
+                        className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300"
+                      >
+                        Confirm Reschedule
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const AdminPage = () => {
     const [m, setM] = useState('');
     const [d, setD] = useState('');
@@ -974,7 +1252,7 @@ const KoreanLearningSite = () => {
 
   const AdminBookingsPage = () => {
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
-    const [showOverdue, setShowOverdue] = useState(false);
+    const [filterType, setFilterType] = useState('all'); // 'all', 'overdue', 'rescheduled'
     
     const del = async (id) => { 
       if (window.confirm('Delete this booking?')) {
@@ -1000,7 +1278,10 @@ const KoreanLearningSite = () => {
           // EmailJS 초기화
           emailjs.init('1eD9dTRJPfHenqguL');
 
-          // 학생에게 확정 이메일 발송 (관리자 참조 포함)
+          // 학생 전용 링크 생성
+          const bookingLink = `${window.location.origin}/?booking=${booking.id}`;
+
+          // 학생에게 확정 이메일 발송 (학생 링크 + 모든 안내사항 포함)
           await emailjs.send(
             'service_c58vlqm',
             'template_confirm',
@@ -1010,7 +1291,7 @@ const KoreanLearningSite = () => {
               student_name: booking.name,
               booking_date: booking.date,
               time_slots: booking.slots.join(', '),
-              message: `Thank you for your payment! Your class has been confirmed.\n\nClass details:\nDate: ${booking.date}\nTime: ${booking.slots.join(', ')} (KST)\n\nYou will receive the Zoom link 5 minutes before the class starts.\n\nSee you in class!\n\nBest regards,\nHannah`
+              booking_link: bookingLink
             }
           );
 
@@ -1033,8 +1314,18 @@ const KoreanLearningSite = () => {
       });
     };
 
+    // 변경된 예약 필터링
+    const getRescheduledBookings = () => {
+      return bookings.filter(b => b.rescheduled === true);
+    };
+
     const overdueBookings = getOverdueBookings();
-    const displayBookings = showOverdue ? overdueBookings : bookings;
+    const rescheduledBookings = getRescheduledBookings();
+    
+    const displayBookings = 
+      filterType === 'overdue' ? overdueBookings :
+      filterType === 'rescheduled' ? rescheduledBookings :
+      bookings;
 
     const deleteAllOverdue = async () => {
       if (window.confirm(`Delete all ${overdueBookings.length} overdue bookings?`)) {
@@ -1062,18 +1353,24 @@ const KoreanLearningSite = () => {
           <div className="bg-white rounded-xl shadow-lg p-4 mb-4">
             <div className="flex gap-3 items-center flex-wrap">
               <button 
-                onClick={() => setShowOverdue(false)} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${!showOverdue ? 'bg-sky-200 text-amber-950' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+                onClick={() => setFilterType('all')} 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-sky-200 text-amber-950' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
               >
                 All Bookings ({bookings.length})
               </button>
               <button 
-                onClick={() => setShowOverdue(true)} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${showOverdue ? 'bg-red-200 text-red-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+                onClick={() => setFilterType('overdue')} 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'overdue' ? 'bg-red-200 text-red-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
               >
                 Overdue 24h+ ({overdueBookings.length})
               </button>
-              {showOverdue && overdueBookings.length > 0 && (
+              <button 
+                onClick={() => setFilterType('rescheduled')} 
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'rescheduled' ? 'bg-purple-200 text-purple-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+              >
+                Rescheduled ({rescheduledBookings.length})
+              </button>
+              {filterType === 'overdue' && overdueBookings.length > 0 && (
                 <button 
                   onClick={deleteAllOverdue}
                   className="ml-auto bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-200"
@@ -1087,7 +1384,9 @@ const KoreanLearningSite = () => {
           <div className="bg-white rounded-xl shadow-lg p-6">
             {displayBookings.length === 0 ? (
               <p className="text-center text-gray-500 py-8">
-                {showOverdue ? 'No overdue bookings' : 'No bookings'}
+                {filterType === 'overdue' ? 'No overdue bookings' : 
+                 filterType === 'rescheduled' ? 'No rescheduled bookings' : 
+                 'No bookings'}
               </p>
             ) : (
               <div className="overflow-x-auto">
@@ -1108,10 +1407,22 @@ const KoreanLearningSite = () => {
                       const hoursPassed = ((new Date() - bookedTime) / (1000 * 60 * 60)).toFixed(1);
                       
                       return (
-                        <tr key={b.id} className="border-t">
+                        <tr key={b.id} className={`border-t ${b.rescheduled ? 'bg-purple-50' : ''}`}>
                           <td className="px-4 py-3 text-sm">{b.name}</td>
                           <td className="px-4 py-3 text-sm">{b.email}</td>
-                          <td className="px-4 py-3 text-sm">{b.date} | {b.slots.join(', ')}</td>
+                          <td className="px-4 py-3 text-sm">
+                            <div>
+                              {b.rescheduled && b.oldDate && (
+                                <div className="text-xs text-gray-400 line-through mb-1">
+                                  {b.oldDate} | {b.oldSlots?.join(', ')}
+                                </div>
+                              )}
+                              <div className={b.rescheduled ? 'font-bold text-purple-700' : ''}>
+                                {b.date} | {b.slots.join(', ')}
+                                {b.rescheduled && <span className="ml-2 text-xs">🔄</span>}
+                              </div>
+                            </div>
+                          </td>
                           <td className="px-4 py-3 text-sm">
                             <div className="text-xs text-gray-500">
                               {bookedTime.toLocaleString('en-US', { 
@@ -1172,6 +1483,7 @@ const KoreanLearningSite = () => {
       {currentPage === 'booking' && <BookingPage />}
       {currentPage === 'tutors' && <TutorsPage />}
       {currentPage === 'levelTest' && <LevelTestPage />}
+      {currentPage === 'studentBooking' && <StudentBookingPage />}
       {currentPage === 'admin' && <AdminPage />}
       {currentPage === 'adminBookings' && <AdminBookingsPage />}
     </div>
