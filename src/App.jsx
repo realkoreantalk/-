@@ -75,7 +75,7 @@ const KoreanLearningSite = () => {
   }, []);
 
   const Navigation = () => (
-    <nav className="bg-gradient-to-r from-amber-950 to-amber-900 text-white p-4 shadow-lg">
+    <nav className="bg-gradient-to-r from-[#4c3b32] to-amber-900 text-white p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <button onClick={() => setCurrentPage('home')} className="hover:text-stone-300 text-sm">Home</button>
         <h1 className="text-2xl md:text-3xl font-bold">Real Korean Talk</h1>
@@ -88,42 +88,42 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-gradient-to-b from-stone-200 to-stone-100">
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
         <div className="text-center mb-8 md:mb-16">
-          <h1 className="text-xl md:text-5xl font-bold text-amber-950 mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
+          <h1 className="text-xl md:text-5xl font-bold text-[#4c3b32] mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
           <p className="text-lg md:text-xl text-stone-700">With certified expert tutor Hannah!</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-6xl mx-auto">
           <button onClick={() => setCurrentPage('levelTest')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><Award size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-amber-950">Level Test</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Level Test</h3>
           </button>
-          <button onClick={() => setCurrentPage('booking')} className="bg-gradient-to-br from-sky-200 to-sky-300 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-amber-950">
+          <button onClick={() => setCurrentPage('booking')} className="bg-gradient-to-br from-[#e7faf7] to-[#d0f5ef] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4c3b32]">
             <div className="mb-2 flex justify-center"><Calendar size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold">Book a Class</h3>
           </button>
           <button onClick={() => setCurrentPage('tutors')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-amber-950">Tutor Info</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Tutor Info</h3>
           </button>
           <button onClick={() => setCurrentPage('oneOnOne')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center gap-0">
               <User size={24} className="md:w-7 md:h-7" />
               <User size={24} className="md:w-7 md:h-7 -ml-[10px]" />
             </div>
-            <h3 className="text-base md:text-xl font-bold text-amber-950">1:1 Chat 15min</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">1:1 Chat 15min</h3>
           </button>
           <a href="https://realkoreantalk.wordpress.com" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 flex flex-col items-center justify-center">
             <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-amber-950 text-center">Blog</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4c3b32] text-center">Blog</h3>
           </a>
           <button onClick={() => setCurrentPage('group')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><BookOpen size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-amber-950">Group Lesson</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Group Lesson</h3>
           </button>
         </div>
         <div className="text-center mt-12 pb-8">
           <a 
             href="mailto:koreanteacherhannah@gmail.com" 
-            className="inline-block text-lg md:text-xl text-amber-950 hover:text-amber-800 font-medium transition-all hover:scale-105"
+            className="inline-block text-lg md:text-xl text-[#4c3b32] hover:text-amber-800 font-medium transition-all hover:scale-105"
           >
             Any questions? Contact me, Hannah! 💌
           </a>
@@ -136,11 +136,11 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-gradient-to-r from-sky-100 to-sky-200 border-2 border-sky-300 rounded-lg p-4 mb-6 text-center">
+          <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3">
-              <User size={24} className="md:w-7 md:h-7 text-amber-950" />
-              <h2 className="text-xl md:text-2xl font-bold text-amber-950">15-min 1:1 Chat</h2>
-              <User size={24} className="md:w-7 md:h-7 text-amber-950" />
+              <User size={24} className="md:w-7 md:h-7 text-[#4c3b32]" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">15-min 1:1 Chat</h2>
+              <User size={24} className="md:w-7 md:h-7 text-[#4c3b32]" />
             </div>
             <p className="text-sm md:text-base text-gray-600 mt-2">(Beginner–Advanced)</p>
           </div>
@@ -149,35 +149,35 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8">
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Choose topics based on learner's level & interests</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn natural expressions and common phrases</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>No textbook, no grammar drills, just real conversation</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Zoom online</span>
               </li>
             </ul>
           </div>
 
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-3 md:mb-4">💰 Class Fees</h3>
+            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-xl md:text-2xl font-bold text-sky-600">$2 for December (promo price)</p>
+              <p className="text-xl md:text-2xl font-bold text-[#3bb5a3]">$2 for December (promo price)</p>
               <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
             </div>
             <p className="text-xs md:text-sm text-gray-700 mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
 
           <div className="mb-6 md:mb-8">
-            <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-3 md:mb-4">Recommended For</h3>
+            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">Recommended For</h3>
             <p className="text-sm md:text-base text-gray-700 mb-3">Learners who want to practice Korean conversation in short, convenient sessions</p>
             <ul className="space-y-2 text-sm md:text-base text-gray-700">
               <li className="flex items-start">
@@ -195,7 +195,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-sky-200 to-sky-300 text-amber-950 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-sky-300 hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
         </div>
       </div>
     </div>
@@ -205,8 +205,8 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-gradient-to-r from-sky-100 to-sky-200 border-2 border-sky-300 rounded-lg p-4 mb-6 text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-amber-950">📚 Group Class</h2>
+          <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6 text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">📚 Group Class</h2>
             <p className="text-sm md:text-base text-gray-600 mt-2">Textbook-Based (Beginner–Intermediate)</p>
           </div>
           <p className="text-base md:text-lg text-gray-700 mb-6">Learn step-by-step through structured lessons using a student book and workbook.</p>
@@ -214,35 +214,35 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8">
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Student Book & Workbook provided</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar explanations & exercises included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Relevant videos & images used for better understanding</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Homework provided after each class</span>
               </li>
             </ul>
           </div>
 
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-3 md:mb-4">💰 Class Fees</h3>
+            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">💰 Class Fees</h3>
             <p className="text-sm md:text-base font-bold text-gray-700 mb-3">Group Zoom (50 min)</p>
             <p className="text-xs md:text-sm text-gray-600 mb-4">Group classes are monthly packages — all sessions must be booked for the month.</p>
             <div className="space-y-3">
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-sky-200">
-                <p className="text-lg md:text-xl font-bold text-sky-600">$15 per month → 4 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#e7faf7]">
+                <p className="text-lg md:text-xl font-bold text-[#3bb5a3]">$15 per month → 4 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Once a week, 6–8 students</p>
               </div>
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-sky-200">
-                <p className="text-lg md:text-xl font-bold text-sky-600">$28 per month → 8 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#e7faf7]">
+                <p className="text-lg md:text-xl font-bold text-[#3bb5a3]">$28 per month → 8 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Twice a week, 6–8 students</p>
               </div>
             </div>
@@ -250,7 +250,7 @@ const KoreanLearningSite = () => {
           </div>
 
           <div className="mb-6 md:mb-8">
-            <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-3 md:mb-4">Recommended For</h3>
+            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">Recommended For</h3>
             <p className="text-sm md:text-base text-gray-700 mb-3">Learners who enjoy practicing conversation with others, want to learn through interaction, and prefer a more affordable option while still receiving guidance and correction from the tutor.</p>
             <ul className="space-y-2 text-sm md:text-base text-gray-700">
               <li className="flex items-start">
@@ -264,7 +264,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-sky-200 to-sky-300 text-amber-950 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-sky-300 hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
         </div>
       </div>
     </div>
@@ -320,22 +320,23 @@ const KoreanLearningSite = () => {
       }
       
       try {
-        const bookingIds = [];
+        // 한 사람당 하나의 예약 문서 생성 (모든 날짜/슬롯 포함)
+        const bookingId = crypto.randomUUID();
         
-        // Firebase에 예약 저장 (UUID 포함)
-        for (const date of Object.keys(allSlots)) {
-          const bookingId = crypto.randomUUID(); // UUID 생성
-          await setDoc(doc(db, 'bookings', bookingId), {
-            id: bookingId,
-            name,
-            email,
-            date,
-            slots: allSlots[date],
-            bookedAt: new Date().toISOString(),
-            rescheduleCount: 0 // 변경 횟수 추적
-          });
-          bookingIds.push(bookingId);
-        }
+        // 모든 예약을 하나의 배열로 구성
+        const allBookings = Object.entries(allSlots).map(([date, slots]) => ({
+          date,
+          slots
+        }));
+        
+        await setDoc(doc(db, 'bookings', bookingId), {
+          id: bookingId,
+          name,
+          email,
+          bookings: allBookings, // 모든 날짜/슬롯을 배열로 저장
+          bookedAt: new Date().toISOString(),
+          rescheduleCount: 0
+        });
         
         // 예약 정보 정리
         const bookingDates = Object.keys(allSlots).join(', ');
@@ -376,9 +377,21 @@ const KoreanLearningSite = () => {
     // 예약된 슬롯 필터링 및 지나간 시간 제외
     const getAvailableSlots = (date) => {
       const allSlots = timeSlots[date] || [];
+      
+      // 새 데이터 구조에 맞게 예약된 슬롯 수집
       const bookedSlots = bookings
-        .filter(b => b.date === date)
-        .flatMap(b => b.slots || []);
+        .flatMap(b => {
+          if (b.bookings) {
+            // 새 구조: bookings 배열
+            return b.bookings
+              .filter(booking => booking.date === date)
+              .flatMap(booking => booking.slots || []);
+          } else if (b.date === date) {
+            // 구 구조 호환성
+            return b.slots || [];
+          }
+          return [];
+        });
       
       // 현재 날짜와 시간 확인
       const now = new Date();
@@ -413,8 +426,8 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           {!agreed ? (
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-amber-950 mb-6">Policy</h2>
-              <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6">
+              <h2 className="text-2xl font-bold text-[#4c3b32] mb-6">Policy</h2>
+              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6">
                 <ul className="space-y-3 text-gray-700">
                   <li>• Classes are non-refundable.</li>
                   <li>• <span className="font-bold text-red-700">Bookings will be cancelled if payment is not received within 24 hours.</span></li>
@@ -430,26 +443,26 @@ const KoreanLearningSite = () => {
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>All times are in <span className="font-bold">KST</span>.</span></p>
               </div>
-              <button onClick={() => setAgreed(true)} className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300">OK</button>
+              <button onClick={() => setAgreed(true)} className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]">OK</button>
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex justify-between items-center mb-6">
-                <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-amber-950 font-medium flex items-center gap-1">
+                <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-[#4c3b32] font-medium flex items-center gap-1">
                   ← Back
                 </button>
-                <h2 className="text-2xl font-bold text-amber-950">Book 1:1 Chat</h2>
-                <div className="text-lg font-bold text-amber-950">🕐 KST</div>
+                <h2 className="text-2xl font-bold text-[#4c3b32]">Book 1:1 Chat</h2>
+                <div className="text-lg font-bold text-[#4c3b32]">🕐 KST</div>
               </div>
               <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
-                <p className="text-amber-950 font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
-                <p className="text-gray-700 text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+                <p className="text-[#4c3b32] font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
+                <p className="text-gray-700 text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#3bb5a3] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
-                  <button onClick={() => changeMonth(-1)} className="text-amber-950 font-bold text-xl px-4">←</button>
+                  <button onClick={() => changeMonth(-1)} className="text-[#4c3b32] font-bold text-xl px-4">←</button>
                   <h3 className="text-xl font-bold">{month.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
-                  <button onClick={() => changeMonth(1)} className="text-amber-950 font-bold text-xl px-4">→</button>
+                  <button onClick={() => changeMonth(1)} className="text-[#4c3b32] font-bold text-xl px-4">→</button>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => <div key={i} className="text-center text-sm font-bold py-2">{d}</div>)}
@@ -458,7 +471,7 @@ const KoreanLearningSite = () => {
                     const availableSlots = ds ? getAvailableSlots(ds) : [];
                     const hasS = availableSlots.length > 0;
                     const hasSel = ds && allSlots[ds]?.length > 0;
-                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-sky-200 font-bold' : hasSel ? 'bg-sky-100 font-bold' : 'bg-stone-50 hover:bg-sky-100'}`}>{day}</button>;
+                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-[#e7faf7] font-bold' : hasSel ? 'bg-[#f2fcfa] font-bold' : 'bg-stone-50 hover:bg-[#f2fcfa]'}`}>{day}</button>;
                   })}
                 </div>
               </div>
@@ -466,21 +479,21 @@ const KoreanLearningSite = () => {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Slots - {selDate}</h3>
                   <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
-                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium ${curr.includes(slot) ? 'bg-sky-200 font-bold' : 'bg-stone-50 hover:bg-sky-100'}`}>{slot}</button>)}
+                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium ${curr.includes(slot) ? 'bg-[#e7faf7] font-bold' : 'bg-stone-50 hover:bg-[#f2fcfa]'}`}>{slot}</button>)}
                   </div>
                   <p className="text-sm text-gray-500 mt-3">Selected: {curr.length}</p>
                 </div>
               )}
               {total > 0 && (
                 <>
-                  <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-4 mb-6">
+                  <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 mb-6">
                     <h4 className="font-bold mb-2">Booking Summary</h4>
                     {Object.keys(allSlots).map(date => (
                       <div key={date} className="text-sm mb-1">
                         <span className="font-medium">{date}:</span> {allSlots[date].join(', ')}
                       </div>
                     ))}
-                    <div className="mt-3 pt-3 border-t border-sky-300">
+                    <div className="mt-3 pt-3 border-t border-[#c0f0e9]">
                       <p className="font-bold">Total: {total} sessions × ${classPrice} = ${total * classPrice}</p>
                     </div>
                   </div>
@@ -498,7 +511,7 @@ const KoreanLearningSite = () => {
                   </div>
                 </>
               )}
-              {total > 0 && name && email && <button onClick={submit} className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300">Book</button>}
+              {total > 0 && name && email && <button onClick={submit} className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]">Book</button>}
             </div>
           )}
         </div>
@@ -511,14 +524,14 @@ const KoreanLearningSite = () => {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <div className="bg-gradient-to-r from-pink-100 to-pink-200 border-2 border-pink-300 rounded-lg p-4 mb-6 text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-amber-950">Real Korean with Hannah</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">Real Korean with Hannah</h2>
             <p className="text-sm md:text-base text-gray-700 mt-2">Learn to speak naturally with a certified Korean tutor.</p>
           </div>
 
           <div className="mb-6 md:mb-8">
             <p className="text-base md:text-lg text-gray-700 mb-3">🌸 Hello! I'm Hannah</p>
             <p className="text-base md:text-lg text-gray-700 mb-4">
-              I'm a certified Korean tutor with <span className="font-bold text-amber-950">4 years of experience</span> teaching Korean to foreign learners.
+              I'm a certified Korean tutor with <span className="font-bold text-[#4c3b32]">4 years of experience</span> teaching Korean to foreign learners.
             </p>
             <p className="text-sm md:text-base text-gray-700 mb-4">
               Since 2022, I've been teaching online to students from Indonesia 🇮🇩, Vietnam 🇻🇳, Nicaragua 🇳🇮, Ukraine 🇺🇦, Venezuela 🇻🇪, and Colombia 🇨🇴.
@@ -528,37 +541,37 @@ const KoreanLearningSite = () => {
             </p>
           </div>
 
-          <div className="mb-6 md:mb-8 bg-sky-50 border-2 border-sky-200 rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-amber-950 mb-4">Class Features</h3>
+          <div className="mb-6 md:mb-8 bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-4">Class Features</h3>
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>One-on-one & small group classes</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Textbook-based + practical conversation focus</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar & pronunciation correction included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn Korean culture along the way</span>
               </li>
               <li className="flex items-start">
-                <span className="text-sky-400 mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Customized lessons to fit your needs</span>
               </li>
             </ul>
           </div>
 
-          <p className="text-base md:text-lg font-bold text-amber-950 text-center mb-6">
+          <p className="text-base md:text-lg font-bold text-[#4c3b32] text-center mb-6">
             <span className="font-bold">Until your Korean becomes truly natural — start now!</span>
           </p>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-sky-200 to-sky-300 text-amber-950 px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-sky-300 hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
         </div>
       </div>
     </div>
@@ -693,36 +706,36 @@ const KoreanLearningSite = () => {
         <div className="min-h-screen bg-stone-100 p-4 md:p-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-amber-950 mb-6 text-center">Test Results</h2>
-              <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6 text-center">
-                <p className="text-4xl font-bold text-sky-600 mb-2">{score} / {questions.length}</p>
-                <p className="text-xl font-bold text-amber-950">Level: {rec.level}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#4c3b32] mb-6 text-center">Test Results</h2>
+              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6 text-center">
+                <p className="text-4xl font-bold text-[#3bb5a3] mb-2">{score} / {questions.length}</p>
+                <p className="text-xl font-bold text-[#4c3b32]">Level: {rec.level}</p>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-bold text-amber-950 mb-4">Review</h3>
+                <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Review</h3>
                 {questions.map((q, i) => (
                   answers[i] !== q.correct && (
                     <div key={i} className="bg-stone-100 border-2 border-stone-300 rounded-lg p-4 mb-3">
-                      <p className="font-bold text-amber-950 mb-2">Question {i + 1}</p>
+                      <p className="font-bold text-[#4c3b32] mb-2">Question {i + 1}</p>
                       <p className="text-sm text-gray-700 mb-2">{q.explanation}</p>
                       <p className="text-sm text-gray-600 italic">{q.explanationEn}</p>
                     </div>
                   )
                 ))}
               </div>
-              <div className="bg-gradient-to-r from-sky-100 to-sky-200 border-2 border-sky-300 rounded-lg p-4 mb-6">
-                <p className="text-center font-bold text-amber-950 mb-2">Recommended Class</p>
-                <p className="text-center text-lg font-bold text-sky-600">{rec.class}</p>
+              <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6">
+                <p className="text-center font-bold text-[#4c3b32] mb-2">Recommended Class</p>
+                <p className="text-center text-lg font-bold text-[#3bb5a3]">{rec.class}</p>
               </div>
               <div className="flex gap-3">
                 <button onClick={reset} className="flex-1 bg-stone-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-stone-300">Retake Test</button>
                 {rec.class === 'Group Class or 1:1 Chat' ? (
                   <>
-                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Group Class</button>
-                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">1:1 Chat</button>
+                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Group Class</button>
+                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">1:1 Chat</button>
                   </>
                 ) : (
-                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Go to Class</button>
+                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Go to Class</button>
                 )}
               </div>
             </div>
@@ -737,12 +750,12 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl md:text-2xl font-bold text-amber-950">Korean Level Test</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">Korean Level Test</h2>
               <span className="text-sm md:text-base text-gray-600">{currentQ + 1} / {questions.length}</span>
             </div>
             <div className="mb-6">
               <p className="text-sm md:text-base text-gray-600 mb-3">{q.instruction}</p>
-              <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-4 mb-4">
+              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 mb-4">
                 <p className="text-base md:text-lg text-gray-800 whitespace-pre-line">{q.q}</p>
               </div>
               {q.extraQ && (
@@ -759,9 +772,9 @@ const KoreanLearningSite = () => {
             <div className="flex gap-3">
               <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} className="flex-1 bg-stone-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-stone-300 disabled:opacity-50">← Previous</button>
               {currentQ < questions.length - 1 ? (
-                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Next →</button>
+                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Next →</button>
               ) : (
-                <button onClick={() => setShowResult(true)} className="flex-1 bg-sky-200 text-amber-950 font-bold py-3 rounded-lg hover:bg-sky-300">Submit</button>
+                <button onClick={() => setShowResult(true)} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Submit</button>
               )}
             </div>
           </div>
@@ -809,24 +822,35 @@ const KoreanLearningSite = () => {
       const oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
       const available = [];
 
-      // 현재 예약 날짜와 시간
-      const currentDate = currentBooking.date;
-      const currentSlot = currentBooking.slots[0];
-
       // 모든 슬롯을 순회하며 1주일 이내의 슬롯 찾기
       Object.keys(timeSlots).forEach(date => {
         const slotDate = new Date(date);
         
         // 1주일 이내인지 확인
         if (slotDate >= now && slotDate <= oneWeekLater) {
+          // 새 데이터 구조에 맞게 예약된 슬롯 수집
           const bookedSlotsOnDate = bookings
-            .filter(b => b.date === date && b.id !== bookingId)
-            .flatMap(b => b.slots || []);
+            .filter(b => b.id !== bookingId) // 현재 예약 제외
+            .flatMap(b => {
+              if (b.bookings) {
+                // 새 구조
+                return b.bookings
+                  .filter(booking => booking.date === date)
+                  .flatMap(booking => booking.slots || []);
+              } else if (b.date === date) {
+                // 구 구조 호환
+                return b.slots || [];
+              }
+              return [];
+            });
 
           timeSlots[date].forEach(slot => {
             // 이미 예약된 슬롯이 아니고, 현재 예약과 다른 슬롯만
-            if (!bookedSlotsOnDate.includes(slot) && 
-                !(date === currentDate && slot === currentSlot)) {
+            const isCurrentBookingSlot = currentBooking.bookings 
+              ? currentBooking.bookings.some(b => b.date === date && b.slots.includes(slot))
+              : (currentBooking.date === date && currentBooking.slots?.includes(slot));
+            
+            if (!bookedSlotsOnDate.includes(slot) && !isCurrentBookingSlot) {
               
               // 1시간 후 슬롯만 표시
               const [slotHour, slotMinute] = slot.split(':').map(Number);
@@ -909,7 +933,7 @@ const KoreanLearningSite = () => {
           <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Booking Not Found</h2>
             <p className="text-gray-600 mb-6">The booking link is invalid or has been deleted.</p>
-            <button onClick={() => window.location.href = '/'} className="bg-sky-200 text-amber-950 px-6 py-3 rounded-lg font-bold hover:bg-sky-300">
+            <button onClick={() => window.location.href = '/'} className="bg-[#e7faf7] text-[#4c3b32] px-6 py-3 rounded-lg font-bold hover:bg-[#d0f5ef]">
               Go to Home
             </button>
           </div>
@@ -918,8 +942,11 @@ const KoreanLearningSite = () => {
     }
 
     const canReschedule = (booking.rescheduleCount || 0) < 1;
-    const classDateTime = new Date(booking.date);
-    const [classHour, classMinute] = booking.slots[0].split(':').map(Number);
+    
+    // 새 구조 또는 구 구조 호환
+    const firstBooking = booking.bookings ? booking.bookings[0] : booking;
+    const classDateTime = new Date(firstBooking.date);
+    const [classHour, classMinute] = firstBooking.slots[0].split(':').map(Number);
     classDateTime.setHours(classHour, classMinute, 0, 0);
     const oneHourBefore = new Date(classDateTime.getTime() - 60 * 60 * 1000);
     const isWithinOneHour = new Date() > oneHourBefore;
@@ -929,20 +956,33 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-amber-950">My Booking</h2>
-              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-amber-950">
+              <h2 className="text-2xl font-bold text-[#4c3b32]">My Booking</h2>
+              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-[#4c3b32]">
                 ← Home
               </button>
             </div>
 
             {/* 예약 정보 */}
-            <div className="bg-sky-50 border-2 border-sky-200 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-bold text-amber-950 mb-4">Class Information</h3>
+            <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Class Information</h3>
               <div className="space-y-2 text-gray-700">
                 <p><span className="font-bold">Name:</span> {booking.name}</p>
                 <p><span className="font-bold">Email:</span> {booking.email}</p>
-                <p><span className="font-bold">Date:</span> {booking.date}</p>
-                <p><span className="font-bold">Time:</span> {booking.slots.join(', ')} (KST)</p>
+                {booking.bookings ? (
+                  // 새 구조: 여러 예약 표시
+                  <div>
+                    <p className="font-bold mb-2">Classes:</p>
+                    {booking.bookings.map((b, idx) => (
+                      <p key={idx} className="ml-4">• {b.date}: {b.slots.join(', ')} (KST)</p>
+                    ))}
+                  </div>
+                ) : (
+                  // 구 구조 호환
+                  <>
+                    <p><span className="font-bold">Date:</span> {booking.date}</p>
+                    <p><span className="font-bold">Time:</span> {booking.slots?.join(', ')} (KST)</p>
+                  </>
+                )}
                 <p><span className="font-bold">Status:</span> {
                   booking.paymentConfirmed ? 
                     <span className="text-green-700 font-medium">Confirmed ✓</span> : 
@@ -965,7 +1005,7 @@ const KoreanLearningSite = () => {
               </div>
             ) : (
               <div>
-                <h3 className="text-xl font-bold text-amber-950 mb-4">Reschedule Class</h3>
+                <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Reschedule Class</h3>
                 
                 {!canReschedule ? (
                   <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
@@ -1016,11 +1056,11 @@ const KoreanLearningSite = () => {
                             onClick={() => setSelectedSlot(slot)}
                             className={`p-4 rounded-lg border-2 text-left transition-all ${
                               selectedSlot?.date === slot.date && selectedSlot?.slot === slot.slot
-                                ? 'bg-sky-200 border-sky-400 font-bold'
-                                : 'bg-stone-50 border-stone-200 hover:bg-sky-100'
+                                ? 'bg-[#e7faf7] border-[#a0e8dc] font-bold'
+                                : 'bg-stone-50 border-stone-200 hover:bg-[#f2fcfa]'
                             }`}
                           >
-                            <div className="font-bold text-amber-950">{slot.date}</div>
+                            <div className="font-bold text-[#4c3b32]">{slot.date}</div>
                             <div className="text-gray-700">{slot.slot} KST</div>
                           </button>
                         ))}
@@ -1030,7 +1070,7 @@ const KoreanLearningSite = () => {
                     {selectedSlot && (
                       <button
                         onClick={reschedule}
-                        className="w-full bg-sky-200 text-amber-950 font-bold py-4 rounded-lg hover:bg-sky-300"
+                        className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]"
                       >
                         Confirm Reschedule
                       </button>
@@ -1172,7 +1212,7 @@ const KoreanLearningSite = () => {
       return (
         <div className="min-h-screen bg-stone-100 p-8 flex items-center justify-center">
           <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
-            <h2 className="text-3xl font-bold text-amber-950 mb-6 text-center">Admin Login</h2>
+            <h2 className="text-3xl font-bold text-[#4c3b32] mb-6 text-center">Admin Login</h2>
             <p className="text-gray-600 text-center mb-6">Sign in with your Google account</p>
             <button onClick={loginWithGoogle} className="w-full bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-3">
               <svg className="w-6 h-6" viewBox="0 0 24 24">
@@ -1192,7 +1232,7 @@ const KoreanLearningSite = () => {
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold text-amber-950">Admin</h2>
+            <h2 className="text-2xl font-bold text-[#4c3b32]">Admin</h2>
             <div className="flex gap-2">
               <button onClick={() => setCurrentPage('adminBookings')} className="bg-amber-200 px-4 py-2 rounded-lg text-sm font-medium">Bookings</button>
               <button onClick={logout} className="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm">Logout</button>
@@ -1204,11 +1244,11 @@ const KoreanLearningSite = () => {
               <button onClick={async () => {
                 setClassPrice(2);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 2 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-sky-200' : 'bg-stone-100'}`}>$2</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#e7faf7]' : 'bg-stone-100'}`}>$2</button>
               <button onClick={async () => {
                 setClassPrice(3);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 3 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-sky-200' : 'bg-stone-100'}`}>$3</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#e7faf7]' : 'bg-stone-100'}`}>$3</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
@@ -1225,7 +1265,7 @@ const KoreanLearningSite = () => {
                 <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={eh} onChange={(e) => setEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
                 <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={em} onChange={(e) => setEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
               </div>
-              <button onClick={add} className="w-full bg-sky-200 font-bold py-3 rounded-lg">Add</button>
+              <button onClick={add} className="w-full bg-[#e7faf7] font-bold py-3 rounded-lg">Add</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
@@ -1280,6 +1320,11 @@ const KoreanLearningSite = () => {
 
           // 학생 전용 링크 생성
           const bookingLink = `${window.location.origin}/?booking=${booking.id}`;
+          
+          // 모든 예약 날짜/시간 정리
+          const allBookingInfo = booking.bookings
+            ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
+            : `${booking.date}: ${booking.slots.join(', ')}`;
 
           // 학생에게 확정 이메일 발송 (학생 링크 + 모든 안내사항 포함)
           await emailjs.send(
@@ -1289,8 +1334,7 @@ const KoreanLearningSite = () => {
               to_email: booking.email,
               cc_email: 'koreanteacherhannah@gmail.com',
               student_name: booking.name,
-              booking_date: booking.date,
-              time_slots: booking.slots.join(', '),
+              booking_info: allBookingInfo,
               booking_link: bookingLink
             }
           );
@@ -1354,7 +1398,7 @@ const KoreanLearningSite = () => {
             <div className="flex gap-3 items-center flex-wrap">
               <button 
                 onClick={() => setFilterType('all')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-sky-200 text-amber-950' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#e7faf7] text-[#4c3b32]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
               >
                 All Bookings ({bookings.length})
               </button>
@@ -1406,32 +1450,43 @@ const KoreanLearningSite = () => {
                       const bookedTime = new Date(b.bookedAt);
                       const hoursPassed = ((new Date() - bookedTime) / (1000 * 60 * 60)).toFixed(1);
                       
+                      // 날짜/시간 포맷 (년도 제거)
+                      const formatDateTime = (dateStr) => {
+                        const date = new Date(dateStr);
+                        return date.toLocaleString('en-US', { 
+                          month: 'short', 
+                          day: 'numeric', 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        });
+                      };
+                      
                       return (
                         <tr key={b.id} className={`border-t ${b.rescheduled ? 'bg-purple-50' : ''}`}>
                           <td className="px-4 py-3 text-sm">{b.name}</td>
                           <td className="px-4 py-3 text-sm">{b.email}</td>
                           <td className="px-4 py-3 text-sm">
                             <div>
-                              {b.rescheduled && b.oldDate && (
-                                <div className="text-xs text-gray-400 line-through mb-1">
-                                  {b.oldDate} | {b.oldSlots?.join(', ')}
+                              {b.bookings ? (
+                                // 새 구조: 여러 예약을 한 줄씩 표시
+                                b.bookings.map((booking, idx) => (
+                                  <div key={idx} className="mb-1">
+                                    {booking.date.split('-').slice(1).join('/')} | {booking.slots.join(', ')}
+                                  </div>
+                                ))
+                              ) : (
+                                // 구 구조 호환
+                                <div>
+                                  {b.date?.split('-').slice(1).join('/')} | {b.slots?.join(', ')}
                                 </div>
                               )}
-                              <div className={b.rescheduled ? 'font-bold text-purple-700' : ''}>
-                                {b.date} | {b.slots.join(', ')}
-                                {b.rescheduled && <span className="ml-2 text-xs">🔄</span>}
-                              </div>
+                              {b.rescheduled && <span className="text-xs text-purple-700">🔄 Rescheduled</span>}
                             </div>
                           </td>
                           <td className="px-4 py-3 text-sm">
                             <div className="text-xs text-gray-500">
-                              {bookedTime.toLocaleString('en-US', { 
-                                month: 'short', 
-                                day: 'numeric', 
-                                hour: '2-digit', 
-                                minute: '2-digit' 
-                              })}
-                              <div className={hoursPassed >= 24 ? 'text-red-600 font-medium' : ''}>
+                              {formatDateTime(b.bookedAt)}
+                              <div className={hoursPassed >= 24 && !b.paymentConfirmed ? 'text-red-600 font-medium' : ''}>
                                 ({hoursPassed}h ago)
                               </div>
                             </div>
