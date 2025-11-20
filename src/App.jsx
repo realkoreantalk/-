@@ -96,7 +96,7 @@ const KoreanLearningSite = () => {
             <div className="text-stone-600 mb-2 flex justify-center"><Award size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Level Test</h3>
           </button>
-          <button onClick={() => setCurrentPage('booking')} className="bg-[#A8E6CF] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
+          <button onClick={() => setCurrentPage('booking')} className="bg-[#B9F1E8] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
             <div className="mb-2 flex justify-center"><Calendar size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold">Book a Class</h3>
           </button>
@@ -136,7 +136,7 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6 text-center">
+          <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3">
               <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
               <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">15-min 1:1 Chat</h2>
@@ -149,19 +149,19 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8">
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Choose topics based on learner's level & interests</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn natural expressions and common phrases</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>No textbook, no grammar drills, just real conversation</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Zoom online</span>
               </li>
             </ul>
@@ -170,7 +170,7 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-xl md:text-2xl font-bold text-[#A8E6CF]">$2 for December (promo price)</p>
+              <p className="text-xl md:text-2xl font-bold text-[#14B8A6]">$2 for December (promo price)</p>
               <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
             </div>
             <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
@@ -195,7 +195,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
         </div>
       </div>
     </div>
@@ -205,7 +205,7 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6 text-center">
+          <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6 text-center">
             <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">📚 Group Class</h2>
             <p className="text-sm md:text-base text-gray-600 mt-2">Textbook-Based (Beginner–Intermediate)</p>
           </div>
@@ -214,19 +214,19 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8">
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Student Book & Workbook provided</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar explanations & exercises included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Relevant videos & images used for better understanding</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Homework provided after each class</span>
               </li>
             </ul>
@@ -237,12 +237,12 @@ const KoreanLearningSite = () => {
             <p className="text-sm md:text-base font-bold text-[#4A2E2A] mb-3">Group Zoom (50 min)</p>
             <p className="text-xs md:text-sm text-gray-600 mb-4">Group classes are monthly packages — all sessions must be booked for the month.</p>
             <div className="space-y-3">
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#A8E6CF]">
-                <p className="text-lg md:text-xl font-bold text-[#A8E6CF]">$15 per month → 4 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#14B8A6]">
+                <p className="text-lg md:text-xl font-bold text-[#14B8A6]">$15 per month → 4 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Once a week, 6–8 students</p>
               </div>
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#A8E6CF]">
-                <p className="text-lg md:text-xl font-bold text-[#A8E6CF]">$28 per month → 8 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#14B8A6]">
+                <p className="text-lg md:text-xl font-bold text-[#14B8A6]">$28 per month → 8 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Twice a week, 6–8 students</p>
               </div>
             </div>
@@ -264,7 +264,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
         </div>
       </div>
     </div>
@@ -276,6 +276,7 @@ const KoreanLearningSite = () => {
     const [allSlots, setAllSlots] = useState({});
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState(false);
     const [month, setMonth] = useState(new Date());
 
     const getDays = (d) => {
@@ -339,8 +340,7 @@ const KoreanLearningSite = () => {
         });
         
         // 예약 정보 정리
-        const bookingDates = Object.keys(allSlots).join(', ');
-        const allTimeSlots = Object.entries(allSlots)
+        const bookingInfo = Object.entries(allSlots)
           .map(([date, slots]) => `${date}: ${slots.join(', ')}`)
           .join('\n');
         const totalPrice = total * classPrice;
@@ -355,8 +355,7 @@ const KoreanLearningSite = () => {
           {
             student_name: name,
             student_email: email,
-            booking_date: bookingDates,
-            time_slots: allTimeSlots,
+            booking_info: bookingInfo,
             total_sessions: total,
             total_price: totalPrice
           }
@@ -427,7 +426,7 @@ const KoreanLearningSite = () => {
           {!agreed ? (
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-2xl font-bold text-[#4A2E2A] mb-6">Policy</h2>
-              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6">
+              <div className="bg-[#DCF8F3] border-2 border-[#DCF8F3] rounded-lg p-6 mb-6">
                 <ul className="space-y-3 text-[#4A2E2A]">
                   <li>• Classes are non-refundable.</li>
                   <li>• <span className="font-bold text-red-700">Bookings will be cancelled if payment is not received within 24 hours.</span></li>
@@ -443,7 +442,7 @@ const KoreanLearningSite = () => {
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>All times are in <span className="font-bold">KST</span>.</span></p>
               </div>
-              <button onClick={() => setAgreed(true)} className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]">OK</button>
+              <button onClick={() => setAgreed(true)} className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#A0DED1]">OK</button>
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-lg p-6">
@@ -456,7 +455,7 @@ const KoreanLearningSite = () => {
               </div>
               <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
                 <p className="text-[#4A2E2A] font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
-                <p className="text-[#4A2E2A] text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8E6CF] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+                <p className="text-[#4A2E2A] text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#B9F1E8] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
@@ -471,7 +470,7 @@ const KoreanLearningSite = () => {
                     const availableSlots = ds ? getAvailableSlots(ds) : [];
                     const hasS = availableSlots.length > 0;
                     const hasSel = ds && allSlots[ds]?.length > 0;
-                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-[#A8E6CF] font-bold' : hasSel ? 'bg-[#A8E6CF] font-bold' : 'bg-stone-50 hover:bg-[#98d6bf]'}`}>{day}</button>;
+                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-[#B9F1E8] font-bold' : hasSel ? 'bg-[#B9F1E8] font-bold' : 'bg-stone-50 hover:bg-[#A0DED1]'}`}>{day}</button>;
                   })}
                 </div>
               </div>
@@ -479,21 +478,21 @@ const KoreanLearningSite = () => {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Slots - {selDate}</h3>
                   <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
-                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium ${curr.includes(slot) ? 'bg-[#A8E6CF] font-bold' : 'bg-stone-50 hover:bg-[#98d6bf]'}`}>{slot}</button>)}
+                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium transition-all ${curr.includes(slot) ? 'bg-[#14B8A6] text-white font-bold border-2 border-[#14B8A6]' : 'bg-white border-2 border-stone-300 hover:border-[#B9F1E8] hover:bg-stone-50'}`}>{slot}</button>)}
                   </div>
                   <p className="text-sm text-gray-500 mt-3">Selected: {curr.length}</p>
                 </div>
               )}
               {total > 0 && (
                 <>
-                  <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6">
+                  <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6">
                     <h4 className="font-bold mb-2">Booking Summary</h4>
                     {Object.keys(allSlots).map(date => (
                       <div key={date} className="text-sm mb-1">
                         <span className="font-medium">{date}:</span> {allSlots[date].join(', ')}
                       </div>
                     ))}
-                    <div className="mt-3 pt-3 border-t border-[#A8E6CF]">
+                    <div className="mt-3 pt-3 border-t border-[#B9F1E8]">
                       <p className="font-bold">Total: {total} sessions × ${classPrice} = ${total * classPrice}</p>
                     </div>
                   </div>
@@ -505,13 +504,27 @@ const KoreanLearningSite = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-2">Email *</label>
-                      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" />
+                      <input 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                          setEmailError(e.target.value && !emailRegex.test(e.target.value));
+                        }}
+                        onBlur={() => {
+                          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                          setEmailError(email && !emailRegex.test(email));
+                        }}
+                        className={`w-full px-4 py-3 border-2 rounded-lg ${emailError ? 'border-red-500' : 'border-gray-300'}`}
+                      />
+                      {emailError && <p className="text-sm text-red-600 mt-1">⚠️ Please enter a valid email address</p>}
                       <p className="text-sm text-amber-800 mt-2 bg-amber-50 p-3 rounded-lg">⚠️ Accurate email for payment info</p>
                     </div>
                   </div>
                 </>
               )}
-              {total > 0 && name && email && <button onClick={submit} className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]">Book</button>}
+              {total > 0 && name && email && !emailError && <button onClick={submit} className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#A0DED1]">Book</button>}
             </div>
           )}
         </div>
@@ -541,27 +554,27 @@ const KoreanLearningSite = () => {
             </p>
           </div>
 
-          <div className="mb-6 md:mb-8 bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 md:p-6">
+          <div className="mb-6 md:mb-8 bg-[#DCF8F3] border-2 border-[#DCF8F3] rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-4">Class Features</h3>
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>One-on-one & small group classes</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Textbook-based + practical conversation focus</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar & pronunciation correction included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn Korean culture along the way</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Customized lessons to fit your needs</span>
               </li>
             </ul>
@@ -571,7 +584,7 @@ const KoreanLearningSite = () => {
             <span className="font-bold">Until your Korean becomes truly natural — start now!</span>
           </p>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
         </div>
       </div>
     </div>
@@ -707,8 +720,8 @@ const KoreanLearningSite = () => {
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
               <h2 className="text-2xl md:text-3xl font-bold text-[#4A2E2A] mb-6 text-center">Test Results</h2>
-              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6 text-center">
-                <p className="text-4xl font-bold text-[#A8E6CF] mb-2">{score} / {questions.length}</p>
+              <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-6 mb-6 text-center">
+                <p className="text-4xl font-bold text-[#4A2E2A] mb-2">{score} / {questions.length}</p>
                 <p className="text-xl font-bold text-[#4A2E2A]">Level: {rec.level}</p>
               </div>
               <div className="mb-6">
@@ -723,19 +736,19 @@ const KoreanLearningSite = () => {
                   )
                 ))}
               </div>
-              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6">
+              <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6">
                 <p className="text-center font-bold text-[#4A2E2A] mb-2">Recommended Class</p>
-                <p className="text-center text-lg font-bold text-[#A8E6CF]">{rec.class}</p>
+                <p className="text-center text-lg font-bold text-[#4A2E2A]">{rec.class}</p>
               </div>
               <div className="flex gap-3">
                 <button onClick={reset} className="flex-1 bg-[#4A2E2A] text-white font-bold py-3 rounded-lg hover:bg-[#3a241f]">Retake Test</button>
                 {rec.class === 'Group Class or 1:1 Chat' ? (
                   <>
-                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Group Class</button>
-                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">1:1 Chat</button>
+                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Group Class</button>
+                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">1:1 Chat</button>
                   </>
                 ) : (
-                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Go to Class</button>
+                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Go to Class</button>
                 )}
               </div>
             </div>
@@ -755,7 +768,7 @@ const KoreanLearningSite = () => {
             </div>
             <div className="mb-6">
               <p className="text-sm md:text-base text-gray-600 mb-3">{q.instruction}</p>
-              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-4">
+              <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-4">
                 <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
               </div>
               {q.extraQ && (
@@ -772,9 +785,9 @@ const KoreanLearningSite = () => {
             <div className="flex gap-3">
               <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} className="flex-1 bg-[#4A2E2A] text-white font-bold py-3 rounded-lg hover:bg-[#3a241f] disabled:opacity-50">← Previous</button>
               {currentQ < questions.length - 1 ? (
-                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Next →</button>
+                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Next →</button>
               ) : (
-                <button onClick={() => setShowResult(true)} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Submit</button>
+                <button onClick={() => setShowResult(true)} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Submit</button>
               )}
             </div>
           </div>
@@ -933,7 +946,7 @@ const KoreanLearningSite = () => {
           <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Booking Not Found</h2>
             <p className="text-gray-600 mb-6">The booking link is invalid or has been deleted.</p>
-            <button onClick={() => window.location.href = '/'} className="bg-[#A8E6CF] text-[#4A2E2A] px-6 py-3 rounded-lg font-bold hover:bg-[#98d6bf]">
+            <button onClick={() => window.location.href = '/'} className="bg-[#B9F1E8] text-[#4A2E2A] px-6 py-3 rounded-lg font-bold hover:bg-[#A0DED1]">
               Go to Home
             </button>
           </div>
@@ -963,7 +976,7 @@ const KoreanLearningSite = () => {
             </div>
 
             {/* 예약 정보 */}
-            <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6">
+            <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-6 mb-6">
               <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Class Information</h3>
               <div className="space-y-2 text-[#4A2E2A]">
                 <p><span className="font-bold">Name:</span> {booking.name}</p>
@@ -1056,8 +1069,8 @@ const KoreanLearningSite = () => {
                             onClick={() => setSelectedSlot(slot)}
                             className={`p-4 rounded-lg border-2 text-left transition-all ${
                               selectedSlot?.date === slot.date && selectedSlot?.slot === slot.slot
-                                ? 'bg-[#A8E6CF] border-[#A8E6CF] font-bold'
-                                : 'bg-stone-50 border-stone-200 hover:bg-[#98d6bf]'
+                                ? 'bg-[#B9F1E8] border-[#B9F1E8] font-bold'
+                                : 'bg-stone-50 border-stone-200 hover:bg-[#A0DED1]'
                             }`}
                           >
                             <div className="font-bold text-[#4A2E2A]">{slot.date}</div>
@@ -1070,7 +1083,7 @@ const KoreanLearningSite = () => {
                     {selectedSlot && (
                       <button
                         onClick={reschedule}
-                        className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]"
+                        className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#A0DED1]"
                       >
                         Confirm Reschedule
                       </button>
@@ -1244,11 +1257,11 @@ const KoreanLearningSite = () => {
               <button onClick={async () => {
                 setClassPrice(2);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 2 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#A8E6CF]' : 'bg-stone-100'}`}>$2</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#B9F1E8]' : 'bg-stone-100'}`}>$2</button>
               <button onClick={async () => {
                 setClassPrice(3);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 3 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#A8E6CF]' : 'bg-stone-100'}`}>$3</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#B9F1E8]' : 'bg-stone-100'}`}>$3</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
@@ -1265,7 +1278,7 @@ const KoreanLearningSite = () => {
                 <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={eh} onChange={(e) => setEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
                 <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={em} onChange={(e) => setEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
               </div>
-              <button onClick={add} className="w-full bg-[#A8E6CF] font-bold py-3 rounded-lg">Add</button>
+              <button onClick={add} className="w-full bg-[#B9F1E8] font-bold py-3 rounded-lg">Add</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
@@ -1404,7 +1417,7 @@ const KoreanLearningSite = () => {
             <div className="flex gap-3 items-center flex-wrap">
               <button 
                 onClick={() => setFilterType('all')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#A8E6CF] text-[#4A2E2A]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#B9F1E8] text-[#4A2E2A]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
               >
                 All Bookings ({bookings.length})
               </button>
