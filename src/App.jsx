@@ -832,14 +832,16 @@ const KoreanLearningSite = () => {
 
     const findAvailableSlots = (currentBooking) => {
       const now = new Date();
+      now.setHours(0, 0, 0, 0); // 오늘 00:00:00으로 설정
       const oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
       const available = [];
 
       // 모든 슬롯을 순회하며 1주일 이내의 슬롯 찾기
       Object.keys(timeSlots).forEach(date => {
-        const slotDate = new Date(date);
+        const slotDate = new Date(date + 'T00:00:00'); // 로컬 시간대로 00:00:00 설정
+        slotDate.setHours(0, 0, 0, 0);
         
-        // 1주일 이내인지 확인
+        // 1주일 이내인지 확인 (날짜만 비교)
         if (slotDate >= now && slotDate <= oneWeekLater) {
           // 새 데이터 구조에 맞게 예약된 슬롯 수집
           const bookedSlotsOnDate = bookings
@@ -867,10 +869,11 @@ const KoreanLearningSite = () => {
               
               // 1시간 후 슬롯만 표시
               const [slotHour, slotMinute] = slot.split(':').map(Number);
-              const slotDateTime = new Date(date);
+              const slotDateTime = new Date(date + 'T00:00:00'); // 로컬 시간대 사용
               slotDateTime.setHours(slotHour, slotMinute, 0, 0);
               
-              const oneHourLater = new Date(now.getTime() + 60 * 60 * 1000);
+              const currentTime = new Date();
+              const oneHourLater = new Date(currentTime.getTime() + 60 * 60 * 1000);
               
               if (slotDateTime > oneHourLater) {
                 available.push({ date, slot });
@@ -1339,7 +1342,7 @@ const KoreanLearningSite = () => {
             ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
             : `${booking.date}: ${booking.slots.join(', ')}`;
 
-          // 학생에게 확정 이메일 발송 (학생 링크 + 모든 안내사항 포함)
+          // 학생에게 확정 이메일 발송
           await emailjs.send(
             'service_c58vlqm',
             'template_confirm',
@@ -1354,13 +1357,7 @@ const KoreanLearningSite = () => {
           alert('Payment confirmed! Confirmation email sent to student.');
         } catch (error) {
           console.error('Error confirming payment:', error);
-          
-          // Firebase 업데이트는 성공했지만 이메일 발송 실패
-          if (error.text && error.text.includes('emailjs')) {
-            alert('Payment confirmed in system, but email failed to send. Please check EmailJS template.');
-          } else {
-            alert('Failed to confirm payment. Please try again.');
-          }
+          alert('Failed to send confirmation email. Please try again.');
         }
       }
     };
