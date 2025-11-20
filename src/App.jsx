@@ -1344,8 +1344,7 @@ const KoreanLearningSite = () => {
             'service_c58vlqm',
             'template_confirm',
             {
-              to_email: booking.email,
-              cc_email: 'koreanteacherhannah@gmail.com',
+              student_email: booking.email,
               student_name: booking.name,
               booking_info: allBookingInfo,
               booking_link: bookingLink
