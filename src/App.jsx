@@ -75,7 +75,7 @@ const KoreanLearningSite = () => {
   }, []);
 
   const Navigation = () => (
-    <nav className="bg-gradient-to-r from-[#4c3b32] to-amber-900 text-white p-4 shadow-lg">
+    <nav className="bg-[#4A2E2A] text-white p-4 shadow-lg">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <button onClick={() => setCurrentPage('home')} className="hover:text-stone-300 text-sm">Home</button>
         <h1 className="text-2xl md:text-3xl font-bold">Real Korean Talk</h1>
@@ -85,45 +85,45 @@ const KoreanLearningSite = () => {
   );
 
   const HomePage = () => (
-    <div className="min-h-screen bg-gradient-to-b from-stone-200 to-stone-100">
+    <div className="min-h-screen bg-stone-100">
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-16">
         <div className="text-center mb-8 md:mb-16">
-          <h1 className="text-xl md:text-5xl font-bold text-[#4c3b32] mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
+          <h1 className="text-xl md:text-5xl font-bold text-[#4A2E2A] mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
           <p className="text-lg md:text-xl text-stone-700">With certified expert tutor Hannah!</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-6xl mx-auto">
           <button onClick={() => setCurrentPage('levelTest')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><Award size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Level Test</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Level Test</h3>
           </button>
-          <button onClick={() => setCurrentPage('booking')} className="bg-gradient-to-br from-[#e7faf7] to-[#d0f5ef] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4c3b32]">
+          <button onClick={() => setCurrentPage('booking')} className="bg-[#A8E6CF] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
             <div className="mb-2 flex justify-center"><Calendar size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold">Book a Class</h3>
           </button>
           <button onClick={() => setCurrentPage('tutors')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Tutor Info</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Tutor Info</h3>
           </button>
           <button onClick={() => setCurrentPage('oneOnOne')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center gap-0">
               <User size={24} className="md:w-7 md:h-7" />
               <User size={24} className="md:w-7 md:h-7 -ml-[10px]" />
             </div>
-            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">1:1 Chat 15min</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">1:1 Chat 15min</h3>
           </button>
           <a href="https://realkoreantalk.wordpress.com" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 flex flex-col items-center justify-center">
             <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4c3b32] text-center">Blog</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A] text-center">Blog</h3>
           </a>
           <button onClick={() => setCurrentPage('group')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><BookOpen size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4c3b32]">Group Lesson</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Group Lesson</h3>
           </button>
         </div>
         <div className="text-center mt-12 pb-8">
           <a 
             href="mailto:koreanteacherhannah@gmail.com" 
-            className="inline-block text-lg md:text-xl text-[#4c3b32] hover:text-amber-800 font-medium transition-all hover:scale-105"
+            className="inline-block text-lg md:text-xl text-[#4A2E2A] hover:text-amber-800 font-medium transition-all hover:scale-105"
           >
             Any questions? Contact me, Hannah! 💌
           </a>
@@ -136,50 +136,50 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6 text-center">
+          <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3">
-              <User size={24} className="md:w-7 md:h-7 text-[#4c3b32]" />
-              <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">15-min 1:1 Chat</h2>
-              <User size={24} className="md:w-7 md:h-7 text-[#4c3b32]" />
+              <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">15-min 1:1 Chat</h2>
+              <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
             </div>
             <p className="text-sm md:text-base text-gray-600 mt-2">(Beginner–Advanced)</p>
           </div>
-          <p className="text-base md:text-lg text-gray-700 mb-6">Practice real-life Korean conversations while improving fluency and expression.</p>
+          <p className="text-base md:text-lg text-[#4A2E2A] mb-6">Practice real-life Korean conversations while improving fluency and expression.</p>
           
           <div className="mb-6 md:mb-8">
-            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
+            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Choose topics based on learner's level & interests</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn natural expressions and common phrases</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>No textbook, no grammar drills, just real conversation</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Zoom online</span>
               </li>
             </ul>
           </div>
 
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">💰 Class Fees</h3>
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-xl md:text-2xl font-bold text-[#3bb5a3]">$2 for December (promo price)</p>
+              <p className="text-xl md:text-2xl font-bold text-[#A8E6CF]">$2 for December (promo price)</p>
               <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
             </div>
-            <p className="text-xs md:text-sm text-gray-700 mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
+            <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
 
           <div className="mb-6 md:mb-8">
-            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">Recommended For</h3>
-            <p className="text-sm md:text-base text-gray-700 mb-3">Learners who want to practice Korean conversation in short, convenient sessions</p>
-            <ul className="space-y-2 text-sm md:text-base text-gray-700">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">Recommended For</h3>
+            <p className="text-sm md:text-base text-[#4A2E2A] mb-3">Learners who want to practice Korean conversation in short, convenient sessions</p>
+            <ul className="space-y-2 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
                 <span className="text-amber-800 mr-2 md:mr-3 mt-1 flex-shrink-0">✓</span>
                 <span>Those who want to speak real Korean even briefly, daily or weekly</span>
@@ -195,7 +195,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
         </div>
       </div>
     </div>
@@ -205,54 +205,54 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6 text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">📚 Group Class</h2>
+          <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6 text-center">
+            <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">📚 Group Class</h2>
             <p className="text-sm md:text-base text-gray-600 mt-2">Textbook-Based (Beginner–Intermediate)</p>
           </div>
-          <p className="text-base md:text-lg text-gray-700 mb-6">Learn step-by-step through structured lessons using a student book and workbook.</p>
+          <p className="text-base md:text-lg text-[#4A2E2A] mb-6">Learn step-by-step through structured lessons using a student book and workbook.</p>
           
           <div className="mb-6 md:mb-8">
-            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
+            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Student Book & Workbook provided</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar explanations & exercises included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Relevant videos & images used for better understanding</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Homework provided after each class</span>
               </li>
             </ul>
           </div>
 
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">💰 Class Fees</h3>
-            <p className="text-sm md:text-base font-bold text-gray-700 mb-3">Group Zoom (50 min)</p>
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
+            <p className="text-sm md:text-base font-bold text-[#4A2E2A] mb-3">Group Zoom (50 min)</p>
             <p className="text-xs md:text-sm text-gray-600 mb-4">Group classes are monthly packages — all sessions must be booked for the month.</p>
             <div className="space-y-3">
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#e7faf7]">
-                <p className="text-lg md:text-xl font-bold text-[#3bb5a3]">$15 per month → 4 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#A8E6CF]">
+                <p className="text-lg md:text-xl font-bold text-[#A8E6CF]">$15 per month → 4 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Once a week, 6–8 students</p>
               </div>
-              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#e7faf7]">
-                <p className="text-lg md:text-xl font-bold text-[#3bb5a3]">$28 per month → 8 sessions</p>
+              <div className="bg-amber-50 rounded-lg p-3 border-2 border-[#A8E6CF]">
+                <p className="text-lg md:text-xl font-bold text-[#A8E6CF]">$28 per month → 8 sessions</p>
                 <p className="text-xs md:text-sm text-gray-600">Twice a week, 6–8 students</p>
               </div>
             </div>
-            <p className="text-xs md:text-sm text-gray-700 mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
+            <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
 
           <div className="mb-6 md:mb-8">
-            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-3 md:mb-4">Recommended For</h3>
-            <p className="text-sm md:text-base text-gray-700 mb-3">Learners who enjoy practicing conversation with others, want to learn through interaction, and prefer a more affordable option while still receiving guidance and correction from the tutor.</p>
-            <ul className="space-y-2 text-sm md:text-base text-gray-700">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">Recommended For</h3>
+            <p className="text-sm md:text-base text-[#4A2E2A] mb-3">Learners who enjoy practicing conversation with others, want to learn through interaction, and prefer a more affordable option while still receiving guidance and correction from the tutor.</p>
+            <ul className="space-y-2 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
                 <span className="text-amber-800 mr-2 md:mr-3 mt-1 flex-shrink-0">✓</span>
                 <span>For a light start: 4-session package</span>
@@ -264,7 +264,7 @@ const KoreanLearningSite = () => {
             </ul>
           </div>
 
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfubG-1EArswG0RmolUfQHXFLZpFB4OKQbFPJfu_FS7z7U6kw/viewform" target="_blank" rel="noopener noreferrer" className="block w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md text-center">Register for Group Lesson</a>
         </div>
       </div>
     </div>
@@ -426,9 +426,9 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           {!agreed ? (
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-[#4c3b32] mb-6">Policy</h2>
-              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6">
-                <ul className="space-y-3 text-gray-700">
+              <h2 className="text-2xl font-bold text-[#4A2E2A] mb-6">Policy</h2>
+              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6">
+                <ul className="space-y-3 text-[#4A2E2A]">
                   <li>• Classes are non-refundable.</li>
                   <li>• <span className="font-bold text-red-700">Bookings will be cancelled if payment is not received within 24 hours.</span></li>
                   <li>• You can reschedule once with at least 1 hour's notice.</li>
@@ -436,33 +436,33 @@ const KoreanLearningSite = () => {
                   <li>• Late arrivals still end at the scheduled time.</li>
                 </ul>
               </div>
-              <div className="mb-6 text-gray-700 space-y-2 text-sm md:text-base">
+              <div className="mb-6 text-[#4A2E2A] space-y-2 text-sm md:text-base">
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Only <span className="font-bold">1:1 Chat</span> sessions can be booked here.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>For <span className="font-bold">Group Lessons</span>, please use the Group Lesson page.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Each session is <span className="font-bold">15 minutes</span>.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>All times are in <span className="font-bold">KST</span>.</span></p>
               </div>
-              <button onClick={() => setAgreed(true)} className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]">OK</button>
+              <button onClick={() => setAgreed(true)} className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]">OK</button>
             </div>
           ) : (
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="flex justify-between items-center mb-6">
-                <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-[#4c3b32] font-medium flex items-center gap-1">
+                <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-[#4A2E2A] font-medium flex items-center gap-1">
                   ← Back
                 </button>
-                <h2 className="text-2xl font-bold text-[#4c3b32]">Book 1:1 Chat</h2>
-                <div className="text-lg font-bold text-[#4c3b32]">🕐 KST</div>
+                <h2 className="text-2xl font-bold text-[#4A2E2A]">Book 1:1 Chat</h2>
+                <div className="text-lg font-bold text-[#4A2E2A]">🕐 KST</div>
               </div>
               <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
-                <p className="text-[#4c3b32] font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
-                <p className="text-gray-700 text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#3bb5a3] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+                <p className="text-[#4A2E2A] font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
+                <p className="text-[#4A2E2A] text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#A8E6CF] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
-                  <button onClick={() => changeMonth(-1)} className="text-[#4c3b32] font-bold text-xl px-4">←</button>
+                  <button onClick={() => changeMonth(-1)} className="text-[#4A2E2A] font-bold text-xl px-4">←</button>
                   <h3 className="text-xl font-bold">{month.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
-                  <button onClick={() => changeMonth(1)} className="text-[#4c3b32] font-bold text-xl px-4">→</button>
+                  <button onClick={() => changeMonth(1)} className="text-[#4A2E2A] font-bold text-xl px-4">→</button>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => <div key={i} className="text-center text-sm font-bold py-2">{d}</div>)}
@@ -471,7 +471,7 @@ const KoreanLearningSite = () => {
                     const availableSlots = ds ? getAvailableSlots(ds) : [];
                     const hasS = availableSlots.length > 0;
                     const hasSel = ds && allSlots[ds]?.length > 0;
-                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-[#e7faf7] font-bold' : hasSel ? 'bg-[#f2fcfa] font-bold' : 'bg-stone-50 hover:bg-[#f2fcfa]'}`}>{day}</button>;
+                    return <button key={i} onClick={() => selectDay(day)} disabled={!day || !hasS} className={`aspect-square rounded-lg text-sm ${!day ? 'invisible' : !hasS ? 'bg-stone-100 text-gray-300' : selDate === ds ? 'bg-[#A8E6CF] font-bold' : hasSel ? 'bg-[#A8E6CF] font-bold' : 'bg-stone-50 hover:bg-[#98d6bf]'}`}>{day}</button>;
                   })}
                 </div>
               </div>
@@ -479,21 +479,21 @@ const KoreanLearningSite = () => {
                 <div className="mb-8">
                   <h3 className="text-xl font-bold mb-4">Slots - {selDate}</h3>
                   <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
-                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium ${curr.includes(slot) ? 'bg-[#e7faf7] font-bold' : 'bg-stone-50 hover:bg-[#f2fcfa]'}`}>{slot}</button>)}
+                    {avail.map(slot => <button key={slot} onClick={() => toggleSlot(slot)} className={`py-3 rounded-lg font-medium ${curr.includes(slot) ? 'bg-[#A8E6CF] font-bold' : 'bg-stone-50 hover:bg-[#98d6bf]'}`}>{slot}</button>)}
                   </div>
                   <p className="text-sm text-gray-500 mt-3">Selected: {curr.length}</p>
                 </div>
               )}
               {total > 0 && (
                 <>
-                  <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 mb-6">
+                  <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6">
                     <h4 className="font-bold mb-2">Booking Summary</h4>
                     {Object.keys(allSlots).map(date => (
                       <div key={date} className="text-sm mb-1">
                         <span className="font-medium">{date}:</span> {allSlots[date].join(', ')}
                       </div>
                     ))}
-                    <div className="mt-3 pt-3 border-t border-[#c0f0e9]">
+                    <div className="mt-3 pt-3 border-t border-[#A8E6CF]">
                       <p className="font-bold">Total: {total} sessions × ${classPrice} = ${total * classPrice}</p>
                     </div>
                   </div>
@@ -511,7 +511,7 @@ const KoreanLearningSite = () => {
                   </div>
                 </>
               )}
-              {total > 0 && name && email && <button onClick={submit} className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]">Book</button>}
+              {total > 0 && name && email && <button onClick={submit} className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]">Book</button>}
             </div>
           )}
         </div>
@@ -524,54 +524,54 @@ const KoreanLearningSite = () => {
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <div className="bg-gradient-to-r from-pink-100 to-pink-200 border-2 border-pink-300 rounded-lg p-4 mb-6 text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">Real Korean with Hannah</h2>
-            <p className="text-sm md:text-base text-gray-700 mt-2">Learn to speak naturally with a certified Korean tutor.</p>
+            <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">Real Korean with Hannah</h2>
+            <p className="text-sm md:text-base text-[#4A2E2A] mt-2">Learn to speak naturally with a certified Korean tutor.</p>
           </div>
 
           <div className="mb-6 md:mb-8">
-            <p className="text-base md:text-lg text-gray-700 mb-3">🌸 Hello! I'm Hannah</p>
-            <p className="text-base md:text-lg text-gray-700 mb-4">
-              I'm a certified Korean tutor with <span className="font-bold text-[#4c3b32]">4 years of experience</span> teaching Korean to foreign learners.
+            <p className="text-base md:text-lg text-[#4A2E2A] mb-3">🌸 Hello! I'm Hannah</p>
+            <p className="text-base md:text-lg text-[#4A2E2A] mb-4">
+              I'm a certified Korean tutor with <span className="font-bold text-[#4A2E2A]">4 years of experience</span> teaching Korean to foreign learners.
             </p>
-            <p className="text-sm md:text-base text-gray-700 mb-4">
+            <p className="text-sm md:text-base text-[#4A2E2A] mb-4">
               Since 2022, I've been teaching online to students from Indonesia 🇮🇩, Vietnam 🇻🇳, Nicaragua 🇳🇮, Ukraine 🇺🇦, Venezuela 🇻🇪, and Colombia 🇨🇴.
             </p>
-            <p className="text-sm md:text-base text-gray-700">
+            <p className="text-sm md:text-base text-[#4A2E2A]">
               <span className="font-bold">I'm friendly, patient, and responsible</span>, and I'll help you speak Korean naturally and confidently.
             </p>
           </div>
 
-          <div className="mb-6 md:mb-8 bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 md:p-6">
-            <h3 className="text-lg md:text-xl font-bold text-[#4c3b32] mb-4">Class Features</h3>
-            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
+          <div className="mb-6 md:mb-8 bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-4">Class Features</h3>
+            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>One-on-one & small group classes</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Textbook-based + practical conversation focus</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Grammar & pronunciation correction included</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Learn Korean culture along the way</span>
               </li>
               <li className="flex items-start">
-                <span className="text-[#5ed4c0] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
+                <span className="text-[#A8E6CF] mr-2 md:mr-3 mt-1 flex-shrink-0">•</span>
                 <span>Customized lessons to fit your needs</span>
               </li>
             </ul>
           </div>
 
-          <p className="text-base md:text-lg font-bold text-[#4c3b32] text-center mb-6">
+          <p className="text-base md:text-lg font-bold text-[#4A2E2A] text-center mb-6">
             <span className="font-bold">Until your Korean becomes truly natural — start now!</span>
           </p>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-gradient-to-r from-[#e7faf7] to-[#d0f5ef] text-[#4c3b32] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:from-[#d0f5ef] hover:to-sky-400 font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#A8E6CF] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#98d6bf] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
         </div>
       </div>
     </div>
@@ -706,36 +706,36 @@ const KoreanLearningSite = () => {
         <div className="min-h-screen bg-stone-100 p-4 md:p-8">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-[#4c3b32] mb-6 text-center">Test Results</h2>
-              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6 text-center">
-                <p className="text-4xl font-bold text-[#3bb5a3] mb-2">{score} / {questions.length}</p>
-                <p className="text-xl font-bold text-[#4c3b32]">Level: {rec.level}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#4A2E2A] mb-6 text-center">Test Results</h2>
+              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6 text-center">
+                <p className="text-4xl font-bold text-[#A8E6CF] mb-2">{score} / {questions.length}</p>
+                <p className="text-xl font-bold text-[#4A2E2A]">Level: {rec.level}</p>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Review</h3>
+                <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Review</h3>
                 {questions.map((q, i) => (
                   answers[i] !== q.correct && (
                     <div key={i} className="bg-stone-100 border-2 border-stone-300 rounded-lg p-4 mb-3">
-                      <p className="font-bold text-[#4c3b32] mb-2">Question {i + 1}</p>
-                      <p className="text-sm text-gray-700 mb-2">{q.explanation}</p>
+                      <p className="font-bold text-[#4A2E2A] mb-2">Question {i + 1}</p>
+                      <p className="text-sm text-[#4A2E2A] mb-2">{q.explanation}</p>
                       <p className="text-sm text-gray-600 italic">{q.explanationEn}</p>
                     </div>
                   )
                 ))}
               </div>
-              <div className="bg-gradient-to-r from-[#f2fcfa] to-[#e7faf7] border-2 border-[#c0f0e9] rounded-lg p-4 mb-6">
-                <p className="text-center font-bold text-[#4c3b32] mb-2">Recommended Class</p>
-                <p className="text-center text-lg font-bold text-[#3bb5a3]">{rec.class}</p>
+              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-6">
+                <p className="text-center font-bold text-[#4A2E2A] mb-2">Recommended Class</p>
+                <p className="text-center text-lg font-bold text-[#A8E6CF]">{rec.class}</p>
               </div>
               <div className="flex gap-3">
-                <button onClick={reset} className="flex-1 bg-stone-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-stone-300">Retake Test</button>
+                <button onClick={reset} className="flex-1 bg-[#4A2E2A] text-white font-bold py-3 rounded-lg hover:bg-[#3a241f]">Retake Test</button>
                 {rec.class === 'Group Class or 1:1 Chat' ? (
                   <>
-                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Group Class</button>
-                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">1:1 Chat</button>
+                    <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Group Class</button>
+                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">1:1 Chat</button>
                   </>
                 ) : (
-                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Go to Class</button>
+                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Go to Class</button>
                 )}
               </div>
             </div>
@@ -750,16 +750,16 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl md:text-2xl font-bold text-[#4c3b32]">Korean Level Test</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">Korean Level Test</h2>
               <span className="text-sm md:text-base text-gray-600">{currentQ + 1} / {questions.length}</span>
             </div>
             <div className="mb-6">
               <p className="text-sm md:text-base text-gray-600 mb-3">{q.instruction}</p>
-              <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-4 mb-4">
-                <p className="text-base md:text-lg text-gray-800 whitespace-pre-line">{q.q}</p>
+              <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-4 mb-4">
+                <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
               </div>
               {q.extraQ && (
-                <p className="text-base md:text-lg font-bold text-gray-800 mb-4">{q.extraQ}</p>
+                <p className="text-base md:text-lg font-bold text-[#4A2E2A] mb-4">{q.extraQ}</p>
               )}
               <div className="space-y-3">
                 {q.options.map((opt, i) => (
@@ -770,11 +770,11 @@ const KoreanLearningSite = () => {
               </div>
             </div>
             <div className="flex gap-3">
-              <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} className="flex-1 bg-stone-200 text-gray-700 font-bold py-3 rounded-lg hover:bg-stone-300 disabled:opacity-50">← Previous</button>
+              <button onClick={() => setCurrentQ(Math.max(0, currentQ - 1))} disabled={currentQ === 0} className="flex-1 bg-[#4A2E2A] text-white font-bold py-3 rounded-lg hover:bg-[#3a241f] disabled:opacity-50">← Previous</button>
               {currentQ < questions.length - 1 ? (
-                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Next →</button>
+                <button onClick={() => setCurrentQ(currentQ + 1)} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Next →</button>
               ) : (
-                <button onClick={() => setShowResult(true)} className="flex-1 bg-[#e7faf7] text-[#4c3b32] font-bold py-3 rounded-lg hover:bg-[#d0f5ef]">Submit</button>
+                <button onClick={() => setShowResult(true)} className="flex-1 bg-[#A8E6CF] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#98d6bf]">Submit</button>
               )}
             </div>
           </div>
@@ -933,7 +933,7 @@ const KoreanLearningSite = () => {
           <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
             <h2 className="text-2xl font-bold text-red-600 mb-4">Booking Not Found</h2>
             <p className="text-gray-600 mb-6">The booking link is invalid or has been deleted.</p>
-            <button onClick={() => window.location.href = '/'} className="bg-[#e7faf7] text-[#4c3b32] px-6 py-3 rounded-lg font-bold hover:bg-[#d0f5ef]">
+            <button onClick={() => window.location.href = '/'} className="bg-[#A8E6CF] text-[#4A2E2A] px-6 py-3 rounded-lg font-bold hover:bg-[#98d6bf]">
               Go to Home
             </button>
           </div>
@@ -956,16 +956,16 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#4c3b32]">My Booking</h2>
-              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-[#4c3b32]">
+              <h2 className="text-2xl font-bold text-[#4A2E2A]">My Booking</h2>
+              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-[#4A2E2A]">
                 ← Home
               </button>
             </div>
 
             {/* 예약 정보 */}
-            <div className="bg-[#f8fdfc] border-2 border-[#e7faf7] rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Class Information</h3>
-              <div className="space-y-2 text-gray-700">
+            <div className="bg-[#A8E6CF] border-2 border-[#A8E6CF] rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Class Information</h3>
+              <div className="space-y-2 text-[#4A2E2A]">
                 <p><span className="font-bold">Name:</span> {booking.name}</p>
                 <p><span className="font-bold">Email:</span> {booking.email}</p>
                 {booking.bookings ? (
@@ -1005,7 +1005,7 @@ const KoreanLearningSite = () => {
               </div>
             ) : (
               <div>
-                <h3 className="text-xl font-bold text-[#4c3b32] mb-4">Reschedule Class</h3>
+                <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Reschedule Class</h3>
                 
                 {!canReschedule ? (
                   <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
@@ -1056,12 +1056,12 @@ const KoreanLearningSite = () => {
                             onClick={() => setSelectedSlot(slot)}
                             className={`p-4 rounded-lg border-2 text-left transition-all ${
                               selectedSlot?.date === slot.date && selectedSlot?.slot === slot.slot
-                                ? 'bg-[#e7faf7] border-[#a0e8dc] font-bold'
-                                : 'bg-stone-50 border-stone-200 hover:bg-[#f2fcfa]'
+                                ? 'bg-[#A8E6CF] border-[#A8E6CF] font-bold'
+                                : 'bg-stone-50 border-stone-200 hover:bg-[#98d6bf]'
                             }`}
                           >
-                            <div className="font-bold text-[#4c3b32]">{slot.date}</div>
-                            <div className="text-gray-700">{slot.slot} KST</div>
+                            <div className="font-bold text-[#4A2E2A]">{slot.date}</div>
+                            <div className="text-[#4A2E2A]">{slot.slot} KST</div>
                           </button>
                         ))}
                       </div>
@@ -1070,7 +1070,7 @@ const KoreanLearningSite = () => {
                     {selectedSlot && (
                       <button
                         onClick={reschedule}
-                        className="w-full bg-[#e7faf7] text-[#4c3b32] font-bold py-4 rounded-lg hover:bg-[#d0f5ef]"
+                        className="w-full bg-[#A8E6CF] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#98d6bf]"
                       >
                         Confirm Reschedule
                       </button>
@@ -1212,9 +1212,9 @@ const KoreanLearningSite = () => {
       return (
         <div className="min-h-screen bg-stone-100 p-8 flex items-center justify-center">
           <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
-            <h2 className="text-3xl font-bold text-[#4c3b32] mb-6 text-center">Admin Login</h2>
+            <h2 className="text-3xl font-bold text-[#4A2E2A] mb-6 text-center">Admin Login</h2>
             <p className="text-gray-600 text-center mb-6">Sign in with your Google account</p>
-            <button onClick={loginWithGoogle} className="w-full bg-white border-2 border-gray-300 text-gray-700 font-bold py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-3">
+            <button onClick={loginWithGoogle} className="w-full bg-white border-2 border-gray-300 text-[#4A2E2A] font-bold py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-3">
               <svg className="w-6 h-6" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -1232,7 +1232,7 @@ const KoreanLearningSite = () => {
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#4c3b32]">Admin</h2>
+            <h2 className="text-2xl font-bold text-[#4A2E2A]">Admin</h2>
             <div className="flex gap-2">
               <button onClick={() => setCurrentPage('adminBookings')} className="bg-amber-200 px-4 py-2 rounded-lg text-sm font-medium">Bookings</button>
               <button onClick={logout} className="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm">Logout</button>
@@ -1244,11 +1244,11 @@ const KoreanLearningSite = () => {
               <button onClick={async () => {
                 setClassPrice(2);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 2 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#e7faf7]' : 'bg-stone-100'}`}>$2</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#A8E6CF]' : 'bg-stone-100'}`}>$2</button>
               <button onClick={async () => {
                 setClassPrice(3);
                 await setDoc(doc(db, 'settings', 'classPrice'), { value: 3 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#e7faf7]' : 'bg-stone-100'}`}>$3</button>
+              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#A8E6CF]' : 'bg-stone-100'}`}>$3</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
@@ -1265,7 +1265,7 @@ const KoreanLearningSite = () => {
                 <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={eh} onChange={(e) => setEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
                 <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={em} onChange={(e) => setEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
               </div>
-              <button onClick={add} className="w-full bg-[#e7faf7] font-bold py-3 rounded-lg">Add</button>
+              <button onClick={add} className="w-full bg-[#A8E6CF] font-bold py-3 rounded-lg">Add</button>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
@@ -1342,7 +1342,13 @@ const KoreanLearningSite = () => {
           alert('Payment confirmed! Confirmation email sent to student.');
         } catch (error) {
           console.error('Error confirming payment:', error);
-          alert('Failed to confirm payment. Please try again.');
+          
+          // Firebase 업데이트는 성공했지만 이메일 발송 실패
+          if (error.text && error.text.includes('emailjs')) {
+            alert('Payment confirmed in system, but email failed to send. Please check EmailJS template.');
+          } else {
+            alert('Failed to confirm payment. Please try again.');
+          }
         }
       }
     };
@@ -1398,7 +1404,7 @@ const KoreanLearningSite = () => {
             <div className="flex gap-3 items-center flex-wrap">
               <button 
                 onClick={() => setFilterType('all')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#e7faf7] text-[#4c3b32]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#A8E6CF] text-[#4A2E2A]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
               >
                 All Bookings ({bookings.length})
               </button>
