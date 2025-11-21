@@ -1126,6 +1126,8 @@ const KoreanLearningSite = () => {
 
 
   const AdminBookingsPage = () => {
+    const [showOverdueOnly, setShowOverdueOnly] = useState(false);
+    
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
 
     const deleteBooking = async (id) => {
@@ -1148,7 +1150,7 @@ const KoreanLearningSite = () => {
             paymentConfirmedAt: new Date().toISOString()
           });
 
-          emailjs.init('1eD9dTRJPfHenqguL');
+          emailjs.init('VTbJZq0OKGGXe9-Gp');
           
           const allBookingInfo = booking.bookings
             ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
@@ -1182,6 +1184,21 @@ const KoreanLearningSite = () => {
       });
     };
 
+    const getTimeStatus = (booking) => {
+      if (booking.paymentConfirmed) return { text: 'Paid', color: 'text-green-600' };
+      
+      const now = new Date();
+      const bookedAt = new Date(booking.bookedAt);
+      const hoursPassed = (now - bookedAt) / (1000 * 60 * 60);
+      const hoursLeft = 24 - hoursPassed;
+      
+      if (hoursLeft <= 0) {
+        return { text: `${Math.abs(Math.floor(hoursLeft))}h overdue`, color: 'text-red-600' };
+      } else {
+        return { text: `${Math.floor(hoursLeft)}h left`, color: 'text-orange-600' };
+      }
+    };
+
     const deleteOverdueBookings = async () => {
       const overdueBookings = getOverdueBookings();
       if (window.confirm(`Delete all ${overdueBookings.length} overdue bookings?`)) {
@@ -1198,23 +1215,54 @@ const KoreanLearningSite = () => {
     };
 
     const overdueBookings = getOverdueBookings();
+    const displayBookings = showOverdueOnly ? overdueBookings : bookings;
 
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold">Bookings ({bookings.length})</h2>
+          <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center gap-4">
+              <h2 className="text-2xl font-bold">Bookings ({bookings.length})</h2>
+              {overdueBookings.length > 0 && (
+                <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm font-bold">
+                  {overdueBookings.length} Overdue
+                </span>
+              )}
+            </div>
             <div className="flex gap-2">
               {overdueBookings.length > 0 && (
-                <button onClick={deleteOverdueBookings} className="bg-red-600 text-white px-4 py-2 rounded-lg">
+                <button onClick={deleteOverdueBookings} className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 font-bold">
                   Delete {overdueBookings.length} Overdue
                 </button>
               )}
-              <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
+              <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg hover:bg-stone-300">Back</button>
             </div>
           </div>
+
+          {/* 필터 버튼 */}
+          {overdueBookings.length > 0 && (
+            <div className="mb-4 flex gap-2">
+              <button 
+                onClick={() => setShowOverdueOnly(false)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${!showOverdueOnly ? 'bg-[#14B8A6] text-white' : 'bg-white border-2 border-stone-200 hover:bg-stone-50'}`}
+              >
+                All Bookings ({bookings.length})
+              </button>
+              <button 
+                onClick={() => setShowOverdueOnly(true)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all ${showOverdueOnly ? 'bg-red-600 text-white' : 'bg-white border-2 border-red-200 hover:bg-red-50'}`}
+              >
+                Overdue Only ({overdueBookings.length})
+              </button>
+            </div>
+          )}
+
           <div className="bg-white rounded-xl shadow-lg p-6">
-            {bookings.length === 0 ? <p className="text-center text-gray-500 py-8">No bookings</p> : (
+            {displayBookings.length === 0 ? (
+              <p className="text-center text-gray-500 py-8">
+                {showOverdueOnly ? 'No overdue bookings' : 'No bookings'}
+              </p>
+            ) : (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-stone-100">
@@ -1223,12 +1271,14 @@ const KoreanLearningSite = () => {
                       <th className="px-4 py-3 text-left text-sm">Email</th>
                       <th className="px-4 py-3 text-left text-sm">Date & Time</th>
                       <th className="px-4 py-3 text-left text-sm">Status</th>
+                      <th className="px-4 py-3 text-left text-sm">Time</th>
                       <th className="px-4 py-3 text-left text-sm">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {bookings.map(b => {
+                    {displayBookings.map(b => {
                       const isOverdue = overdueBookings.some(ob => ob.id === b.id);
+                      const timeStatus = getTimeStatus(b);
                       return (
                         <tr key={b.id} className={`border-t ${isOverdue ? 'bg-red-50' : ''}`}>
                           <td className="px-4 py-3 text-sm">{b.name}</td>
@@ -1241,6 +1291,11 @@ const KoreanLearningSite = () => {
                           <td className="px-4 py-3">
                             <span className={`px-2 py-1 rounded text-xs font-bold ${b.paymentConfirmed ? 'bg-green-100 text-green-700' : isOverdue ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
                               {b.paymentConfirmed ? 'Confirmed' : isOverdue ? 'Overdue' : 'Pending'}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className={`text-xs font-bold ${timeStatus.color}`}>
+                              {timeStatus.text}
                             </span>
                           </td>
                           <td className="px-4 py-3">
