@@ -116,9 +116,9 @@ const KoreanLearningSite = () => {
             <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Tutor Info</h3>
           </button>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZkzwZ8eJbKqV3TFvV5olma1ly-xBw1Td83BXXZ2izUBV_tg/viewform" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 text-center">
+          <a href="https://realkoreantalk.wordpress.com/" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 text-center">
             <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Contact</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Blog</h3>
           </a>
         </div>
         <div className="text-center mt-12 md:mt-16">
@@ -612,60 +612,67 @@ const KoreanLearningSite = () => {
 
     const questions = [
       {
-        instruction: 'Choose the correct word for the blank.',
-        q: '저는 학교___ 갑니다.',
-        options: ['을', '에', '가', '을/를'],
+        instruction: '다음 문장에서 알맞은 말을 고르세요.\nChoose the correct word for the blank.',
+        q: '저는 매일 학교___ 갑니다.',
+        options: ['는', '이', '에', '가'],
         correct: 2,
         explanation: '장소를 나타내는 조사는 "에"입니다.',
-        explanationEn: 'The particle for location is "에" (to/at). The correct answer is "학교에 갑니다" (I go to school).'
+        explanationEn: 'The particle for location is "에" (to/at). The correct answer is "학교에 갑니다" (I go to school every day).'
       },
       {
-        instruction: 'Choose the correct greeting.',
-        q: 'When you meet someone for the first time, you say:',
-        options: ['안녕히 가세요', '처음 뵙겠습니다', '잘 먹겠습니다', '안녕히 주무세요'],
+        instruction: '다음 문장에서 빈칸에 들어갈 가장 자연스러운 표현을 고르세요.\nChoose the most natural expression for the blank.',
+        q: '날씨가 너무 ____ 창문을 열었어요.',
+        options: ['덥워서', '더워서', '더어서', '더아서'],
         correct: 1,
-        explanationEn: '"처음 뵙겠습니다" (Nice to meet you) is the formal greeting when meeting someone for the first time.'
+        explanation: '"덥다"의 활용형은 "더워서"입니다.',
+        explanationEn: 'The correct conjugation of "덥다" (hot) is "더워서". The sentence means "It was so hot that I opened the window."'
       },
       {
-        instruction: 'What time is it?',
+        instruction: '지금 몇 시예요?\nWhat time is it?',
         q: '21:50',
-        options: ['아홉시 오십분', '열시 오십분', '아홉시 오분', '열한시 오십분'],
-        correct: 3,
-        explanation: '21시는 오후 9시 = 밤 9시입니다. 하지만 시간을 말할 때 "시"는 "열한시"가 아니라 "아홉시"입니다. 21:50 = 아홉시 오십분.',
-        explanationEn: '21:50 in Korean is "아홉시 오십분" (9:50 PM). Korean uses native numbers for hours and Sino-Korean numbers for minutes.'
-      },
-      {
-        instruction: 'Choose the correct word for the blank.',
-        q: '저는 커피___ 좋아해요.',
-        options: ['을/를', '이/가', '에', '의'],
-        correct: 0,
-        explanation: '목적어를 나타내는 조사는 "을/를"입니다.',
-        explanationEn: 'The object particle is "을/를". Since 커피 ends in a vowel, we use "를".'
-      },
-      {
-        instruction: 'What did you do first when you came home?',
-        extraQ: 'What did you do first when you came home?',
-        q: '',
-        options: ['저녁을 먹었어요', '샤워를 했어요', '숙제를 했어요', '친구한테 전화했어요'],
+        options: ['스물한시 오십분이에요', '이십일시 십분 전이에요', '아홉시 쉰분이에요', '열시 십분전이에요'],
         correct: 2,
-        explanationEn: 'This tests understanding of past tense (-었어요) and common daily activities vocabulary.'
+        explanation: '21시는 밤 9시입니다. "아홉시 쉰분"이 정답입니다.',
+        explanationEn: '21:50 in Korean is "아홉시 쉰분이에요" (9:50 PM). Korean uses native numbers for hours and Sino-Korean numbers for minutes.'
       },
       {
-        instruction: 'Choose the correct meaning.',
-        extraQ: '옷이 마음에 안 든다',
-        q: '',
-        options: ['I like the clothes', 'I don\'t like the clothes', 'The clothes are expensive', 'I want to buy clothes'],
-        correct: 1,
-        explanation: '"마음에 안 들다" = ~가 싫다 (don\'t like)',
-        explanationEn: '"마음에 안 들다" means "not to one\'s liking" or "don\'t like".'
-      },
-      {
-        instruction: 'Fill in the blanks with the correct words.',
-        q: '___에 친구를 만나서 영화를 봤어요. 그리고 ___도 같이 저녁을 먹었어요.',
-        options: ['다음 주에 - 오늘 - 오늘', '어제 - 오늘 - 내일', '지난주에 - 그날 - 어제', '지난주에 - 내일 - 오늘'],
+        instruction: '다음 문장에서 밑줄 친 단어와 가장 의미가 가까운 단어를 고르세요.\nChoose the word closest in meaning to the underlined word.',
+        q: '이 음식은 정말 맛없어요.',
+        options: ['맛있어요', '좋아요', '괜찮아요', '별로예요'],
         correct: 3,
-        explanation: '과거: 지난주에(last week). "그날"은 지난주의 그 날을 의미. "어제"도 가능.',
-        explanationEn: 'Past tense context: "지난주에" (last week) + "그날" (that day) or "어제" (yesterday) + "오늘" (today) for present action.'
+        explanation: '"맛없다"와 의미가 가까운 단어는 "별로다"입니다.',
+        explanationEn: '"맛없어요" (not tasty) is closest in meaning to "별로예요" (not good/not really). Both express negative evaluation.'
+      },
+      {
+        instruction: '다음 글을 읽고 질문에 답하세요.\nRead the passage and answer the question.',
+        extraQ: '질문: 집에 와서 가장 먼저 한 일은 무엇인가요?\nQuestion: What did you do first when you came home?',
+        q: '오늘은 일찍 일어나서 아침을 먹고 학교에 갔다. 수업 후에는 친구와 카페에 가서 커피를 마셨다. 집에 돌아오자마자 티비를 봤다. 그리고 저녁을 먹고 잤다.',
+        options: ['밥을 먹었어요', '커피를 마셨어요', '텔레비전을 봤어요', '학교에 갔어요'],
+        correct: 2,
+        explanation: '"집에 돌아오자마자 티비를 봤다"라고 했으므로 정답은 "텔레비전을 봤어요"입니다.',
+        explanationEn: 'The passage states "집에 돌아오자마자 티비를 봤다" (As soon as I got home, I watched TV), so the correct answer is "텔레비전을 봤어요".'
+      },
+      {
+        instruction: '다음 글을 읽고 맞으면 O, 틀리면 X를 고르세요.\nRead the passage and choose O if true, X if false.',
+        extraQ: '질문: 옷이 마음에 든다\nStatement: The person likes the clothes',
+        q: '옷이 좀 작은 것 같아요. 다른 옷도 봤으면 좋겠어요.',
+        options: ['O', 'X'],
+        correct: 1,
+        explanation: '"다른 옷도 봤으면 좋겠어요"라고 했으므로 옷이 마음에 들지 않습니다.',
+        explanationEn: 'The person says "다른 옷도 봤으면 좋겠어요" (I wish I could see other clothes), indicating they don\'t like the current clothes. The answer is X (false).'
+      },
+      {
+        instruction: '빈칸에 들어갈 알맞은 시간 표현을 고르세요.\nChoose the correct time expressions for the blanks.',
+        q: '저는____ 한국에 왔습니다. 한국 여행은 정말 좋았습니다. 저는 _____ 고향으로 돌아갑니다. 그래서 _____ 친구를 만나려고 합니다.',
+        options: [
+          '다음주에-내일-오늘',
+          '오늘-어제-내일',
+          '어제-오늘-내일',
+          '지난주에-내일-오늘'
+        ],
+        correct: 2,
+        explanation: '과거(왔습니다) - 현재(돌아갑니다) - 미래(만나려고)의 순서이므로 "어제-오늘-내일"이 정답입니다.',
+        explanationEn: 'The sequence is past (came) - present (return) - future (will meet), so "어제-오늘-내일" (yesterday-today-tomorrow) is correct.'
       }
     ];
 
@@ -755,14 +762,14 @@ const KoreanLearningSite = () => {
               <span className="text-sm md:text-base text-gray-600">{currentQ + 1} / {questions.length}</span>
             </div>
             <div className="mb-6">
-              <p className="text-sm md:text-base text-gray-600 mb-3">{q.instruction}</p>
+              <p className="text-sm md:text-base text-gray-600 mb-3 whitespace-pre-line">{q.instruction}</p>
               {q.q && (
                 <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-4">
                   <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
                 </div>
               )}
               {q.extraQ && (
-                <p className="text-base md:text-lg font-bold text-[#4A2E2A] mb-4">{q.extraQ}</p>
+                <p className="text-base md:text-lg font-bold text-[#4A2E2A] mb-4 whitespace-pre-line">{q.extraQ}</p>
               )}
               <div className="space-y-3">
                 {q.options.map((opt, i) => (
@@ -787,6 +794,14 @@ const KoreanLearningSite = () => {
   };
 
   const AdminPage = () => {
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [newPrice, setNewPrice] = useState(classPrice);
+
     if (!isAdminAuth) {
       return (
         <div className="min-h-screen bg-stone-100 flex items-center justify-center p-4">
@@ -798,83 +813,59 @@ const KoreanLearningSite = () => {
       );
     }
 
-    return (
-      <div className="min-h-screen bg-stone-100 p-4 md:p-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Admin Dashboard</h2>
-            <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button onClick={() => setCurrentPage('adminSlots')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
-              <h3 className="text-xl font-bold">Manage Time Slots</h3>
-            </button>
-            <button onClick={() => setCurrentPage('adminBookings')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
-              <h3 className="text-xl font-bold">Manage Bookings</h3>
-            </button>
-            <button onClick={() => setCurrentPage('adminPrice')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
-              <h3 className="text-xl font-bold">Set Class Price</h3>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  };
+    // 30분 단위 시간 생성
+    const generateTimeSlots = (start, end) => {
+      const slots = [];
+      const startHour = parseInt(start.split(':')[0]);
+      const startMin = parseInt(start.split(':')[1]);
+      const endHour = parseInt(end.split(':')[0]);
+      const endMin = parseInt(end.split(':')[1]);
+      
+      let currentHour = startHour;
+      let currentMin = startMin;
+      
+      while (currentHour < endHour || (currentHour === endHour && currentMin < endMin)) {
+        slots.push(`${String(currentHour).padStart(2, '0')}:${String(currentMin).padStart(2, '0')}`);
+        currentMin += 30;
+        if (currentMin >= 60) {
+          currentMin = 0;
+          currentHour++;
+        }
+      }
+      
+      return slots;
+    };
 
-  const AdminSlotsPage = () => {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [repeatWeekly, setRepeatWeekly] = useState(false);
+    // 날짜 범위 생성
+    const generateDateRange = (start, end) => {
+      const dates = [];
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      
+      while (startDate <= endDate) {
+        dates.push(startDate.toISOString().split('T')[0]);
+        startDate.setDate(startDate.getDate() + 1);
+      }
+      
+      return dates;
+    };
 
-    if (!isAdminAuth) { setCurrentPage('admin'); return null; }
-
-    const addSlot = async () => {
-      if (!date || !time) {
-        alert('Please fill in both date and time');
+    const addBulkSlots = async () => {
+      if (!startDate || !endDate || !startTime || !endTime) {
+        alert('모든 필드를 입력해주세요 / Please fill in all fields');
         return;
       }
 
       try {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        const selectedDate = new Date(date);
+        const dates = generateDateRange(startDate, endDate);
+        const times = generateTimeSlots(startTime, endTime);
         
-        if (selectedDate < today) {
-          alert('Cannot add slots for past dates');
+        if (times.length === 0) {
+          alert('시간 범위가 올바르지 않습니다 / Invalid time range');
           return;
         }
 
-        if (repeatWeekly) {
-          // 2개월 반복
-          const endDate = new Date(selectedDate);
-          endDate.setMonth(endDate.getMonth() + 2);
-          
-          let currentDate = new Date(selectedDate);
-          
-          while (currentDate <= endDate) {
-            const dateStr = currentDate.toISOString().split('T')[0];
-            const docRef = doc(db, 'timeSlots', dateStr);
-            const docSnap = await getDocs(collection(db, 'timeSlots'));
-            
-            let existingSlots = [];
-            docSnap.forEach((d) => {
-              if (d.id === dateStr) {
-                existingSlots = d.data().slots || [];
-              }
-            });
-
-            if (!existingSlots.includes(time)) {
-              await setDoc(docRef, {
-                slots: [...existingSlots, time].sort()
-              });
-            }
-            
-            currentDate.setDate(currentDate.getDate() + 7);
-          }
-          
-          alert('Slots added for 2 months (weekly repeat)!');
-        } else {
-          // 단일 슬롯
+        for (const date of dates) {
           const docRef = doc(db, 'timeSlots', date);
           const docSnap = await getDocs(collection(db, 'timeSlots'));
           
@@ -885,39 +876,87 @@ const KoreanLearningSite = () => {
             }
           });
 
-          if (existingSlots.includes(time)) {
-            alert('This slot already exists');
-            return;
-          }
-
-          await setDoc(docRef, {
-            slots: [...existingSlots, time].sort()
-          });
+          const newSlots = [...new Set([...existingSlots, ...times])].sort();
           
-          alert('Slot added!');
+          await setDoc(docRef, { slots: newSlots });
         }
         
-        setDate('');
-        setTime('');
-        setRepeatWeekly(false);
+        alert(`총 ${dates.length}일 × ${times.length}슬롯 추가 완료!\nAdded ${dates.length} days × ${times.length} slots!`);
+        setStartDate('');
+        setEndDate('');
+        setStartTime('');
+        setEndTime('');
       } catch (error) {
-        console.error('Error adding slot:', error);
-        alert('Failed to add slot');
+        console.error('Error adding slots:', error);
+        alert('슬롯 추가 실패 / Failed to add slots');
+      }
+    };
+
+    const deleteBulkSlots = async () => {
+      if (!startDate || !endDate || !startTime || !endTime) {
+        alert('모든 필드를 입력해주세요 / Please fill in all fields');
+        return;
+      }
+
+      const dates = generateDateRange(startDate, endDate);
+      const times = generateTimeSlots(startTime, endTime);
+
+      if (window.confirm(`${dates.length}일 × ${times.length}슬롯 삭제하시겠습니까?\nDelete ${dates.length} days × ${times.length} slots?`)) {
+        try {
+          for (const date of dates) {
+            const docRef = doc(db, 'timeSlots', date);
+            const docSnap = await getDocs(collection(db, 'timeSlots'));
+            
+            let existingSlots = [];
+            docSnap.forEach((d) => {
+              if (d.id === date) {
+                existingSlots = d.data().slots || [];
+              }
+            });
+
+            const updatedSlots = existingSlots.filter(s => !times.includes(s));
+            
+            if (updatedSlots.length === 0) {
+              await deleteDoc(docRef);
+            } else {
+              await setDoc(docRef, { slots: updatedSlots });
+            }
+          }
+          
+          alert('삭제 완료! / Deleted!');
+          setStartDate('');
+          setEndDate('');
+          setStartTime('');
+          setEndTime('');
+        } catch (error) {
+          console.error('Error deleting slots:', error);
+          alert('삭제 실패 / Failed to delete');
+        }
       }
     };
 
     const deleteSlot = async (date, slot) => {
-      if (window.confirm('Delete this slot?')) {
+      if (window.confirm(`Delete ${slot} on ${date}?`)) {
         try {
           const docRef = doc(db, 'timeSlots', date);
-          const currentSlots = timeSlots[date] || [];
-          const updatedSlots = currentSlots.filter(s => s !== slot);
+          const docSnap = await getDocs(collection(db, 'timeSlots'));
+          
+          let existingSlots = [];
+          docSnap.forEach((d) => {
+            if (d.id === date) {
+              existingSlots = d.data().slots || [];
+            }
+          });
+
+          const updatedSlots = existingSlots.filter(s => s !== slot);
           
           if (updatedSlots.length === 0) {
             await deleteDoc(docRef);
           } else {
             await setDoc(docRef, { slots: updatedSlots });
           }
+          
+          alert('Slot deleted!');
         } catch (error) {
           console.error('Error deleting slot:', error);
           alert('Failed to delete slot');
@@ -925,61 +964,111 @@ const KoreanLearningSite = () => {
       }
     };
 
+    const updatePrice = async (price) => {
+      if (window.confirm(`수업료를 $${price}로 변경하시겠습니까?\nSet class price to $${price}?`)) {
+        try {
+          await setDoc(doc(db, 'settings', 'classPrice'), { value: price });
+          setClassPrice(price);
+          setNewPrice(price);
+          alert('가격 변경 완료! / Price updated!');
+        } catch (error) {
+          console.error('Error updating price:', error);
+          alert('가격 변경 실패 / Failed to update price');
+        }
+      }
+    };
+
+    const sortedDates = Object.keys(timeSlots).sort();
+
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold">Manage Time Slots</h2>
-            <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Admin Panel</h2>
+            <div className="flex gap-2">
+              <button onClick={() => setCurrentPage('adminBookings')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">예약 현황</button>
+              <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
+            </div>
           </div>
+
+          {/* 가격 설정 */}
           <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <h3 className="text-xl font-bold mb-4">Add Time Slot</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">Date</label>
-                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Time</label>
-                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div className="flex items-end">
-                <button onClick={addSlot} className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-2 rounded-lg hover:bg-[#A0DED1]">Add Slot</button>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <input 
-                type="checkbox" 
-                id="repeatWeekly" 
-                checked={repeatWeekly} 
-                onChange={(e) => setRepeatWeekly(e.target.checked)}
-                className="w-4 h-4"
-              />
-              <label htmlFor="repeatWeekly" className="text-sm font-medium">
-                Repeat Weekly (for 2 months)
-              </label>
+            <h3 className="text-xl font-bold mb-4">수업료 설정 / Class Price</h3>
+            <div className="flex items-center gap-4">
+              <p className="text-lg">현재 가격 / Current Price: <span className="font-bold text-2xl text-[#4A2E2A]">${classPrice}</span></p>
+              <button 
+                onClick={() => updatePrice(2)} 
+                className={`px-6 py-3 rounded-lg font-bold transition-all ${classPrice === 2 ? 'bg-[#14B8A6] text-white' : 'bg-stone-200 hover:bg-stone-300'}`}
+              >
+                $2
+              </button>
+              <button 
+                onClick={() => updatePrice(3)} 
+                className={`px-6 py-3 rounded-lg font-bold transition-all ${classPrice === 3 ? 'bg-[#14B8A6] text-white' : 'bg-stone-200 hover:bg-stone-300'}`}
+              >
+                $3
+              </button>
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold mb-4">Existing Slots</h3>
-            {Object.keys(timeSlots).sort().map(date => (
-              <div key={date} className="mb-4 p-4 bg-stone-50 rounded-lg">
-                <p className="font-bold mb-2">{date}</p>
-                <div className="flex flex-wrap gap-2">
-                  {timeSlots[date].map(slot => (
-                    <div key={slot} className="bg-white px-3 py-1 rounded-lg border flex items-center gap-2">
-                      <span>{slot}</span>
-                      <button onClick={() => deleteSlot(date, slot)} className="text-red-600 hover:text-red-800 font-bold">×</button>
-                    </div>
-                  ))}
-                </div>
+
+          {/* 범위 기반 슬롯 추가/삭제 */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h3 className="text-xl font-bold mb-4">범위 설정 슬롯 관리 / Bulk Slot Management</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">시작 날짜 / Start Date</label>
+                <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
               </div>
-            ))}
+              <div>
+                <label className="block text-sm font-medium mb-2">종료 날짜 / End Date</label>
+                <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">시작 시간 / Start Time</label>
+                <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">종료 시간 / End Time</label>
+                <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mb-4">💡 30분 단위로 자동 생성됩니다 / Slots will be generated every 30 minutes</p>
+            <div className="flex gap-3">
+              <button onClick={addBulkSlots} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold px-6 py-3 rounded-lg hover:bg-[#A0DED1]">
+                ➕ 슬롯 추가 / Add Slots
+              </button>
+              <button onClick={deleteBulkSlots} className="flex-1 bg-red-500 text-white font-bold px-6 py-3 rounded-lg hover:bg-red-600">
+                ➖ 슬롯 삭제 / Delete Slots
+              </button>
+            </div>
+          </div>
+
+          {/* 현재 슬롯 목록 */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-xl font-bold mb-4">현재 슬롯 / Current Slots</h3>
+            {sortedDates.length === 0 ? <p className="text-center text-gray-500 py-8">슬롯이 없습니다 / No slots</p> : (
+              <div className="space-y-4 max-h-96 overflow-y-auto">
+                {sortedDates.map(date => (
+                  <div key={date} className="border-2 border-stone-200 rounded-lg p-4">
+                    <h4 className="font-bold mb-2">{date}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {timeSlots[date].map(slot => (
+                        <div key={slot} className="bg-stone-100 px-3 py-1 rounded-lg flex items-center gap-2">
+                          <span>{slot}</span>
+                          <button onClick={() => deleteSlot(date, slot)} className="text-red-600 font-bold hover:text-red-800">×</button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
     );
   };
+
 
   const AdminBookingsPage = () => {
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
@@ -1125,43 +1214,6 @@ const KoreanLearningSite = () => {
     );
   };
 
-  const AdminPricePage = () => {
-    const [newPrice, setNewPrice] = useState(classPrice);
-
-    if (!isAdminAuth) { setCurrentPage('admin'); return null; }
-
-    const updatePrice = async () => {
-      if (window.confirm(`Set class price to $${newPrice}?`)) {
-        try {
-          await setDoc(doc(db, 'settings', 'classPrice'), { value: newPrice });
-          setClassPrice(newPrice);
-          alert('Price updated!');
-        } catch (error) {
-          console.error('Error updating price:', error);
-          alert('Failed to update price');
-        }
-      }
-    };
-
-    return (
-      <div className="min-h-screen bg-stone-100 p-4 md:p-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold">Set Class Price</h2>
-            <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
-          </div>
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <p className="mb-4">Current Price: <span className="font-bold text-2xl">${classPrice}</span></p>
-            <div className="flex gap-4">
-              <input type="number" value={newPrice} onChange={(e) => setNewPrice(Number(e.target.value))} className="flex-1 px-4 py-2 border rounded-lg" />
-              <button onClick={updatePrice} className="bg-[#B9F1E8] text-[#4A2E2A] font-bold px-6 py-2 rounded-lg hover:bg-[#A0DED1]">Update Price</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div>
       <Navigation />
@@ -1172,9 +1224,7 @@ const KoreanLearningSite = () => {
       {currentPage === 'group' && <GroupPage />}
       {currentPage === 'tutors' && <TutorsPage />}
       {currentPage === 'admin' && <AdminPage />}
-      {currentPage === 'adminSlots' && <AdminSlotsPage />}
       {currentPage === 'adminBookings' && <AdminBookingsPage />}
-      {currentPage === 'adminPrice' && <AdminPricePage />}
     </div>
   );
 };
