@@ -123,9 +123,7 @@ const KoreanLearningSite = () => {
         </div>
         <div className="text-center mt-12 md:mt-16">
           <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeZkzwZ8eJbKqV3TFvV5olma1ly-xBw1Td83BXXZ2izUBV_tg/viewform" 
-            target="_blank" 
-            rel="noopener noreferrer"
+            href="mailto:koreanteacherhannah@gmail.com" 
             className="inline-block bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md"
           >
             Any questions? Contact me, Hannah! 💌
@@ -299,15 +297,6 @@ const KoreanLearningSite = () => {
 
     const changeMonth = (delta) => {
       const newMonth = new Date(month.getFullYear(), month.getMonth() + delta);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const newMonthStart = new Date(newMonth.getFullYear(), newMonth.getMonth(), 1);
-      
-      // 이전 달로 이동 방지
-      if (delta < 0 && newMonthStart < today) {
-        return;
-      }
-      
       setMonth(newMonth);
       setAllSlots({});
       setSelDate(null);
@@ -464,19 +453,18 @@ const KoreanLearningSite = () => {
               </div>
               <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
                 <p className="text-[#4A2E2A] font-bold mb-1 text-sm md:text-base">🌍 Time Zone Tip</p>
-                <p className="text-[#4A2E2A] text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#B9F1E8] hover:underline font-medium">worldtimebuddy.com</a> to check your local time.</p>
+                <p className="text-[#4A2E2A] text-xs md:text-sm">All times are <span className="font-bold">Korea Standard Time (KST / UTC+9)</span>. Use <a href="https://www.worldtimebuddy.com/" target="_blank" rel="noopener noreferrer" className="text-[#14B8A6] hover:underline font-bold">worldtimebuddy.com</a> to check your local time.</p>
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
                   <button 
                     onClick={() => changeMonth(-1)} 
-                    disabled={true}
-                    className="text-[#4A2E2A] font-bold text-xl px-4 opacity-0 cursor-not-allowed"
+                    className="text-[#4A2E2A] font-bold text-xl px-4 hover:bg-stone-100 rounded-lg transition-colors"
                   >
                     ←
                   </button>
                   <h3 className="text-xl font-bold">{month.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
-                  <button onClick={() => changeMonth(1)} className="text-[#4A2E2A] font-bold text-xl px-4">→</button>
+                  <button onClick={() => changeMonth(1)} className="text-[#4A2E2A] font-bold text-xl px-4 hover:bg-stone-100 rounded-lg transition-colors">→</button>
                 </div>
                 <div className="grid grid-cols-7 gap-2">
                   {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => <div key={i} className="text-center text-sm font-bold py-2">{d}</div>)}
@@ -630,14 +618,15 @@ const KoreanLearningSite = () => {
       {
         instruction: '지금 몇 시예요?\nWhat time is it?',
         q: '21:50',
-        options: ['스물한시 오십분이에요', '이십일시 십분 전이에요', '아홉시 쉰분이에요', '열시 십분전이에요'],
-        correct: 2,
-        explanation: '21시는 밤 9시입니다. "아홉시 쉰분"이 정답입니다.',
-        explanationEn: '21:50 in Korean is "아홉시 쉰분이에요" (9:50 PM). Korean uses native numbers for hours and Sino-Korean numbers for minutes.'
+        options: ['열시 오십분', '열시 십분 전', '아홉시 십분 전', '구시 오십분'],
+        correct: 1,
+        explanation: '21:50은 "열시 십분 전"입니다. 22시 10분 전이기 때문입니다.',
+        explanationEn: '21:50 is "열시 십분 전" (10 minutes before 10 PM). It means 10 minutes before 22:00.'
       },
       {
         instruction: '다음 문장에서 밑줄 친 단어와 가장 의미가 가까운 단어를 고르세요.\nChoose the word closest in meaning to the underlined word.',
         q: '이 음식은 정말 맛없어요.',
+        underline: '맛없어요',
         options: ['맛있어요', '좋아요', '괜찮아요', '별로예요'],
         correct: 3,
         explanation: '"맛없다"와 의미가 가까운 단어는 "별로다"입니다.',
@@ -654,7 +643,7 @@ const KoreanLearningSite = () => {
       },
       {
         instruction: '다음 글을 읽고 맞으면 O, 틀리면 X를 고르세요.\nRead the passage and choose O if true, X if false.',
-        extraQ: '질문: 옷이 마음에 든다\nStatement: The person likes the clothes',
+        extraQ: '질문: 옷이 마음에 든다',
         q: '옷이 좀 작은 것 같아요. 다른 옷도 봤으면 좋겠어요.',
         options: ['O', 'X'],
         correct: 1,
@@ -667,12 +656,12 @@ const KoreanLearningSite = () => {
         options: [
           '다음주에-내일-오늘',
           '오늘-어제-내일',
-          '어제-오늘-내일',
+          '내일-오늘-어제',
           '지난주에-내일-오늘'
         ],
-        correct: 2,
-        explanation: '과거(왔습니다) - 현재(돌아갑니다) - 미래(만나려고)의 순서이므로 "어제-오늘-내일"이 정답입니다.',
-        explanationEn: 'The sequence is past (came) - present (return) - future (will meet), so "어제-오늘-내일" (yesterday-today-tomorrow) is correct.'
+        correct: 3,
+        explanation: '과거(왔습니다) - 미래(돌아갑니다) - 현재(만나려고)의 순서이므로 "지난주에-내일-오늘"이 정답입니다.',
+        explanationEn: 'The sequence is past (came) - future (will return) - present (will meet), so "지난주에-내일-오늘" (last week-tomorrow-today) is correct.'
       }
     ];
 
@@ -765,7 +754,20 @@ const KoreanLearningSite = () => {
               <p className="text-sm md:text-base text-gray-600 mb-3 whitespace-pre-line">{q.instruction}</p>
               {q.q && (
                 <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-4">
-                  <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
+                  <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">
+                    {q.underline ? (
+                      <>
+                        {q.q.split(q.underline).map((part, i) => (
+                          <span key={i}>
+                            {part}
+                            {i < q.q.split(q.underline).length - 1 && (
+                              <span className="underline decoration-2">{q.underline}</span>
+                            )}
+                          </span>
+                        ))}
+                      </>
+                    ) : q.q}
+                  </p>
                 </div>
               )}
               {q.extraQ && (
@@ -794,13 +796,11 @@ const KoreanLearningSite = () => {
   };
 
   const AdminPage = () => {
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [newPrice, setNewPrice] = useState(classPrice);
+    const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
 
     if (!isAdminAuth) {
       return (
@@ -813,7 +813,6 @@ const KoreanLearningSite = () => {
       );
     }
 
-    // 30분 단위 시간 생성
     const generateTimeSlots = (start, end) => {
       const slots = [];
       const startHour = parseInt(start.split(':')[0]);
@@ -836,7 +835,6 @@ const KoreanLearningSite = () => {
       return slots;
     };
 
-    // 날짜 범위 생성
     const generateDateRange = (start, end) => {
       const dates = [];
       const startDate = new Date(start);
@@ -850,9 +848,34 @@ const KoreanLearningSite = () => {
       return dates;
     };
 
+    const deleteOldSlots = async () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const todayStr = today.toISOString().split('T')[0];
+      
+      const oldDates = Object.keys(timeSlots).filter(date => date < todayStr);
+      
+      if (oldDates.length === 0) {
+        alert('No old slots to delete');
+        return;
+      }
+
+      if (window.confirm(`Delete ${oldDates.length} past dates?`)) {
+        try {
+          await Promise.all(
+            oldDates.map(date => deleteDoc(doc(db, 'timeSlots', date)))
+          );
+          alert(`Deleted ${oldDates.length} past dates!`);
+        } catch (error) {
+          console.error('Error deleting old slots:', error);
+          alert('Failed to delete old slots');
+        }
+      }
+    };
+
     const addBulkSlots = async () => {
       if (!startDate || !endDate || !startTime || !endTime) {
-        alert('모든 필드를 입력해주세요 / Please fill in all fields');
+        alert('Please fill in all fields');
         return;
       }
 
@@ -861,7 +884,7 @@ const KoreanLearningSite = () => {
         const times = generateTimeSlots(startTime, endTime);
         
         if (times.length === 0) {
-          alert('시간 범위가 올바르지 않습니다 / Invalid time range');
+          alert('Invalid time range');
           return;
         }
 
@@ -881,27 +904,27 @@ const KoreanLearningSite = () => {
           await setDoc(docRef, { slots: newSlots });
         }
         
-        alert(`총 ${dates.length}일 × ${times.length}슬롯 추가 완료!\nAdded ${dates.length} days × ${times.length} slots!`);
+        alert(`Added ${dates.length} days × ${times.length} slots!`);
         setStartDate('');
         setEndDate('');
         setStartTime('');
         setEndTime('');
       } catch (error) {
         console.error('Error adding slots:', error);
-        alert('슬롯 추가 실패 / Failed to add slots');
+        alert('Failed to add slots');
       }
     };
 
     const deleteBulkSlots = async () => {
       if (!startDate || !endDate || !startTime || !endTime) {
-        alert('모든 필드를 입력해주세요 / Please fill in all fields');
+        alert('Please fill in all fields');
         return;
       }
 
       const dates = generateDateRange(startDate, endDate);
       const times = generateTimeSlots(startTime, endTime);
 
-      if (window.confirm(`${dates.length}일 × ${times.length}슬롯 삭제하시겠습니까?\nDelete ${dates.length} days × ${times.length} slots?`)) {
+      if (window.confirm(`Delete ${dates.length} days × ${times.length} slots?`)) {
         try {
           for (const date of dates) {
             const docRef = doc(db, 'timeSlots', date);
@@ -923,14 +946,14 @@ const KoreanLearningSite = () => {
             }
           }
           
-          alert('삭제 완료! / Deleted!');
+          alert('Deleted!');
           setStartDate('');
           setEndDate('');
           setStartTime('');
           setEndTime('');
         } catch (error) {
           console.error('Error deleting slots:', error);
-          alert('삭제 실패 / Failed to delete');
+          alert('Failed to delete');
         }
       }
     };
@@ -965,37 +988,49 @@ const KoreanLearningSite = () => {
     };
 
     const updatePrice = async (price) => {
-      if (window.confirm(`수업료를 $${price}로 변경하시겠습니까?\nSet class price to $${price}?`)) {
+      if (window.confirm(`Set class price to $${price}?`)) {
         try {
           await setDoc(doc(db, 'settings', 'classPrice'), { value: price });
           setClassPrice(price);
-          setNewPrice(price);
-          alert('가격 변경 완료! / Price updated!');
+          alert('Price updated!');
         } catch (error) {
           console.error('Error updating price:', error);
-          alert('가격 변경 실패 / Failed to update price');
+          alert('Failed to update price');
         }
       }
     };
 
+    const getWeekDates = (startDate) => {
+      const dates = [];
+      const current = new Date(startDate);
+      for (let i = 0; i < 7; i++) {
+        dates.push(current.toISOString().split('T')[0]);
+        current.setDate(current.getDate() + 1);
+      }
+      return dates;
+    };
+
+    const changeWeek = (direction) => {
+      const newStart = new Date(currentWeekStart);
+      newStart.setDate(newStart.getDate() + (direction * 7));
+      setCurrentWeekStart(newStart);
+    };
+
     const sortedDates = Object.keys(timeSlots).sort();
+    const weekDates = getWeekDates(currentWeekStart);
+    const weekSlots = weekDates.filter(date => sortedDates.includes(date));
 
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Admin Panel</h2>
-            <div className="flex gap-2">
-              <button onClick={() => setCurrentPage('adminBookings')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">예약 현황</button>
-              <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
-            </div>
+          <div className="flex justify-end items-center mb-6 gap-2">
+            <button onClick={() => setCurrentPage('adminBookings')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">예약현황</button>
+            <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
           </div>
 
-          {/* 가격 설정 */}
           <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <h3 className="text-xl font-bold mb-4">수업료 설정 / Class Price</h3>
-            <div className="flex items-center gap-4">
-              <p className="text-lg">현재 가격 / Current Price: <span className="font-bold text-2xl text-[#4A2E2A]">${classPrice}</span></p>
+            <h3 className="text-xl font-bold mb-4">Class Price</h3>
+            <div className="flex gap-4">
               <button 
                 onClick={() => updatePrice(2)} 
                 className={`px-6 py-3 rounded-lg font-bold transition-all ${classPrice === 2 ? 'bg-[#14B8A6] text-white' : 'bg-stone-200 hover:bg-stone-300'}`}
@@ -1011,63 +1046,83 @@ const KoreanLearningSite = () => {
             </div>
           </div>
 
-          {/* 범위 기반 슬롯 추가/삭제 */}
           <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <h3 className="text-xl font-bold mb-4">범위 설정 슬롯 관리 / Bulk Slot Management</h3>
+            <h3 className="text-xl font-bold mb-4">Slot</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium mb-2">시작 날짜 / Start Date</label>
+                <label className="block text-sm font-medium mb-2">Start Date</label>
                 <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">종료 날짜 / End Date</label>
+                <label className="block text-sm font-medium mb-2">End Date</label>
                 <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">시작 시간 / Start Time</label>
+                <label className="block text-sm font-medium mb-2">Start Time</label>
                 <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">종료 시간 / End Time</label>
+                <label className="block text-sm font-medium mb-2">End Time</label>
                 <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
               </div>
             </div>
-            <p className="text-sm text-gray-600 mb-4">💡 30분 단위로 자동 생성됩니다 / Slots will be generated every 30 minutes</p>
             <div className="flex gap-3">
               <button onClick={addBulkSlots} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold px-6 py-3 rounded-lg hover:bg-[#A0DED1]">
-                ➕ 슬롯 추가 / Add Slots
+                Add Slots
               </button>
               <button onClick={deleteBulkSlots} className="flex-1 bg-red-500 text-white font-bold px-6 py-3 rounded-lg hover:bg-red-600">
-                ➖ 슬롯 삭제 / Delete Slots
+                Delete Slots
               </button>
             </div>
           </div>
 
-          {/* 현재 슬롯 목록 */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold mb-4">현재 슬롯 / Current Slots</h3>
-            {sortedDates.length === 0 ? <p className="text-center text-gray-500 py-8">슬롯이 없습니다 / No slots</p> : (
-              <div className="space-y-4 max-h-96 overflow-y-auto">
-                {sortedDates.map(date => (
-                  <div key={date} className="border-2 border-stone-200 rounded-lg p-4">
-                    <h4 className="font-bold mb-2">{date}</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {timeSlots[date].map(slot => (
-                        <div key={slot} className="bg-stone-100 px-3 py-1 rounded-lg flex items-center gap-2">
-                          <span>{slot}</span>
-                          <button onClick={() => deleteSlot(date, slot)} className="text-red-600 font-bold hover:text-red-800">×</button>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold">Current Slots</h3>
+              <button onClick={deleteOldSlots} className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 font-bold text-sm">
+                Delete Old Slots
+              </button>
+            </div>
+            {sortedDates.length === 0 ? <p className="text-center text-gray-500 py-8">No slots</p> : (
+              <>
+                <div className="flex justify-between items-center mb-4">
+                  <button onClick={() => changeWeek(-1)} className="px-4 py-2 bg-stone-200 rounded-lg hover:bg-stone-300 font-bold">
+                    ← Prev Week
+                  </button>
+                  <span className="font-medium text-gray-600">
+                    {weekDates[0]} ~ {weekDates[6]}
+                  </span>
+                  <button onClick={() => changeWeek(1)} className="px-4 py-2 bg-stone-200 rounded-lg hover:bg-stone-300 font-bold">
+                    Next Week →
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  {weekSlots.length === 0 ? (
+                    <p className="text-center text-gray-500 py-4">No slots this week</p>
+                  ) : (
+                    weekSlots.map(date => (
+                      <div key={date} className="border border-stone-200 rounded-lg p-3">
+                        <h4 className="font-bold mb-2">{date}</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {timeSlots[date].map(slot => (
+                            <div key={slot} className="bg-stone-100 px-3 py-1 rounded flex items-center gap-2 text-sm">
+                              <span>{slot}</span>
+                              <button onClick={() => deleteSlot(date, slot)} className="text-red-600 font-bold hover:text-red-800">×</button>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </>
             )}
           </div>
         </div>
       </div>
     );
   };
+
 
 
   const AdminBookingsPage = () => {
