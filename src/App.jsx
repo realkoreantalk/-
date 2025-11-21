@@ -13,6 +13,15 @@ const KoreanLearningSite = () => {
   const [bookings, setBookings] = useState([]);
   const [timeSlots, setTimeSlots] = useState({});
 
+  // URL 파라미터로 예약 페이지 직접 접근
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get('page');
+    if (page === 'booking') {
+      setCurrentPage('booking');
+    }
+  }, []);
+
   // Firebase Auth 상태 감지
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
