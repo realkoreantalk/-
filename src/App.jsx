@@ -12,17 +12,6 @@ const KoreanLearningSite = () => {
   const [classPrice, setClassPrice] = useState(2);
   const [bookings, setBookings] = useState([]);
   const [timeSlots, setTimeSlots] = useState({});
-  const [bookingId, setBookingId] = useState(null);
-
-  // URL 파라미터에서 booking ID 확인
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('booking');
-    if (id) {
-      setBookingId(id);
-      setCurrentPage('studentBooking');
-    }
-  }, []);
 
   // Firebase Auth 상태 감지
   useEffect(() => {
@@ -76,10 +65,13 @@ const KoreanLearningSite = () => {
 
   const Navigation = () => (
     <nav className="bg-[#4A2E2A] text-white p-4 shadow-lg">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <button onClick={() => setCurrentPage('home')} className="hover:text-stone-300 text-sm">Home</button>
-        <h1 className="text-2xl md:text-3xl font-bold">Real Korean Talk</h1>
-        <button onClick={() => setCurrentPage('admin')} className="hover:text-stone-300 text-sm">Admin</button>
+      <div className="max-w-7xl mx-auto flex justify-center items-center">
+        <button 
+          onClick={() => setCurrentPage('home')} 
+          className="text-2xl md:text-3xl font-bold hover:text-stone-300 transition-colors"
+        >
+          Real Korean Talk
+        </button>
       </div>
     </nav>
   );
@@ -98,35 +90,47 @@ const KoreanLearningSite = () => {
           </button>
           <button onClick={() => setCurrentPage('booking')} className="bg-[#B9F1E8] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
             <div className="mb-2 flex justify-center"><Calendar size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold">Book a Class</h3>
-          </button>
-          <button onClick={() => setCurrentPage('tutors')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
-            <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Tutor Info</h3>
+            <h3 className="text-base md:text-xl font-bold">Book Now</h3>
           </button>
           <button onClick={() => setCurrentPage('oneOnOne')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center gap-0">
               <User size={24} className="md:w-7 md:h-7" />
               <User size={24} className="md:w-7 md:h-7 -ml-[10px]" />
             </div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">1:1 Chat 15min</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">1:1 Chat</h3>
           </button>
-          <a href="https://realkoreantalk.wordpress.com" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 flex flex-col items-center justify-center">
-            <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A] text-center">Blog</h3>
-          </a>
           <button onClick={() => setCurrentPage('group')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><BookOpen size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Group Lesson</h3>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Group Class</h3>
           </button>
+          <button onClick={() => setCurrentPage('tutors')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
+            <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Tutor Info</h3>
+          </button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeZkzwZ8eJbKqV3TFvV5olma1ly-xBw1Td83BXXZ2izUBV_tg/viewform" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 text-center">
+            <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Contact</h3>
+          </a>
         </div>
-        <div className="text-center mt-12 pb-8">
+        <div className="text-center mt-12 md:mt-16">
           <a 
-            href="mailto:koreanteacherhannah@gmail.com" 
-            className="inline-block text-lg md:text-xl text-[#4A2E2A] hover:text-amber-800 font-medium transition-all hover:scale-105"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeZkzwZ8eJbKqV3TFvV5olma1ly-xBw1Td83BXXZ2izUBV_tg/viewform" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md"
           >
             Any questions? Contact me, Hannah! 💌
           </a>
+        </div>
+        
+        {/* Copyright - 관리자 페이지로 이동 */}
+        <div className="text-center mt-16 md:mt-20">
+          <button 
+            onClick={() => setCurrentPage('admin')}
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            © 2025 Real Korean Talk — All Rights Reserved.
+          </button>
         </div>
       </div>
     </div>
@@ -178,24 +182,20 @@ const KoreanLearningSite = () => {
 
           <div className="mb-6 md:mb-8">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">Recommended For</h3>
-            <p className="text-sm md:text-base text-[#4A2E2A] mb-3">Learners who want to practice Korean conversation in short, convenient sessions</p>
+            <p className="text-sm md:text-base text-[#4A2E2A] mb-3">Learners who want to improve speaking and listening naturally, enjoy conversation, and prefer cost-effective short lessons over traditional textbook-based study.</p>
             <ul className="space-y-2 text-sm md:text-base text-[#4A2E2A]">
               <li className="flex items-start">
                 <span className="text-amber-800 mr-2 md:mr-3 mt-1 flex-shrink-0">✓</span>
-                <span>Those who want to speak real Korean even briefly, daily or weekly</span>
+                <span>For quick daily practice or warm-up before group lessons</span>
               </li>
               <li className="flex items-start">
                 <span className="text-amber-800 mr-2 md:mr-3 mt-1 flex-shrink-0">✓</span>
-                <span>Focused on speaking and listening practice rather than textbooks or grammar</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-amber-800 mr-2 md:mr-3 mt-1 flex-shrink-0">✓</span>
-                <span>Learners who want immediate feedback on pronunciation and expressions</span>
+                <span>Perfect for busy schedules and flexible learning</span>
               </li>
             </ul>
           </div>
 
-          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book Now</button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
         </div>
       </div>
     </div>
@@ -289,7 +289,17 @@ const KoreanLearningSite = () => {
     };
 
     const changeMonth = (delta) => {
-      setMonth(new Date(month.getFullYear(), month.getMonth() + delta));
+      const newMonth = new Date(month.getFullYear(), month.getMonth() + delta);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const newMonthStart = new Date(newMonth.getFullYear(), newMonth.getMonth(), 1);
+      
+      // 이전 달로 이동 방지
+      if (delta < 0 && newMonthStart < today) {
+        return;
+      }
+      
+      setMonth(newMonth);
       setAllSlots({});
       setSelDate(null);
     };
@@ -321,10 +331,8 @@ const KoreanLearningSite = () => {
       }
       
       try {
-        // 한 사람당 하나의 예약 문서 생성 (모든 날짜/슬롯 포함)
         const bookingId = crypto.randomUUID();
         
-        // 모든 예약을 하나의 배열로 구성
         const allBookings = Object.entries(allSlots).map(([date, slots]) => ({
           date,
           slots
@@ -334,21 +342,18 @@ const KoreanLearningSite = () => {
           id: bookingId,
           name,
           email,
-          bookings: allBookings, // 모든 날짜/슬롯을 배열로 저장
+          bookings: allBookings,
           bookedAt: new Date().toISOString(),
           rescheduleCount: 0
         });
         
-        // 예약 정보 정리
         const bookingInfo = Object.entries(allSlots)
           .map(([date, slots]) => `${date}: ${slots.join(', ')}`)
           .join('\n');
         const totalPrice = total * classPrice;
         
-        // EmailJS 초기화
         emailjs.init('1eD9dTRJPfHenqguL');
         
-        // 관리자에게만 이메일 전송
         await emailjs.send(
           'service_c58vlqm',
           'template_cahc4d6',
@@ -364,59 +369,54 @@ const KoreanLearningSite = () => {
         alert('Thanks for booking! The admin will send you payment instructions via email shortly.');
         setName('');
         setEmail('');
+        setEmailError(false);
         setAllSlots({});
         setSelDate(null);
-        // setAgreed(false)를 제거하여 달력 화면에 계속 머물도록 함
       } catch (error) {
         console.error('Error booking:', error);
         alert('Booking failed. Please try again.');
       }
     };
 
-    // 예약된 슬롯 필터링 및 지나간 시간 제외
     const getAvailableSlots = (date) => {
       const allSlots = timeSlots[date] || [];
-      
-      // 새 데이터 구조에 맞게 예약된 슬롯 수집
+      const now = new Date();
+      const selectedDate = new Date(date);
+      const isToday = selectedDate.toDateString() === now.toDateString();
+
       const bookedSlots = bookings
         .flatMap(b => {
           if (b.bookings) {
-            // 새 구조: bookings 배열
             return b.bookings
               .filter(booking => booking.date === date)
               .flatMap(booking => booking.slots || []);
           } else if (b.date === date) {
-            // 구 구조 호환성
             return b.slots || [];
           }
           return [];
         });
-      
-      // 현재 날짜와 시간 확인
-      const now = new Date();
-      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
-      
+
       return allSlots.filter(slot => {
-        // 이미 예약된 슬롯 제외
         if (bookedSlots.includes(slot)) return false;
         
-        // 오늘 날짜인 경우에만 시간 체크
-        if (date === today) {
-          const [slotHour, slotMinute] = slot.split(':').map(Number);
-          const slotTime = slotHour * 60 + slotMinute;
+        if (isToday) {
+          const [hour, minute] = slot.split(':').map(Number);
+          const currentHour = now.getHours();
+          const currentMinute = now.getMinutes();
+          const slotTime = hour * 60 + minute;
           const currentTime = currentHour * 60 + currentMinute;
-          
-          // 현재 시간 + 60분(1시간) 이후만 표시
-          return slotTime >= currentTime + 60;
+          return slotTime > currentTime + 60;
         }
         
         return true;
       });
     };
 
-    const avail = selDate ? getAvailableSlots(selDate) : [];
+    const getAvailableSlots2 = (date) => {
+      return getAvailableSlots(date);
+    };
+
+    const avail = selDate ? getAvailableSlots2(selDate) : [];
     const curr = allSlots[selDate] || [];
     const total = Object.values(allSlots).flat().length;
 
@@ -425,7 +425,7 @@ const KoreanLearningSite = () => {
         <div className="max-w-4xl mx-auto">
           {!agreed ? (
             <div className="bg-white rounded-xl shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-[#4A2E2A] mb-6">Policy</h2>
+              <h2 className="text-2xl font-bold text-[#4A2E2A] mb-6 text-center">Booking Policy</h2>
               <div className="bg-[#DCF8F3] border-2 border-[#DCF8F3] rounded-lg p-6 mb-6">
                 <ul className="space-y-3 text-[#4A2E2A]">
                   <li>• Classes are non-refundable.</li>
@@ -459,7 +459,13 @@ const KoreanLearningSite = () => {
               </div>
               <div className="mb-8">
                 <div className="flex justify-between mb-4">
-                  <button onClick={() => changeMonth(-1)} className="text-[#4A2E2A] font-bold text-xl px-4">←</button>
+                  <button 
+                    onClick={() => changeMonth(-1)} 
+                    disabled={true}
+                    className="text-[#4A2E2A] font-bold text-xl px-4 opacity-0 cursor-not-allowed"
+                  >
+                    ←
+                  </button>
                   <h3 className="text-xl font-bold">{month.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</h3>
                   <button onClick={() => changeMonth(1)} className="text-[#4A2E2A] font-bold text-xl px-4">→</button>
                 </div>
@@ -598,111 +604,84 @@ const KoreanLearningSite = () => {
     const questions = [
       {
         instruction: 'Choose the correct word for the blank.',
-        q: '저는 매일 학교__ 갑니다.',
-        options: ['는', '이', '에', '가'],
+        q: '저는 학교___ 갑니다.',
+        options: ['을', '에', '가', '을/를'],
         correct: 2,
-        explanation: '장소를 나타내는 조사는 "에"입니다. "학교에 갑니다"가 맞습니다.',
+        explanation: '장소를 나타내는 조사는 "에"입니다.',
         explanationEn: 'The particle for location is "에" (to/at). The correct answer is "학교에 갑니다" (I go to school).'
       },
       {
-        instruction: 'Choose the most natural expression for the blank.',
-        q: '날씨가 너무 ____ 창문을 열었어요.',
-        options: ['덥워서', '더워서', '더어서', '더아서'],
+        instruction: 'Choose the correct greeting.',
+        q: 'When you meet someone for the first time, you say:',
+        options: ['안녕히 가세요', '처음 뵙겠습니다', '잘 먹겠습니다', '안녕히 주무세요'],
         correct: 1,
-        explanation: '"덥다"의 활용형은 "더워서"입니다.',
-        explanationEn: 'The conjugated form of "덥다" (hot) is "더워서" (because it\'s hot).'
+        explanationEn: '"처음 뵙겠습니다" (Nice to meet you) is the formal greeting when meeting someone for the first time.'
       },
       {
         instruction: 'What time is it?',
         q: '21:50',
-        options: ['스물한시 오십분이에요.', '이십일시 십분 전이에요.', '아홉시 쉰분이에요.', '열시 십분전이에요.'],
+        options: ['아홉시 오십분', '열시 오십분', '아홉시 오분', '열한시 오십분'],
         correct: 3,
-        explanation: '21:50은 "밤 9시 50분" 또는 "열 시 십 분 전"으로 표현합니다.',
-        explanationEn: '21:50 is expressed as "9:50 PM" or "ten minutes before 10" in Korean.'
+        explanation: '21시는 오후 9시 = 밤 9시입니다. 하지만 시간을 말할 때 "시"는 "열한시"가 아니라 "아홉시"입니다. 21:50 = 아홉시 오십분.',
+        explanationEn: '21:50 in Korean is "아홉시 오십분" (9:50 PM). Korean uses native numbers for hours and Sino-Korean numbers for minutes.'
       },
       {
-        instruction: 'Choose the word with the closest meaning to the underlined word.',
-        q: '이 음식은 정말 맛없어요.',
-        options: ['맛있어요', '좋아요', '괜찮아요', '별로예요'],
-        correct: 3,
-        explanation: '"맛없어요"는 부정적인 표현이므로 "별로예요"가 가장 가까운 의미입니다.',
-        explanationEn: '"맛없어요" (not tasty) is a negative expression, so "별로예요" (not really/not good) has the closest meaning.'
-      },
-      {
-        instruction: 'Read the passage and answer the question.',
-        q: '오늘은 일찍 일어나서 아침을 먹고 학교에 갔다. 수업 후에는 친구와 카페에 가서 커피를 마셨다. 집에 돌아오자마자 티비를 봤다. 그리고 저녁을 먹고 잤다.',
-        extraQ: 'What did you do first when you came home?',
-        options: ['저녁을 먹었어요', '커피를 마셨어요', '텔레비전을 봤어요', '학교에 갔어요'],
-        correct: 2,
-        explanation: '"집에 돌아오자마자 티비를 봤다"라고 했으므로 정답은 3번입니다.',
-        explanationEn: 'The passage says "집에 돌아오자마자 티비를 봤다" (watched TV as soon as I got home), so the answer is #3.'
-      },
-      {
-        instruction: 'Read the passage. True (O) or False (X)?',
-        q: '옷이 좀 작은 것 같아요. 다른 옷도 봤으면 좋겠어요.',
-        extraQ: '옷이 마음에 안 든다.',
-        options: ['O', 'X'],
+        instruction: 'Choose the correct word for the blank.',
+        q: '저는 커피___ 좋아해요.',
+        options: ['을/를', '이/가', '에', '의'],
         correct: 0,
-        explanation: '옷이 작고 다른 옷을 보고 싶다고 했으므로 마음에 안 드는 것이 맞습니다.',
-        explanationEn: 'The passage says the clothes are too small and wants to see other options, so "doesn\'t like the clothes" is True (O).'
+        explanation: '목적어를 나타내는 조사는 "을/를"입니다.',
+        explanationEn: 'The object particle is "을/를". Since 커피 ends in a vowel, we use "를".'
+      },
+      {
+        instruction: 'What did you do first when you came home?',
+        extraQ: 'What did you do first when you came home?',
+        q: '',
+        options: ['저녁을 먹었어요', '샤워를 했어요', '숙제를 했어요', '친구한테 전화했어요'],
+        correct: 2,
+        explanationEn: 'This tests understanding of past tense (-었어요) and common daily activities vocabulary.'
+      },
+      {
+        instruction: 'Choose the correct meaning.',
+        extraQ: '옷이 마음에 안 든다',
+        q: '',
+        options: ['I like the clothes', 'I don\'t like the clothes', 'The clothes are expensive', 'I want to buy clothes'],
+        correct: 1,
+        explanation: '"마음에 안 들다" = ~가 싫다 (don\'t like)',
+        explanationEn: '"마음에 안 들다" means "not to one\'s liking" or "don\'t like".'
       },
       {
         instruction: 'Fill in the blanks with the correct words.',
-        q: '저는 ____ 한국에 왔습니다. 한국은 아주 예쁘고 좋았습니다. 저는 ____ 고향으로 돌아갑니다. 그래서 ____ 마지막으로 한국 친구를 만나려고 합니다.',
-        options: ['다음주에 - 오늘 - 오늘', '오늘 - 지난주 - 내일', '내일 - 다음주 - 오늘', '지난주에 - 내일 - 오늘'],
+        q: '___에 친구를 만나서 영화를 봤어요. 그리고 ___도 같이 저녁을 먹었어요.',
+        options: ['다음 주에 - 오늘 - 오늘', '어제 - 오늘 - 내일', '지난주에 - 그날 - 어제', '지난주에 - 내일 - 오늘'],
         correct: 3,
-        explanation: '시간 순서상 "지난주 왔고, 내일 돌아가고, 오늘 친구를 만난다"가 자연스럽습니다.',
-        explanationEn: 'In chronological order: "came last week, leaving tomorrow, meeting friends today" makes the most sense.'
+        explanation: '과거: 지난주에(last week). "그날"은 지난주의 그 날을 의미. "어제"도 가능.',
+        explanationEn: 'Past tense context: "지난주에" (last week) + "그날" (that day) or "어제" (yesterday) + "오늘" (today) for present action.'
       }
     ];
 
-    const selectAnswer = (idx) => {
-      setAnswers({...answers, [currentQ]: idx});
+    const selectAnswer = (i) => {
+      setAnswers({ ...answers, [currentQ]: i });
     };
 
     const getScore = () => {
       let score = 0;
-      Object.keys(answers).forEach(q => {
-        if (answers[q] === questions[q].correct) score++;
+      questions.forEach((q, i) => {
+        if (answers[i] === q.correct) score++;
       });
       return score;
     };
 
     const getRecommendation = () => {
-      // 난이도별 문제 번호 (0-based index)
-      const beginner = [0, 2]; // 1번, 3번
-      const preBeginner = [4, 6]; // 5번, 7번
-      const intermediate = [1, 3, 5]; // 2번, 4번, 6번
-      
-      // 각 난이도별 맞춘 개수 계산
-      const beginnerCorrect = beginner.filter(i => answers[i] === questions[i].correct).length;
-      const preBeginnerCorrect = preBeginner.filter(i => answers[i] === questions[i].correct).length;
-      const intermediateCorrect = intermediate.filter(i => answers[i] === questions[i].correct).length;
-      
-      // 난이도별 이해도 계산 (%)
-      const beginnerRate = (beginnerCorrect / beginner.length) * 100;
-      const preBeginnerRate = (preBeginnerCorrect / preBeginner.length) * 100;
-      const intermediateRate = (intermediateCorrect / intermediate.length) * 100;
-      
-      // 이해도 판단 함수
-      const getUnderstanding = (rate) => {
-        if (rate <= 33) return 'low';
-        if (rate <= 66) return 'partial';
-        return 'good';
-      };
-      
-      const beginnerLevel = getUnderstanding(beginnerRate);
-      const intermediateLevel = getUnderstanding(intermediateRate);
-      
-      // 레벨 판단
-      if (beginnerLevel === 'low') {
+      const score = getScore();
+      if (score <= 2) {
         return { level: 'Beginner', class: 'Group Class' };
-      } else if (beginnerLevel === 'partial') {
+      } else if (score <= 4) {
         return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Chat' };
-      } else if (beginnerLevel === 'good' && intermediateCorrect > 0) {
-        return { level: 'Intermediate+', class: '1:1 Chat' };
+      } else if (score <= 5) {
+        return { level: 'Intermediate', class: 'Group Class or 1:1 Chat' };
       } else {
-        return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Chat' };
+        return { level: 'Advanced', class: '1:1 Chat' };
       }
     };
 
@@ -768,9 +747,11 @@ const KoreanLearningSite = () => {
             </div>
             <div className="mb-6">
               <p className="text-sm md:text-base text-gray-600 mb-3">{q.instruction}</p>
-              <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-4">
-                <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
-              </div>
+              {q.q && (
+                <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-4">
+                  <p className="text-base md:text-lg text-[#4A2E2A] whitespace-pre-line">{q.q}</p>
+                </div>
+              )}
               {q.extraQ && (
                 <p className="text-base md:text-lg font-bold text-[#4A2E2A] mb-4">{q.extraQ}</p>
               )}
@@ -796,510 +777,195 @@ const KoreanLearningSite = () => {
     );
   };
 
-  const StudentBookingPage = () => {
-    const [booking, setBooking] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [availableSlots, setAvailableSlots] = useState([]);
-    const [selectedSlot, setSelectedSlot] = useState(null);
-
-    useEffect(() => {
-      const loadBooking = async () => {
-        if (!bookingId) return;
-        
-        try {
-          const bookingDoc = await getDocs(collection(db, 'bookings'));
-          let foundBooking = null;
-          bookingDoc.forEach((doc) => {
-            if (doc.id === bookingId) {
-              foundBooking = { id: doc.id, ...doc.data() };
-            }
-          });
-          
-          if (foundBooking) {
-            setBooking(foundBooking);
-            // 1주일 이내의 사용 가능한 슬롯 찾기
-            findAvailableSlots(foundBooking);
-          }
-        } catch (error) {
-          console.error('Error loading booking:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      
-      loadBooking();
-    }, [bookingId]);
-
-    const findAvailableSlots = (currentBooking) => {
-      const now = new Date();
-      now.setHours(0, 0, 0, 0); // 오늘 00:00:00으로 설정
-      const oneWeekLater = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-      const available = [];
-
-      // 모든 슬롯을 순회하며 1주일 이내의 슬롯 찾기
-      Object.keys(timeSlots).forEach(date => {
-        const slotDate = new Date(date + 'T00:00:00'); // 로컬 시간대로 00:00:00 설정
-        slotDate.setHours(0, 0, 0, 0);
-        
-        // 1주일 이내인지 확인 (날짜만 비교)
-        if (slotDate >= now && slotDate <= oneWeekLater) {
-          // 새 데이터 구조에 맞게 예약된 슬롯 수집
-          const bookedSlotsOnDate = bookings
-            .filter(b => b.id !== bookingId) // 현재 예약 제외
-            .flatMap(b => {
-              if (b.bookings) {
-                // 새 구조
-                return b.bookings
-                  .filter(booking => booking.date === date)
-                  .flatMap(booking => booking.slots || []);
-              } else if (b.date === date) {
-                // 구 구조 호환
-                return b.slots || [];
-              }
-              return [];
-            });
-
-          timeSlots[date].forEach(slot => {
-            // 이미 예약된 슬롯이 아니고, 현재 예약과 다른 슬롯만
-            const isCurrentBookingSlot = currentBooking.bookings 
-              ? currentBooking.bookings.some(b => b.date === date && b.slots.includes(slot))
-              : (currentBooking.date === date && currentBooking.slots?.includes(slot));
-            
-            if (!bookedSlotsOnDate.includes(slot) && !isCurrentBookingSlot) {
-              
-              // 1시간 후 슬롯만 표시
-              const [slotHour, slotMinute] = slot.split(':').map(Number);
-              const slotDateTime = new Date(date + 'T00:00:00'); // 로컬 시간대 사용
-              slotDateTime.setHours(slotHour, slotMinute, 0, 0);
-              
-              const currentTime = new Date();
-              const oneHourLater = new Date(currentTime.getTime() + 60 * 60 * 1000);
-              
-              if (slotDateTime > oneHourLater) {
-                available.push({ date, slot });
-              }
-            }
-          });
-        }
-      });
-
-      setAvailableSlots(available);
-    };
-
-    const reschedule = async () => {
-      if (!selectedSlot || !booking) return;
-
-      // 변경 가능 여부 확인
-      if (booking.rescheduleCount >= 1) {
-        alert('You have already used your one-time reschedule. Please contact the admin for further changes.');
-        return;
-      }
-
-      // 수업 시간 1시간 전 확인
-      const classDateTime = new Date(booking.date);
-      const [classHour, classMinute] = booking.slots[0].split(':').map(Number);
-      classDateTime.setHours(classHour, classMinute, 0, 0);
-      
-      const now = new Date();
-      const oneHourBefore = new Date(classDateTime.getTime() - 60 * 60 * 1000);
-      
-      if (now > oneHourBefore) {
-        alert('Cannot reschedule within 1 hour of class time. Please contact the admin.');
-        return;
-      }
-
-      if (!window.confirm(`Reschedule to ${selectedSlot.date} at ${selectedSlot.slot}?`)) {
-        return;
-      }
-
-      try {
-        // 예약 업데이트 (이메일 발송 없이 Firebase만 업데이트)
-        await setDoc(doc(db, 'bookings', bookingId), {
-          ...booking,
-          oldDate: booking.date, // 이전 날짜 저장
-          oldSlots: booking.slots, // 이전 시간 저장
-          date: selectedSlot.date,
-          slots: [selectedSlot.slot],
-          rescheduleCount: (booking.rescheduleCount || 0) + 1,
-          rescheduledAt: new Date().toISOString(),
-          rescheduled: true // 변경됨 표시
-        });
-
-        alert('Class rescheduled successfully! The admin will be notified.');
-        
-        // 페이지 새로고침
-        window.location.reload();
-      } catch (error) {
-        console.error('Error rescheduling:', error);
-        alert('Failed to reschedule. Please try again or contact the admin.');
-      }
-    };
-
-    if (loading) {
+  const AdminPage = () => {
+    if (!isAdminAuth) {
       return (
-        <div className="min-h-screen bg-stone-100 flex items-center justify-center">
-          <div className="text-xl text-gray-600">Loading...</div>
-        </div>
-      );
-    }
-
-    if (!booking) {
-      return (
-        <div className="min-h-screen bg-stone-100 p-8">
-          <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 text-center">
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Booking Not Found</h2>
-            <p className="text-gray-600 mb-6">The booking link is invalid or has been deleted.</p>
-            <button onClick={() => window.location.href = '/'} className="bg-[#B9F1E8] text-[#4A2E2A] px-6 py-3 rounded-lg font-bold hover:bg-[#A0DED1]">
-              Go to Home
-            </button>
+        <div className="min-h-screen bg-stone-100 flex items-center justify-center p-4">
+          <div className="bg-white p-8 rounded-xl shadow-lg">
+            <h2 className="text-2xl font-bold mb-4">Admin Login</h2>
+            <button onClick={() => signInWithPopup(auth, googleProvider)} className="bg-[#4A2E2A] text-white px-6 py-3 rounded-lg hover:bg-[#3a241f]">Login with Google</button>
           </div>
         </div>
       );
     }
 
-    const canReschedule = (booking.rescheduleCount || 0) < 1;
-    
-    // 새 구조 또는 구 구조 호환
-    const firstBooking = booking.bookings ? booking.bookings[0] : booking;
-    const classDateTime = new Date(firstBooking.date);
-    const [classHour, classMinute] = firstBooking.slots[0].split(':').map(Number);
-    classDateTime.setHours(classHour, classMinute, 0, 0);
-    const oneHourBefore = new Date(classDateTime.getTime() - 60 * 60 * 1000);
-    const isWithinOneHour = new Date() > oneHourBefore;
-
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#4A2E2A]">My Booking</h2>
-              <button onClick={() => window.location.href = '/'} className="text-gray-600 hover:text-[#4A2E2A]">
-                ← Home
-              </button>
-            </div>
-
-            {/* 예약 정보 */}
-            <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Class Information</h3>
-              <div className="space-y-2 text-[#4A2E2A]">
-                <p><span className="font-bold">Name:</span> {booking.name}</p>
-                <p><span className="font-bold">Email:</span> {booking.email}</p>
-                {booking.bookings ? (
-                  // 새 구조: 여러 예약 표시
-                  <div>
-                    <p className="font-bold mb-2">Classes:</p>
-                    {booking.bookings.map((b, idx) => (
-                      <p key={idx} className="ml-4">• {b.date}: {b.slots.join(', ')} (KST)</p>
-                    ))}
-                  </div>
-                ) : (
-                  // 구 구조 호환
-                  <>
-                    <p><span className="font-bold">Date:</span> {booking.date}</p>
-                    <p><span className="font-bold">Time:</span> {booking.slots?.join(', ')} (KST)</p>
-                  </>
-                )}
-                <p><span className="font-bold">Status:</span> {
-                  booking.paymentConfirmed ? 
-                    <span className="text-green-700 font-medium">Confirmed ✓</span> : 
-                    <span className="text-amber-700 font-medium">Payment Pending</span>
-                }</p>
-                {booking.rescheduleCount > 0 && (
-                  <p className="text-sm text-gray-500">
-                    You have already rescheduled this class.
-                  </p>
-                )}
-              </div>
-            </div>
-
-            {/* 시간 변경 섹션 */}
-            {!booking.paymentConfirmed ? (
-              <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6">
-                <p className="text-amber-800">
-                  Please complete payment within 24 hours to confirm your booking.
-                </p>
-              </div>
-            ) : (
-              <div>
-                <h3 className="text-xl font-bold text-[#4A2E2A] mb-4">Reschedule Class</h3>
-                
-                {!canReschedule ? (
-                  <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                    <p className="text-red-700 font-medium">
-                      You have already used your one-time reschedule option.
-                    </p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Please contact the admin at koreanteacherhannah@gmail.com if you need to make further changes.
-                    </p>
-                  </div>
-                ) : isWithinOneHour ? (
-                  <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                    <p className="text-red-700 font-medium">
-                      Cannot reschedule within 1 hour of class time.
-                    </p>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Please contact the admin at koreanteacherhannah@gmail.com for urgent changes.
-                    </p>
-                  </div>
-                ) : availableSlots.length === 0 ? (
-                  <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6">
-                    <p className="text-amber-800 font-medium mb-2">
-                      No available slots within the next 7 days.
-                    </p>
-                    <p className="text-sm text-gray-600">
-                      Please contact the admin at koreanteacherhannah@gmail.com to reschedule your class.
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 mb-4">
-                      <p className="text-sm text-green-800">
-                        ✓ You can reschedule <span className="font-bold">once</span> for free
-                      </p>
-                      <p className="text-sm text-green-800">
-                        ✓ Available slots within the next 7 days are shown below
-                      </p>
-                    </div>
-
-                    <div className="mb-6">
-                      <p className="text-sm text-gray-600 mb-3">
-                        Select a new time slot (showing slots 1+ hours from now):
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-96 overflow-y-auto">
-                        {availableSlots.map((slot, i) => (
-                          <button
-                            key={i}
-                            onClick={() => setSelectedSlot(slot)}
-                            className={`p-4 rounded-lg border-2 text-left transition-all ${
-                              selectedSlot?.date === slot.date && selectedSlot?.slot === slot.slot
-                                ? 'bg-[#B9F1E8] border-[#B9F1E8] font-bold'
-                                : 'bg-stone-50 border-stone-200 hover:bg-[#A0DED1]'
-                            }`}
-                          >
-                            <div className="font-bold text-[#4A2E2A]">{slot.date}</div>
-                            <div className="text-[#4A2E2A]">{slot.slot} KST</div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {selectedSlot && (
-                      <button
-                        onClick={reschedule}
-                        className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#A0DED1]"
-                      >
-                        Confirm Reschedule
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Admin Dashboard</h2>
+            <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button onClick={() => setCurrentPage('adminSlots')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
+              <h3 className="text-xl font-bold">Manage Time Slots</h3>
+            </button>
+            <button onClick={() => setCurrentPage('adminBookings')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
+              <h3 className="text-xl font-bold">Manage Bookings</h3>
+            </button>
+            <button onClick={() => setCurrentPage('adminPrice')} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl">
+              <h3 className="text-xl font-bold">Set Class Price</h3>
+            </button>
           </div>
         </div>
       </div>
     );
   };
 
-  const AdminPage = () => {
-    const [m, setM] = useState('');
-    const [d, setD] = useState('');
-    const [sh, setSh] = useState('9');
-    const [sm, setSm] = useState('0');
-    const [eh, setEh] = useState('12');
-    const [em, setEm] = useState('0');
-    // 슬롯 삭제용 상태
-    const [delM, setDelM] = useState('');
-    const [delD, setDelD] = useState('');
-    const [delSh, setDelSh] = useState('');
-    const [delSm, setDelSm] = useState('0');
-    const [delEh, setDelEh] = useState('');
-    const [delEm, setDelEm] = useState('0');
+  const AdminSlotsPage = () => {
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [repeatWeekly, setRepeatWeekly] = useState(false);
 
-    const loginWithGoogle = async () => {
+    if (!isAdminAuth) { setCurrentPage('admin'); return null; }
+
+    const addSlot = async () => {
+      if (!date || !time) {
+        alert('Please fill in both date and time');
+        return;
+      }
+
       try {
-        const result = await signInWithPopup(auth, googleProvider);
-        if (result.user.uid !== ADMIN_UID) {
-          await signOut(auth);
-          alert('Unauthorized. Admin only.');
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const selectedDate = new Date(date);
+        
+        if (selectedDate < today) {
+          alert('Cannot add slots for past dates');
+          return;
         }
-      } catch (error) {
-        console.error('Login error:', error);
-        alert('Login failed. Please try again.');
-      }
-    };
 
-    const logout = async () => {
-      try {
-        await signOut(auth);
-        setCurrentPage('home');
-      } catch (error) {
-        console.error('Logout error:', error);
-      }
-    };
-
-    const genSlots = (startH, startM, endH, endM) => {
-      const slots = [];
-      let h = parseInt(startH), min = parseInt(startM);
-      const eH = parseInt(endH), eM = parseInt(endM);
-      while (h < eH || (h === eH && min < eM)) {
-        slots.push(`${String(h).padStart(2, '0')}:${String(min).padStart(2, '0')}`);
-        min += 30;
-        if (min >= 60) { min = 0; h++; }
-      }
-      return slots;
-    };
-
-    const add = async () => {
-      if (!m || !d || !sh || !eh) return alert('Fill all');
-      const st = `${String(sh).padStart(2, '0')}:${String(sm).padStart(2, '0')}`;
-      const et = `${String(eh).padStart(2, '0')}:${String(em).padStart(2, '0')}`;
-      if (st >= et) return alert('Invalid time');
-      const y = new Date().getFullYear();
-      const sd = new Date(y, m - 1, d);
-      const dow = sd.getDay();
-      const slots = genSlots(sh, sm, eh, em);
-      
-      try {
-        const upd = { ...timeSlots };
-        for (let day = 1; day <= 31; day++) {
-          const curr = new Date(y, m - 1, day);
-          if (curr.getMonth() === m - 1 && curr.getDay() === dow) {
-            const ds = `${curr.getFullYear()}-${String(curr.getMonth() + 1).padStart(2, '0')}-${String(curr.getDate()).padStart(2, '0')}`;
-            if (!upd[ds]) upd[ds] = [];
-            slots.forEach(s => { if (!upd[ds].includes(s)) upd[ds].push(s); });
-            upd[ds].sort();
+        if (repeatWeekly) {
+          // 2개월 반복
+          const endDate = new Date(selectedDate);
+          endDate.setMonth(endDate.getMonth() + 2);
+          
+          let currentDate = new Date(selectedDate);
+          
+          while (currentDate <= endDate) {
+            const dateStr = currentDate.toISOString().split('T')[0];
+            const docRef = doc(db, 'timeSlots', dateStr);
+            const docSnap = await getDocs(collection(db, 'timeSlots'));
             
-            // Firebase에 저장
-            await setDoc(doc(db, 'timeSlots', ds), {
-              slots: upd[ds]
+            let existingSlots = [];
+            docSnap.forEach((d) => {
+              if (d.id === dateStr) {
+                existingSlots = d.data().slots || [];
+              }
             });
+
+            if (!existingSlots.includes(time)) {
+              await setDoc(docRef, {
+                slots: [...existingSlots, time].sort()
+              });
+            }
+            
+            currentDate.setDate(currentDate.getDate() + 7);
           }
-        }
-        alert(`Added ${slots.length} slots to all ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][dow]}s in month ${m}`);
-      } catch (error) {
-        console.error('Error adding slots:', error);
-        alert('Failed to add slots. Please try again.');
-      }
-    };
-
-    const deleteSlot = async () => {
-      if (!delM || !delD || !delSh || !delEh) return alert('Fill all fields');
-      const st = `${String(delSh).padStart(2, '0')}:${String(delSm).padStart(2, '0')}`;
-      const et = `${String(delEh).padStart(2, '0')}:${String(delEm).padStart(2, '0')}`;
-      if (st >= et) return alert('Invalid time');
-      
-      const y = new Date().getFullYear();
-      const ds = `${y}-${String(delM).padStart(2, '0')}-${String(delD).padStart(2, '0')}`;
-      const slotsToDelete = genSlots(delSh, delSm, delEh, delEm);
-      
-      try {
-        const currentSlots = timeSlots[ds] || [];
-        const updatedSlots = currentSlots.filter(slot => !slotsToDelete.includes(slot));
-        
-        if (updatedSlots.length === currentSlots.length) {
-          return alert('No matching slots found to delete');
-        }
-        
-        if (updatedSlots.length === 0) {
-          // 모든 슬롯이 삭제되면 문서 자체를 삭제
-          await deleteDoc(doc(db, 'timeSlots', ds));
+          
+          alert('Slots added for 2 months (weekly repeat)!');
         } else {
-          // 일부 슬롯만 삭제
-          await setDoc(doc(db, 'timeSlots', ds), {
-            slots: updatedSlots
+          // 단일 슬롯
+          const docRef = doc(db, 'timeSlots', date);
+          const docSnap = await getDocs(collection(db, 'timeSlots'));
+          
+          let existingSlots = [];
+          docSnap.forEach((d) => {
+            if (d.id === date) {
+              existingSlots = d.data().slots || [];
+            }
           });
+
+          if (existingSlots.includes(time)) {
+            alert('This slot already exists');
+            return;
+          }
+
+          await setDoc(docRef, {
+            slots: [...existingSlots, time].sort()
+          });
+          
+          alert('Slot added!');
         }
         
-        alert(`Deleted ${currentSlots.length - updatedSlots.length} slot(s) from ${ds}`);
-        setDelM('');
-        setDelD('');
-        setDelSh('');
-        setDelSm('0');
-        setDelEh('');
-        setDelEm('0');
+        setDate('');
+        setTime('');
+        setRepeatWeekly(false);
       } catch (error) {
-        console.error('Error deleting slots:', error);
-        alert('Failed to delete slots. Please try again.');
+        console.error('Error adding slot:', error);
+        alert('Failed to add slot');
       }
     };
 
-    if (!isAdminAuth) {
-      return (
-        <div className="min-h-screen bg-stone-100 p-8 flex items-center justify-center">
-          <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
-            <h2 className="text-3xl font-bold text-[#4A2E2A] mb-6 text-center">Admin Login</h2>
-            <p className="text-gray-600 text-center mb-6">Sign in with your Google account</p>
-            <button onClick={loginWithGoogle} className="w-full bg-white border-2 border-gray-300 text-[#4A2E2A] font-bold py-3 px-4 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-3">
-              <svg className="w-6 h-6" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-              </svg>
-              Sign in with Google
-            </button>
-          </div>
-        </div>
-      );
-    }
+    const deleteSlot = async (date, slot) => {
+      if (window.confirm('Delete this slot?')) {
+        try {
+          const docRef = doc(db, 'timeSlots', date);
+          const currentSlots = timeSlots[date] || [];
+          const updatedSlots = currentSlots.filter(s => s !== slot);
+          
+          if (updatedSlots.length === 0) {
+            await deleteDoc(docRef);
+          } else {
+            await setDoc(docRef, { slots: updatedSlots });
+          }
+        } catch (error) {
+          console.error('Error deleting slot:', error);
+          alert('Failed to delete slot');
+        }
+      }
+    };
 
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="flex justify-between mb-6">
-            <h2 className="text-2xl font-bold text-[#4A2E2A]">Admin</h2>
-            <div className="flex gap-2">
-              <button onClick={() => setCurrentPage('adminBookings')} className="bg-amber-200 px-4 py-2 rounded-lg text-sm font-medium">Bookings</button>
-              <button onClick={logout} className="bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm">Logout</button>
-            </div>
+            <h2 className="text-2xl font-bold">Manage Time Slots</h2>
+            <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-            <h3 className="text-xl font-bold mb-4">Price</h3>
-            <div className="flex gap-3">
-              <button onClick={async () => {
-                setClassPrice(2);
-                await setDoc(doc(db, 'settings', 'classPrice'), { value: 2 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 2 ? 'bg-[#B9F1E8]' : 'bg-stone-100'}`}>$2</button>
-              <button onClick={async () => {
-                setClassPrice(3);
-                await setDoc(doc(db, 'settings', 'classPrice'), { value: 3 });
-              }} className={`flex-1 py-3 rounded-lg font-bold ${classPrice === 3 ? 'bg-[#B9F1E8]' : 'bg-stone-100'}`}>$3</button>
+            <h3 className="text-xl font-bold mb-4">Add Time Slot</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Date</label>
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Time</label>
+                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full px-4 py-2 border rounded-lg" />
+              </div>
+              <div className="flex items-end">
+                <button onClick={addSlot} className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-2 rounded-lg hover:bg-[#A0DED1]">Add Slot</button>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <input 
+                type="checkbox" 
+                id="repeatWeekly" 
+                checked={repeatWeekly} 
+                onChange={(e) => setRepeatWeekly(e.target.checked)}
+                className="w-4 h-4"
+              />
+              <label htmlFor="repeatWeekly" className="text-sm font-medium">
+                Repeat Weekly (for 2 months)
+              </label>
             </div>
           </div>
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-xl font-bold mb-4">Add Slots</h3>
-            <p className="text-sm text-gray-600 mb-4">Repeats all same weekdays in month</p>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div><label className="block text-sm mb-2">Month</label><input type="number" min="1" max="12" value={m} onChange={(e) => setM(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
-                <div><label className="block text-sm mb-2">Day</label><input type="number" min="1" max="31" value={d} onChange={(e) => setD(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
+            <h3 className="text-xl font-bold mb-4">Existing Slots</h3>
+            {Object.keys(timeSlots).sort().map(date => (
+              <div key={date} className="mb-4 p-4 bg-stone-50 rounded-lg">
+                <p className="font-bold mb-2">{date}</p>
+                <div className="flex flex-wrap gap-2">
+                  {timeSlots[date].map(slot => (
+                    <div key={slot} className="bg-white px-3 py-1 rounded-lg border flex items-center gap-2">
+                      <span>{slot}</span>
+                      <button onClick={() => deleteSlot(date, slot)} className="text-red-600 hover:text-red-800 font-bold">×</button>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="grid grid-cols-4 gap-2">
-                <div><label className="block text-sm mb-2">Start Hour</label><input type="number" min="0" max="23" value={sh} onChange={(e) => setSh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="9" /></div>
-                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={sm} onChange={(e) => setSm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
-                <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={eh} onChange={(e) => setEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
-                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={em} onChange={(e) => setEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
-              </div>
-              <button onClick={add} className="w-full bg-[#B9F1E8] font-bold py-3 rounded-lg">Add</button>
-            </div>
-          </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 mt-6">
-            <h3 className="text-xl font-bold mb-4">Delete Slots</h3>
-            <p className="text-sm text-gray-600 mb-4">Delete specific slots from a single date</p>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-3">
-                <div><label className="block text-sm mb-2">Month</label><input type="number" min="1" max="12" value={delM} onChange={(e) => setDelM(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
-                <div><label className="block text-sm mb-2">Day</label><input type="number" min="1" max="31" value={delD} onChange={(e) => setDelD(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" /></div>
-              </div>
-              <div className="grid grid-cols-4 gap-2">
-                <div><label className="block text-sm mb-2">Start Hour</label><input type="number" min="0" max="23" value={delSh} onChange={(e) => setDelSh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="9" /></div>
-                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={delSm} onChange={(e) => setDelSm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
-                <div><label className="block text-sm mb-2">End Hour</label><input type="number" min="0" max="23" value={delEh} onChange={(e) => setDelEh(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="12" /></div>
-                <div><label className="block text-sm mb-2">Min</label><input type="number" min="0" max="59" step="30" value={delEm} onChange={(e) => setDelEm(e.target.value)} className="w-full px-4 py-3 border-2 rounded-lg" placeholder="0" /></div>
-              </div>
-              <button onClick={deleteSlot} className="w-full bg-red-100 text-red-700 font-bold py-3 rounded-lg hover:bg-red-200">Delete</button>
-            </div>
+            ))}
           </div>
         </div>
       </div>
@@ -1308,15 +974,14 @@ const KoreanLearningSite = () => {
 
   const AdminBookingsPage = () => {
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
-    const [filterType, setFilterType] = useState('all'); // 'all', 'overdue', 'rescheduled'
-    
-    const del = async (id) => { 
+
+    const deleteBooking = async (id) => {
       if (window.confirm('Delete this booking?')) {
         try {
           await deleteDoc(doc(db, 'bookings', id));
         } catch (error) {
           console.error('Error deleting booking:', error);
-          alert('Failed to delete booking. Please try again.');
+          alert('Failed to delete booking');
         }
       }
     };
@@ -1324,33 +989,25 @@ const KoreanLearningSite = () => {
     const confirmPayment = async (booking) => {
       if (window.confirm(`Confirm payment for ${booking.name}?`)) {
         try {
-          // Firebase에 결제 확인 상태 업데이트
           await setDoc(doc(db, 'bookings', booking.id), {
             ...booking,
             paymentConfirmed: true,
             paymentConfirmedAt: new Date().toISOString()
           });
 
-          // EmailJS 초기화
           emailjs.init('1eD9dTRJPfHenqguL');
-
-          // 학생 전용 링크 생성
-          const bookingLink = `${window.location.origin}/?booking=${booking.id}`;
           
-          // 모든 예약 날짜/시간 정리
           const allBookingInfo = booking.bookings
             ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
             : `${booking.date}: ${booking.slots.join(', ')}`;
 
-          // 학생에게 확정 이메일 발송
           await emailjs.send(
             'service_c58vlqm',
             'template_confirm',
             {
               student_email: booking.email,
               student_name: booking.name,
-              booking_info: allBookingInfo,
-              booking_link: bookingLink
+              booking_info: allBookingInfo
             }
           );
 
@@ -1362,92 +1019,49 @@ const KoreanLearningSite = () => {
       }
     };
 
-    // 24시간 이상 경과한 미결제 예약 필터링
     const getOverdueBookings = () => {
       const now = new Date();
       return bookings.filter(b => {
         if (b.paymentConfirmed) return false;
-        const bookedTime = new Date(b.bookedAt);
-        const hoursPassed = (now - bookedTime) / (1000 * 60 * 60);
-        return hoursPassed >= 24;
+        const bookedAt = new Date(b.bookedAt);
+        const hoursPassed = (now - bookedAt) / (1000 * 60 * 60);
+        return hoursPassed > 24;
       });
     };
 
-    // 변경된 예약 필터링
-    const getRescheduledBookings = () => {
-      return bookings.filter(b => b.rescheduled === true);
-    };
-
-    const overdueBookings = getOverdueBookings();
-    const rescheduledBookings = getRescheduledBookings();
-    
-    const displayBookings = 
-      filterType === 'overdue' ? overdueBookings :
-      filterType === 'rescheduled' ? rescheduledBookings :
-      bookings;
-
-    const deleteAllOverdue = async () => {
+    const deleteOverdueBookings = async () => {
+      const overdueBookings = getOverdueBookings();
       if (window.confirm(`Delete all ${overdueBookings.length} overdue bookings?`)) {
         try {
-          for (const booking of overdueBookings) {
-            await deleteDoc(doc(db, 'bookings', booking.id));
-          }
-          alert(`Deleted ${overdueBookings.length} overdue bookings.`);
+          await Promise.all(
+            overdueBookings.map(b => deleteDoc(doc(db, 'bookings', b.id)))
+          );
+          alert('Overdue bookings deleted');
         } catch (error) {
           console.error('Error deleting overdue bookings:', error);
-          alert('Failed to delete some bookings. Please try again.');
+          alert('Failed to delete some bookings');
         }
       }
     };
 
+    const overdueBookings = getOverdueBookings();
+
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Bookings ({displayBookings.length})</h2>
-            <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
-          </div>
-
-          {/* 필터 버튼 */}
-          <div className="bg-white rounded-xl shadow-lg p-4 mb-4">
-            <div className="flex gap-3 items-center flex-wrap">
-              <button 
-                onClick={() => setFilterType('all')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'all' ? 'bg-[#B9F1E8] text-[#4A2E2A]' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
-              >
-                All Bookings ({bookings.length})
-              </button>
-              <button 
-                onClick={() => setFilterType('overdue')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'overdue' ? 'bg-red-200 text-red-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
-              >
-                Overdue 24h+ ({overdueBookings.length})
-              </button>
-              <button 
-                onClick={() => setFilterType('rescheduled')} 
-                className={`px-4 py-2 rounded-lg font-medium transition-all ${filterType === 'rescheduled' ? 'bg-purple-200 text-purple-900' : 'bg-stone-100 text-gray-600 hover:bg-stone-200'}`}
-              >
-                Rescheduled ({rescheduledBookings.length})
-              </button>
-              {filterType === 'overdue' && overdueBookings.length > 0 && (
-                <button 
-                  onClick={deleteAllOverdue}
-                  className="ml-auto bg-red-100 text-red-700 px-4 py-2 rounded-lg font-medium hover:bg-red-200"
-                >
-                  Delete All Overdue
+          <div className="flex justify-between mb-6">
+            <h2 className="text-2xl font-bold">Bookings ({bookings.length})</h2>
+            <div className="flex gap-2">
+              {overdueBookings.length > 0 && (
+                <button onClick={deleteOverdueBookings} className="bg-red-600 text-white px-4 py-2 rounded-lg">
+                  Delete {overdueBookings.length} Overdue
                 </button>
               )}
+              <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
             </div>
           </div>
-
           <div className="bg-white rounded-xl shadow-lg p-6">
-            {displayBookings.length === 0 ? (
-              <p className="text-center text-gray-500 py-8">
-                {filterType === 'overdue' ? 'No overdue bookings' : 
-                 filterType === 'rescheduled' ? 'No rescheduled bookings' : 
-                 'No bookings'}
-              </p>
-            ) : (
+            {bookings.length === 0 ? <p className="text-center text-gray-500 py-8">No bookings</p> : (
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead className="bg-stone-100">
@@ -1455,80 +1069,38 @@ const KoreanLearningSite = () => {
                       <th className="px-4 py-3 text-left text-sm">Name</th>
                       <th className="px-4 py-3 text-left text-sm">Email</th>
                       <th className="px-4 py-3 text-left text-sm">Date & Time</th>
-                      <th className="px-4 py-3 text-left text-sm">Booked At</th>
                       <th className="px-4 py-3 text-left text-sm">Status</th>
-                      <th className="px-4 py-3 text-left text-sm">Actions</th>
+                      <th className="px-4 py-3 text-left text-sm">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {displayBookings.map(b => {
-                      const bookedTime = new Date(b.bookedAt);
-                      const hoursPassed = ((new Date() - bookedTime) / (1000 * 60 * 60)).toFixed(1);
-                      
-                      // 날짜/시간 포맷 (년도 제거)
-                      const formatDateTime = (dateStr) => {
-                        const date = new Date(dateStr);
-                        return date.toLocaleString('en-US', { 
-                          month: 'short', 
-                          day: 'numeric', 
-                          hour: '2-digit', 
-                          minute: '2-digit' 
-                        });
-                      };
-                      
+                    {bookings.map(b => {
+                      const isOverdue = overdueBookings.some(ob => ob.id === b.id);
                       return (
-                        <tr key={b.id} className={`border-t ${b.rescheduled ? 'bg-purple-50' : ''}`}>
+                        <tr key={b.id} className={`border-t ${isOverdue ? 'bg-red-50' : ''}`}>
                           <td className="px-4 py-3 text-sm">{b.name}</td>
                           <td className="px-4 py-3 text-sm">{b.email}</td>
                           <td className="px-4 py-3 text-sm">
-                            <div>
-                              {b.bookings ? (
-                                // 새 구조: 여러 예약을 한 줄씩 표시
-                                b.bookings.map((booking, idx) => (
-                                  <div key={idx} className="mb-1">
-                                    {booking.date.split('-').slice(1).join('/')} | {booking.slots.join(', ')}
-                                  </div>
-                                ))
-                              ) : (
-                                // 구 구조 호환
-                                <div>
-                                  {b.date?.split('-').slice(1).join('/')} | {b.slots?.join(', ')}
-                                </div>
-                              )}
-                              {b.rescheduled && <span className="text-xs text-purple-700">🔄 Rescheduled</span>}
-                            </div>
+                            {b.bookings ? b.bookings.map(booking => (
+                              <div key={booking.date}>{booking.date}: {booking.slots.join(', ')}</div>
+                            )) : `${b.date}: ${b.slots?.join(', ')}`}
                           </td>
-                          <td className="px-4 py-3 text-sm">
-                            <div className="text-xs text-gray-500">
-                              {formatDateTime(b.bookedAt)}
-                              <div className={hoursPassed >= 24 && !b.paymentConfirmed ? 'text-red-600 font-medium' : ''}>
-                                ({hoursPassed}h ago)
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-3 text-sm">
-                            {b.paymentConfirmed ? (
-                              <span className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-medium">Confirmed</span>
-                            ) : (
-                              <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium">Pending</span>
-                            )}
+                          <td className="px-4 py-3">
+                            <span className={`px-2 py-1 rounded text-xs font-bold ${b.paymentConfirmed ? 'bg-green-100 text-green-700' : isOverdue ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
+                              {b.paymentConfirmed ? 'Confirmed' : isOverdue ? 'Overdue' : 'Pending'}
+                            </span>
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex gap-2">
                               {!b.paymentConfirmed && (
                                 <button 
                                   onClick={() => confirmPayment(b)} 
-                                  className="bg-green-100 text-green-700 px-3 py-1 rounded text-sm font-medium hover:bg-green-200"
+                                  className="bg-green-500 text-white px-3 py-1 rounded text-sm hover:bg-green-600"
                                 >
                                   Confirm
                                 </button>
                               )}
-                              <button 
-                                onClick={() => del(b.id)} 
-                                className="text-red-600 font-bold hover:text-red-800 text-sm"
-                              >
-                                Del
-                              </button>
+                              <button onClick={() => deleteBooking(b.id)} className="text-red-600 font-bold hover:text-red-800">Delete</button>
                             </div>
                           </td>
                         </tr>
@@ -1544,18 +1116,56 @@ const KoreanLearningSite = () => {
     );
   };
 
+  const AdminPricePage = () => {
+    const [newPrice, setNewPrice] = useState(classPrice);
+
+    if (!isAdminAuth) { setCurrentPage('admin'); return null; }
+
+    const updatePrice = async () => {
+      if (window.confirm(`Set class price to $${newPrice}?`)) {
+        try {
+          await setDoc(doc(db, 'settings', 'classPrice'), { value: newPrice });
+          setClassPrice(newPrice);
+          alert('Price updated!');
+        } catch (error) {
+          console.error('Error updating price:', error);
+          alert('Failed to update price');
+        }
+      }
+    };
+
+    return (
+      <div className="min-h-screen bg-stone-100 p-4 md:p-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex justify-between mb-6">
+            <h2 className="text-2xl font-bold">Set Class Price</h2>
+            <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg">Back</button>
+          </div>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <p className="mb-4">Current Price: <span className="font-bold text-2xl">${classPrice}</span></p>
+            <div className="flex gap-4">
+              <input type="number" value={newPrice} onChange={(e) => setNewPrice(Number(e.target.value))} className="flex-1 px-4 py-2 border rounded-lg" />
+              <button onClick={updatePrice} className="bg-[#B9F1E8] text-[#4A2E2A] font-bold px-6 py-2 rounded-lg hover:bg-[#A0DED1]">Update Price</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
       <Navigation />
       {currentPage === 'home' && <HomePage />}
+      {currentPage === 'levelTest' && <LevelTestPage />}
+      {currentPage === 'booking' && <BookingPage />}
       {currentPage === 'oneOnOne' && <OneOnOnePage />}
       {currentPage === 'group' && <GroupPage />}
-      {currentPage === 'booking' && <BookingPage />}
       {currentPage === 'tutors' && <TutorsPage />}
-      {currentPage === 'levelTest' && <LevelTestPage />}
-      {currentPage === 'studentBooking' && <StudentBookingPage />}
       {currentPage === 'admin' && <AdminPage />}
+      {currentPage === 'adminSlots' && <AdminSlotsPage />}
       {currentPage === 'adminBookings' && <AdminBookingsPage />}
+      {currentPage === 'adminPrice' && <AdminPricePage />}
     </div>
   );
 };
