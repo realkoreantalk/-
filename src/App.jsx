@@ -800,7 +800,16 @@ const KoreanLearningSite = () => {
     const [endDate, setEndDate] = useState('');
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
-    const [currentWeekStart, setCurrentWeekStart] = useState(new Date());
+    
+    // 이번 주 일요일로 초기화
+    const getThisSunday = () => {
+      const today = new Date();
+      const day = today.getDay();
+      const diff = today.getDate() - day;
+      return new Date(today.setDate(diff));
+    };
+    
+    const [currentWeekStart, setCurrentWeekStart] = useState(getThisSunday());
 
     if (!isAdminAuth) {
       return (
@@ -1127,6 +1136,8 @@ const KoreanLearningSite = () => {
 
   const AdminBookingsPage = () => {
     const [showOverdueOnly, setShowOverdueOnly] = useState(false);
+    const [reschedulingBooking, setReschedulingBooking] = useState(null);
+    const [selectedNewSlot, setSelectedNewSlot] = useState(null);
     
     if (!isAdminAuth) { setCurrentPage('admin'); return null; }
 
@@ -1174,6 +1185,68 @@ const KoreanLearningSite = () => {
       }
     };
 
+    const getAvailableSlotsForReschedule = () => {
+      const today = new Date();
+      const next7Days = [];
+      
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(today);
+        date.setDate(date.getDate() + i);
+        const dateStr = date.toISOString().split('T')[0];
+        
+        const availableSlots = timeSlots[dateStr] || [];
+        const bookedSlots = bookings
+          .filter(b => b.id !== reschedulingBooking?.id)
+          .flatMap(b => {
+            if (b.bookings) {
+              return b.bookings
+                .filter(booking => booking.date === dateStr)
+                .flatMap(booking => booking.slots || []);
+            }
+            return b.date === dateStr ? (b.slots || []) : [];
+          });
+        
+        const freeSlots = availableSlots.filter(slot => !bookedSlots.includes(slot));
+        
+        if (freeSlots.length > 0) {
+          next7Days.push({ date: dateStr, slots: freeSlots });
+        }
+      }
+      
+      return next7Days;
+    };
+
+    const rescheduleBooking = async () => {
+      if (!selectedNewSlot) {
+        alert('Please select a new time slot');
+        return;
+      }
+
+      try {
+        const [newDate, newSlot] = selectedNewSlot.split('|');
+        
+        // 기존 예약 업데이트
+        const updatedBookings = reschedulingBooking.bookings.map(b => 
+          b.date === reschedulingBooking.oldDate && b.slots.includes(reschedulingBooking.oldSlot)
+            ? { ...b, date: newDate, slots: [newSlot] }
+            : b
+        );
+
+        await setDoc(doc(db, 'bookings', reschedulingBooking.id), {
+          ...reschedulingBooking,
+          bookings: updatedBookings,
+          lastRescheduled: new Date().toISOString()
+        });
+
+        alert('Booking rescheduled successfully!');
+        setReschedulingBooking(null);
+        setSelectedNewSlot(null);
+      } catch (error) {
+        console.error('Error rescheduling:', error);
+        alert('Failed to reschedule booking');
+      }
+    };
+
     const getOverdueBookings = () => {
       const now = new Date();
       return bookings.filter(b => {
@@ -1216,6 +1289,7 @@ const KoreanLearningSite = () => {
 
     const overdueBookings = getOverdueBookings();
     const displayBookings = showOverdueOnly ? overdueBookings : bookings;
+    const availableSlots = reschedulingBooking ? getAvailableSlotsForReschedule() : [];
 
     return (
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
@@ -1239,7 +1313,6 @@ const KoreanLearningSite = () => {
             </div>
           </div>
 
-          {/* 필터 버튼 */}
           {overdueBookings.length > 0 && (
             <div className="mb-4 flex gap-2">
               <button 
@@ -1254,6 +1327,66 @@ const KoreanLearningSite = () => {
               >
                 Overdue Only ({overdueBookings.length})
               </button>
+            </div>
+          )}
+
+          {/* Reschedule Modal */}
+          {reschedulingBooking && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+              <div className="bg-white rounded-xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto">
+                <h3 className="text-xl font-bold mb-4">Reschedule Booking</h3>
+                <div className="mb-4">
+                  <p className="text-sm text-gray-600">Student: <span className="font-bold">{reschedulingBooking.name}</span></p>
+                  <p className="text-sm text-gray-600">Current: <span className="font-bold">{reschedulingBooking.oldDate} {reschedulingBooking.oldSlot}</span></p>
+                </div>
+                <div className="mb-4">
+                  <p className="font-medium mb-2">Available slots (next 7 days):</p>
+                  {availableSlots.length === 0 ? (
+                    <p className="text-sm text-gray-500">No available slots in the next 7 days</p>
+                  ) : (
+                    <div className="space-y-2 max-h-60 overflow-y-auto">
+                      {availableSlots.map(({ date, slots }) => (
+                        <div key={date} className="border rounded-lg p-2">
+                          <p className="text-sm font-medium mb-1">{date}</p>
+                          <div className="flex flex-wrap gap-1">
+                            {slots.map(slot => (
+                              <button
+                                key={`${date}|${slot}`}
+                                onClick={() => setSelectedNewSlot(`${date}|${slot}`)}
+                                className={`px-2 py-1 text-xs rounded transition-all ${
+                                  selectedNewSlot === `${date}|${slot}`
+                                    ? 'bg-[#14B8A6] text-white font-bold'
+                                    : 'bg-stone-100 hover:bg-stone-200'
+                                }`}
+                              >
+                                {slot}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={rescheduleBooking}
+                    disabled={!selectedNewSlot}
+                    className="flex-1 bg-[#14B8A6] text-white px-4 py-2 rounded-lg hover:bg-[#0f9c8a] disabled:opacity-50 disabled:cursor-not-allowed font-bold"
+                  >
+                    Update
+                  </button>
+                  <button
+                    onClick={() => {
+                      setReschedulingBooking(null);
+                      setSelectedNewSlot(null);
+                    }}
+                    className="flex-1 bg-stone-200 px-4 py-2 rounded-lg hover:bg-stone-300"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 
@@ -1284,9 +1417,37 @@ const KoreanLearningSite = () => {
                           <td className="px-4 py-3 text-sm">{b.name}</td>
                           <td className="px-4 py-3 text-sm">{b.email}</td>
                           <td className="px-4 py-3 text-sm">
-                            {b.bookings ? b.bookings.map(booking => (
-                              <div key={booking.date}>{booking.date}: {booking.slots.join(', ')}</div>
-                            )) : `${b.date}: ${b.slots?.join(', ')}`}
+                            {b.bookings ? b.bookings.map((booking, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <span>{booking.date}: {booking.slots.join(', ')}</span>
+                                <button
+                                  onClick={() => setReschedulingBooking({
+                                    ...b,
+                                    oldDate: booking.date,
+                                    oldSlot: booking.slots[0]
+                                  })}
+                                  className="text-blue-600 hover:text-blue-800 text-xs"
+                                  title="Reschedule"
+                                >
+                                  ✏️
+                                </button>
+                              </div>
+                            )) : (
+                              <div className="flex items-center gap-2">
+                                <span>{b.date}: {b.slots?.join(', ')}</span>
+                                <button
+                                  onClick={() => setReschedulingBooking({
+                                    ...b,
+                                    oldDate: b.date,
+                                    oldSlot: b.slots?.[0]
+                                  })}
+                                  className="text-blue-600 hover:text-blue-800 text-xs"
+                                  title="Reschedule"
+                                >
+                                  ✏️
+                                </button>
+                              </div>
+                            )}
                           </td>
                           <td className="px-4 py-3">
                             <span className={`px-2 py-1 rounded text-xs font-bold ${b.paymentConfirmed ? 'bg-green-100 text-green-700' : isOverdue ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700'}`}>
