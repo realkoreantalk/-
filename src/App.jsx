@@ -801,15 +801,22 @@ const KoreanLearningSite = () => {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     
-    // 이번 주 일요일로 초기화
+    // 이번 주 일요일로 초기화 (한국 시간 기준)
     const getThisSunday = () => {
+      // 한국 시간대(KST, UTC+9) 기준으로 오늘 날짜 계산
       const today = new Date();
-      const day = today.getDay();
-      const diff = today.getDate() - day;
-      return new Date(today.setDate(diff));
+      const kstOffset = 9 * 60; // KST는 UTC+9
+      const utcTime = today.getTime() + (today.getTimezoneOffset() * 60000);
+      const kstTime = new Date(utcTime + (kstOffset * 60000));
+      
+      const day = kstTime.getDay(); // 0(일요일) ~ 6(토요일)
+      const sunday = new Date(kstTime);
+      sunday.setDate(kstTime.getDate() - day); // 현재 주의 일요일
+      sunday.setHours(0, 0, 0, 0);
+      return sunday;
     };
     
-    const [currentWeekStart, setCurrentWeekStart] = useState(getThisSunday());
+    const [currentWeekStart, setCurrentWeekStart] = useState(() => getThisSunday());
 
     if (!isAdminAuth) {
       return (
@@ -1186,13 +1193,32 @@ const KoreanLearningSite = () => {
     };
 
     const getAvailableSlotsForReschedule = () => {
-      const today = new Date();
+      // 한국 시간대(KST, UTC+9) 기준으로 오늘 날짜 계산
+      const now = new Date();
+      const kstOffset = 9 * 60; // KST는 UTC+9
+      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const kstTime = new Date(utcTime + (kstOffset * 60000));
+      
+      // 한국 시간 기준 오늘 자정
+      const today = new Date(kstTime);
+      today.setHours(0, 0, 0, 0);
+      
+      // 날짜를 YYYY-MM-DD 형식으로 변환하는 헬퍼 함수 (한국 시간 기준)
+      const toDateString = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      };
+      
+      const todayStr = toDateString(today);
       const next7Days = [];
       
+      // 오늘부터 다음 6일까지 (총 7일)
       for (let i = 0; i < 7; i++) {
         const date = new Date(today);
-        date.setDate(date.getDate() + i);
-        const dateStr = date.toISOString().split('T')[0];
+        date.setDate(today.getDate() + i);
+        const dateStr = toDateString(date);
         
         const availableSlots = timeSlots[dateStr] || [];
         const bookedSlots = bookings
