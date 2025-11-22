@@ -1150,7 +1150,7 @@ const KoreanLearningSite = () => {
             paymentConfirmedAt: new Date().toISOString()
           });
 
-          emailjs.init('VTbJZq0OKGGXe9-Gp');
+          emailjs.init('1eD9dTRJPfHenqguL');
           
           const allBookingInfo = booking.bookings
             ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
