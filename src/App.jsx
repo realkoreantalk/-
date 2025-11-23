@@ -215,11 +215,6 @@ const KoreanLearningSite = () => {
             </div>
           </div>
 
-          <div className="mb-6 md:mb-8 bg-[#8B0000] bg-opacity-10 border-2 border-[#8B0000] rounded-lg p-4 md:p-6">
-            <p className="text-lg md:text-xl font-bold text-[#8B0000] mb-2">👉 First lesson is FREE!</p>
-            <p className="text-sm md:text-base text-gray-700">Try it with no pressure and see how natural Korean practice feels.</p>
-          </div>
-
           <div className="mb-6 md:mb-8">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">Flexible for Busy Learners</h3>
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
@@ -241,8 +236,9 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-xl md:text-2xl font-bold text-[#14B8A6]">$2.5 for December (promo price)</p>
-              <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
+              <p className="text-lg md:text-xl font-bold text-[#14B8A6]">🌟 First lesson – FREE</p>
+              <p className="text-base md:text-lg font-bold text-[#14B8A6]">December promotion – $2.5</p>
+              <p className="text-base md:text-lg font-bold text-amber-800">Starting Jan 2026 – $3</p>
             </div>
             <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
