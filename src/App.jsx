@@ -147,96 +147,102 @@ const KoreanLearningSite = () => {
     <div className="min-h-screen bg-stone-100 p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-          {/* 헤더 */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-4xl font-bold text-[#4A2E2A] mb-3">✨ 1:1 Chat — 15-Minute Real Korean Conversation</h1>
-            <p className="text-base md:text-lg text-gray-700">Practice real Korean with a certified native tutor. Short, practical, and designed for natural fluency.</p>
+          <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6 text-center">
+            <div className="flex items-center justify-center gap-2 md:gap-3">
+              <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">15-min 1:1 Chat</h2>
+              <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
+            </div>
+            <p className="text-sm md:text-base text-gray-600 mt-2">(Beginner–Advanced)</p>
+          </div>
+          
+          <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-4">✨ 1:1 Chat — 15-Minute Real Korean Conversation</h3>
+          <p className="text-sm md:text-base text-gray-700 mb-6">Practice real Korean with a certified native tutor. Short, practical, and designed for natural fluency.</p>
+          
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">What You'll Get</h3>
+            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Real conversation with a native Korean speaker</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Certified tutor with official teaching qualification</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Topics & difficulty adjusted to your level</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Natural expressions you can use right away</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>No textbooks. No heavy grammar lessons. Just real communication.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Zoom online</span>
+              </li>
+            </ul>
           </div>
 
-          {/* What You'll Get */}
-          <div className="mb-8">
-            <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A] mb-4">What You'll Get</h2>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Real conversation with a native Korean speaker</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Certified tutor with official teaching qualification</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Topics & difficulty adjusted to your level</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Natural expressions you can use right away</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">No textbooks. No heavy grammar lessons. Just real communication.</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Zoom online</p>
-              </div>
+          <div className="mb-6 md:mb-8 bg-[#B9F1E8] bg-opacity-20 border-2 border-[#B9F1E8] rounded-lg p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">Why This Class</h3>
+            <p className="text-sm md:text-base text-gray-700 mb-3">Many learners study Korean but rarely get to speak with a real Korean. This class gives you that missing practice:</p>
+            <ul className="space-y-2 text-sm md:text-base text-gray-700 mb-4">
+              <li className="flex items-start">
+                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
+                <span>No Korean speakers around</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
+                <span>Know grammar but can't speak confidently</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
+                <span>Want natural, everyday Korean</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
+                <span>Need short, low-pressure sessions</span>
+              </li>
+            </ul>
+            <div className="bg-[#4A2E2A] bg-opacity-10 rounded-lg p-3 md:p-4">
+              <p className="text-sm md:text-base font-bold text-[#4A2E2A]">My goal: Help you speak naturally, easily, and confidently in real conversations.</p>
             </div>
           </div>
 
-          {/* Why This Class */}
-          <div className="mb-8 bg-[#B9F1E8] bg-opacity-20 border-2 border-[#B9F1E8] rounded-lg p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A] mb-4">Why This Class</h2>
-            <p className="text-sm md:text-base text-gray-700 mb-4">Many learners study Korean but rarely get to speak with a real Korean. This class gives you that missing practice:</p>
-            <div className="space-y-2 mb-4">
-              <div className="flex items-start">
-                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
-                <p className="text-sm md:text-base text-gray-700">No Korean speakers around</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
-                <p className="text-sm md:text-base text-gray-700">Know grammar but can't speak confidently</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
-                <p className="text-sm md:text-base text-gray-700">Want natural, everyday Korean</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#4A2E2A] mr-2 flex-shrink-0">✓</span>
-                <p className="text-sm md:text-base text-gray-700">Need short, low-pressure sessions</p>
-              </div>
+          <div className="mb-6 md:mb-8">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">Flexible for Busy Learners</h3>
+            <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>15 minutes = quick, effective practice</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Want longer? Book two slots for 30 minutes</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#B9F1E8] mr-2 md:mr-3 mt-1 flex-shrink-0 text-xl">•</span>
+                <span>Stay consistent and keep your speaking skills active</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
+            <div className="space-y-2">
+              <p className="text-xl md:text-2xl font-bold text-[#14B8A6]">$2.5 for December (promo price)</p>
+              <p className="text-base md:text-lg font-bold text-amber-800">$3 from January 2026</p>
             </div>
-            <p className="text-base md:text-lg font-bold text-[#4A2E2A] bg-[#4A2E2A] bg-opacity-10 p-3 rounded-lg">My goal: Help you speak naturally, easily, and confidently in real conversations.</p>
+            <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
 
-          {/* Flexible for Busy Learners */}
-          <div className="mb-8">
-            <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A] mb-4">Flexible for Busy Learners</h2>
-            <div className="space-y-3">
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">15 minutes = quick, effective practice</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Want longer? Book two slots for 30 minutes</p>
-              </div>
-              <div className="flex items-start">
-                <span className="text-[#B9F1E8] text-2xl mr-3 flex-shrink-0">•</span>
-                <p className="text-sm md:text-base text-gray-700">Stay consistent and keep your speaking skills active</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="mb-8 bg-[#4A2E2A] bg-opacity-5 border-2 border-[#4A2E2A] rounded-lg p-5 md:p-6 text-center">
-            <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">💰 Class Fee</h3>
-            <p className="text-3xl md:text-4xl font-bold text-[#14B8A6] mb-2">$2.5</p>
-            <p className="text-sm md:text-base text-gray-600">per 15-minute session</p>
-          </div>
-
-          {/* Grammar Lessons Note */}
-          <div className="mb-8 bg-stone-50 border-2 border-stone-200 rounded-lg p-5 md:p-6">
+          <div className="mb-6 md:mb-8 bg-stone-50 border-2 border-stone-200 rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">📘 Want Grammar or Textbook-Based Lessons?</h3>
             <p className="text-sm md:text-base text-gray-700">
               Check the{' '}
@@ -250,13 +256,7 @@ const KoreanLearningSite = () => {
             </p>
           </div>
 
-          {/* Book Button */}
-          <button 
-            onClick={() => setCurrentPage('booking')} 
-            className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-4 md:py-5 rounded-lg hover:bg-[#A0DED1] font-bold text-lg md:text-xl transition-all transform hover:scale-105 shadow-lg"
-          >
-            Book a Class
-          </button>
+          <button onClick={() => setCurrentPage('booking')} className="w-full bg-[#B9F1E8] text-[#4A2E2A] px-6 md:px-8 py-3 md:py-4 rounded-lg hover:bg-[#A0DED1] font-bold text-base md:text-lg transition-all transform hover:scale-105 shadow-md">Book a Class</button>
         </div>
       </div>
     </div>
@@ -1118,6 +1118,12 @@ const KoreanLearningSite = () => {
                 className={`px-6 py-3 rounded-lg font-bold transition-all ${classPrice === 2.5 ? 'bg-[#14B8A6] text-white' : 'bg-stone-200 hover:bg-stone-300'}`}
               >
                 $2.5
+              </button>
+              <button 
+                onClick={() => updatePrice(3)} 
+                className={`px-6 py-3 rounded-lg font-bold transition-all ${classPrice === 3 ? 'bg-[#14B8A6] text-white' : 'bg-stone-200 hover:bg-stone-300'}`}
+              >
+                $3
               </button>
             </div>
           </div>
