@@ -801,14 +801,25 @@ const KoreanLearningSite = () => {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     
+    // 한국 시간대(KST) 헬퍼 함수들
+    const getKSTDate = () => {
+      const now = new Date();
+      const kstOffset = 9 * 60; // KST는 UTC+9
+      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const kstTime = new Date(utcTime + (kstOffset * 60000));
+      return kstTime;
+    };
+    
+    const toKSTDateString = (date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    };
+    
     // 이번 주 일요일로 초기화 (한국 시간 기준)
     const getThisSunday = () => {
-      // 한국 시간대(KST, UTC+9) 기준으로 오늘 날짜 계산
-      const today = new Date();
-      const kstOffset = 9 * 60; // KST는 UTC+9
-      const utcTime = today.getTime() + (today.getTimezoneOffset() * 60000);
-      const kstTime = new Date(utcTime + (kstOffset * 60000));
-      
+      const kstTime = getKSTDate();
       const day = kstTime.getDay(); // 0(일요일) ~ 6(토요일)
       const sunday = new Date(kstTime);
       sunday.setDate(kstTime.getDate() - day); // 현재 주의 일요일
@@ -865,9 +876,10 @@ const KoreanLearningSite = () => {
     };
 
     const deleteOldSlots = async () => {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const todayStr = today.toISOString().split('T')[0];
+      // 한국 시간 기준 오늘 날짜
+      const kstToday = getKSTDate();
+      kstToday.setHours(0, 0, 0, 0);
+      const todayStr = toKSTDateString(kstToday);
       
       const oldDates = Object.keys(timeSlots).filter(date => date < todayStr);
       
@@ -1020,7 +1032,7 @@ const KoreanLearningSite = () => {
       const dates = [];
       const current = new Date(startDate);
       for (let i = 0; i < 7; i++) {
-        dates.push(current.toISOString().split('T')[0]);
+        dates.push(toKSTDateString(current));
         current.setDate(current.getDate() + 1);
       }
       return dates;
@@ -1193,17 +1205,13 @@ const KoreanLearningSite = () => {
     };
 
     const getAvailableSlotsForReschedule = () => {
-      // 한국 시간대(KST, UTC+9) 기준으로 오늘 날짜 계산
-      const now = new Date();
-      const kstOffset = 9 * 60; // KST는 UTC+9
-      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const kstTime = new Date(utcTime + (kstOffset * 60000));
+      if (!reschedulingBooking) return [];
       
-      // 한국 시간 기준 오늘 자정
-      const today = new Date(kstTime);
-      today.setHours(0, 0, 0, 0);
+      // 예약된 날짜 가져오기
+      const bookedDateStr = reschedulingBooking.oldDate;
+      const bookedDate = new Date(bookedDateStr + 'T00:00:00');
       
-      // 날짜를 YYYY-MM-DD 형식으로 변환하는 헬퍼 함수 (한국 시간 기준)
+      // 날짜를 YYYY-MM-DD 형식으로 변환하는 헬퍼 함수
       const toDateString = (date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -1211,13 +1219,12 @@ const KoreanLearningSite = () => {
         return `${year}-${month}-${day}`;
       };
       
-      const todayStr = toDateString(today);
       const next7Days = [];
       
-      // 오늘부터 다음 6일까지 (총 7일)
+      // 예약된 날짜부터 다음 6일까지 (총 7일)
       for (let i = 0; i < 7; i++) {
-        const date = new Date(today);
-        date.setDate(today.getDate() + i);
+        const date = new Date(bookedDate);
+        date.setDate(bookedDate.getDate() + i);
         const dateStr = toDateString(date);
         
         const availableSlots = timeSlots[dateStr] || [];
