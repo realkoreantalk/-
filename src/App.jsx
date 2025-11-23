@@ -215,6 +215,11 @@ const KoreanLearningSite = () => {
             </div>
           </div>
 
+          <div className="mb-6 md:mb-8 bg-[#8B0000] bg-opacity-10 border-2 border-[#8B0000] rounded-lg p-4 md:p-6">
+            <p className="text-lg md:text-xl font-bold text-[#8B0000] mb-2">👉 First lesson is FREE!</p>
+            <p className="text-sm md:text-base text-gray-700">Try it with no pressure and see how natural Korean practice feels.</p>
+          </div>
+
           <div className="mb-6 md:mb-8">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3">Flexible for Busy Learners</h3>
             <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-gray-700">
