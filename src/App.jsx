@@ -237,7 +237,7 @@ const KoreanLearningSite = () => {
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
               <p className="text-lg md:text-xl font-bold text-[#14B8A6]">🌟 First lesson – FREE</p>
-              <p className="text-base md:text-lg font-bold text-[#14B8A6]">December promotion – $2.5</p>
+              <p className="text-base md:text-lg font-bold text-amber-800">December promotion – $2.5</p>
               <p className="text-base md:text-lg font-bold text-amber-800">Starting Jan 2026 – $3</p>
             </div>
             <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
