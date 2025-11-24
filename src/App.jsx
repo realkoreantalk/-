@@ -340,6 +340,7 @@ const KoreanLearningSite = () => {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [month, setMonth] = useState(new Date());
+    const [isSubmitting, setIsSubmitting] = useState(false); // 중복 제출 방지용
 
     const getDays = (d) => {
       const y = d.getFullYear(), m = d.getMonth();
@@ -376,12 +377,41 @@ const KoreanLearningSite = () => {
       setAllSlots(upd);
     };
 
+    // 구글 캘린더 링크 생성 함수
+    const createGoogleCalendarLink = (date, time, studentName, isForAdmin = false) => {
+      // 날짜와 시간을 결합 (한국 시간 기준)
+      const [startHour, startMin] = time.split(':');
+      const startDateTime = new Date(`${date}T${startHour}:${startMin}:00+09:00`);
+      const endDateTime = new Date(startDateTime.getTime() + 15 * 60000); // 15분 후
+      
+      // ISO 형식으로 변환 (구글 캘린더는 UTC 필요)
+      const formatDate = (date) => {
+        return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      };
+      
+      const title = isForAdmin 
+        ? encodeURIComponent(`수업: ${studentName}`)
+        : encodeURIComponent('Korean Class with Hannah');
+      
+      const description = isForAdmin
+        ? encodeURIComponent(`Student: ${studentName}`)
+        : encodeURIComponent('15-minute Korean conversation class');
+      
+      const dates = `${formatDate(startDateTime)}/${formatDate(endDateTime)}`;
+      
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${description}`;
+    };
+
     const submit = async () => {
+      if (isSubmitting) return; // 이미 제출 중이면 무시
+      
       const total = Object.values(allSlots).flat().length;
       if (!name || !email || total === 0) {
         alert('Please fill all info');
         return;
       }
+      
+      setIsSubmitting(true); // 제출 시작
       
       try {
         const bookingId = crypto.randomUUID();
@@ -400,13 +430,23 @@ const KoreanLearningSite = () => {
           rescheduleCount: 0
         });
         
-        const bookingInfo = Object.entries(allSlots)
-          .map(([date, slots]) => `${date}: ${slots.join(', ')}`)
-          .join('\n');
+        // 예약 정보와 구글 캘린더 링크 생성
+        let bookingInfo = '';
+        let calendarLinks = '';
+        
+        Object.entries(allSlots).forEach(([date, slots]) => {
+          bookingInfo += `${date}: ${slots.join(', ')}\n`;
+          slots.forEach(slot => {
+            const link = createGoogleCalendarLink(date, slot, name, true);
+            calendarLinks += `${date} ${slot}: ${link}\n`;
+          });
+        });
+        
         const totalPrice = total * classPrice;
         
         emailjs.init('1eD9dTRJPfHenqguL');
         
+        // 관리자에게 이메일 전송 (구글 캘린더 링크 포함)
         await emailjs.send(
           'service_c58vlqm',
           'template_cahc4d6',
@@ -415,7 +455,8 @@ const KoreanLearningSite = () => {
             student_email: email,
             booking_info: bookingInfo,
             total_sessions: total,
-            total_price: totalPrice
+            total_price: totalPrice,
+            calendar_links: calendarLinks
           }
         );
         
@@ -428,6 +469,8 @@ const KoreanLearningSite = () => {
       } catch (error) {
         console.error('Error booking:', error);
         alert('Booking failed. Please try again.');
+      } finally {
+        setIsSubmitting(false); // 제출 완료
       }
     };
 
@@ -582,7 +625,19 @@ const KoreanLearningSite = () => {
                   </div>
                 </>
               )}
-              {total > 0 && name && email && !emailError && <button onClick={submit} className="w-full bg-[#B9F1E8] text-[#4A2E2A] font-bold py-4 rounded-lg hover:bg-[#A0DED1]">Book</button>}
+              {total > 0 && name && email && !emailError && (
+                <button 
+                  onClick={submit} 
+                  disabled={isSubmitting}
+                  className={`w-full font-bold py-4 rounded-lg transition-all ${
+                    isSubmitting 
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                      : 'bg-[#B9F1E8] text-[#4A2E2A] hover:bg-[#A0DED1]'
+                  }`}
+                >
+                  {isSubmitting ? 'Booking...' : 'Book'}
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -1107,6 +1162,7 @@ const KoreanLearningSite = () => {
       <div className="min-h-screen bg-stone-100 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-end items-center mb-6 gap-2">
+            <button onClick={() => setCurrentPage('adminStudents')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">학생관리</button>
             <button onClick={() => setCurrentPage('adminBookings')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">예약현황</button>
             <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
           </div>
@@ -1237,9 +1293,41 @@ const KoreanLearningSite = () => {
 
           emailjs.init('1eD9dTRJPfHenqguL');
           
-          const allBookingInfo = booking.bookings
-            ? booking.bookings.map(b => `${b.date}: ${b.slots.join(', ')}`).join('\n')
-            : `${booking.date}: ${booking.slots.join(', ')}`;
+          // 구글 캘린더 링크 생성 함수 (학생용)
+          const createStudentCalendarLink = (date, time) => {
+            const [startHour, startMin] = time.split(':');
+            const startDateTime = new Date(`${date}T${startHour}:${startMin}:00+09:00`);
+            const endDateTime = new Date(startDateTime.getTime() + 15 * 60000);
+            
+            const formatDate = (date) => {
+              return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            };
+            
+            const title = encodeURIComponent('Korean Class with Hannah');
+            const description = encodeURIComponent('15-minute Korean conversation class');
+            const dates = `${formatDate(startDateTime)}/${formatDate(endDateTime)}`;
+            
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${description}`;
+          };
+          
+          let allBookingInfo = '';
+          let calendarLinks = '';
+          
+          if (booking.bookings) {
+            booking.bookings.forEach(b => {
+              allBookingInfo += `${b.date}: ${b.slots.join(', ')}\n`;
+              b.slots.forEach(slot => {
+                const link = createStudentCalendarLink(b.date, slot);
+                calendarLinks += `${b.date} ${slot}: ${link}\n`;
+              });
+            });
+          } else {
+            allBookingInfo = `${booking.date}: ${booking.slots.join(', ')}`;
+            booking.slots.forEach(slot => {
+              const link = createStudentCalendarLink(booking.date, slot);
+              calendarLinks += `${booking.date} ${slot}: ${link}\n`;
+            });
+          }
 
           await emailjs.send(
             'service_c58vlqm',
@@ -1247,7 +1335,8 @@ const KoreanLearningSite = () => {
             {
               student_email: booking.email,
               student_name: booking.name,
-              booking_info: allBookingInfo
+              booking_info: allBookingInfo,
+              calendar_links: calendarLinks
             }
           );
 
@@ -1397,6 +1486,7 @@ const KoreanLearningSite = () => {
                   Delete {overdueBookings.length} Overdue
                 </button>
               )}
+              <button onClick={() => setCurrentPage('adminStudents')} className="bg-[#B9F1E8] text-[#4A2E2A] px-4 py-2 rounded-lg font-bold hover:bg-[#A0DED1]">학생관리</button>
               <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg hover:bg-stone-300">Back</button>
             </div>
           </div>
@@ -1573,6 +1663,147 @@ const KoreanLearningSite = () => {
     );
   };
 
+  const AdminStudentsPage = () => {
+    const [expandedStudent, setExpandedStudent] = useState(null);
+    
+    if (!isAdminAuth) { setCurrentPage('admin'); return null; }
+
+    // 학생별로 예약 데이터 그룹화
+    const getStudentStats = () => {
+      const studentMap = {};
+      
+      bookings.forEach(booking => {
+        const email = booking.email;
+        if (!studentMap[email]) {
+          studentMap[email] = {
+            name: booking.name,
+            email: email,
+            bookings: [],
+            totalSessions: 0,
+            confirmedSessions: 0,
+            pendingSessions: 0
+          };
+        }
+        
+        // 예약 정보 추가
+        const bookingDetails = booking.bookings || [{ date: booking.date, slots: booking.slots }];
+        bookingDetails.forEach(b => {
+          const sessions = b.slots ? b.slots.length : 0;
+          studentMap[email].totalSessions += sessions;
+          
+          if (booking.paymentConfirmed) {
+            studentMap[email].confirmedSessions += sessions;
+          } else {
+            studentMap[email].pendingSessions += sessions;
+          }
+          
+          studentMap[email].bookings.push({
+            id: booking.id,
+            date: b.date,
+            slots: b.slots || [],
+            paymentConfirmed: booking.paymentConfirmed,
+            bookedAt: booking.bookedAt
+          });
+        });
+      });
+      
+      return Object.values(studentMap).sort((a, b) => b.totalSessions - a.totalSessions);
+    };
+
+    const studentStats = getStudentStats();
+
+    return (
+      <div className="min-h-screen bg-stone-100 p-4 md:p-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-[#4A2E2A]">학생 관리</h2>
+            <div className="flex gap-2">
+              <button onClick={() => setCurrentPage('admin')} className="bg-stone-200 px-4 py-2 rounded-lg hover:bg-stone-300">슬롯관리</button>
+              <button onClick={() => setCurrentPage('adminBookings')} className="bg-stone-200 px-4 py-2 rounded-lg hover:bg-stone-300">예약현황</button>
+              <button onClick={() => signOut(auth)} className="bg-red-600 text-white px-4 py-2 rounded-lg">Logout</button>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold">총 학생 수: {studentStats.length}명</h3>
+              <div className="text-sm text-gray-600">
+                총 예약 세션: {studentStats.reduce((sum, s) => sum + s.totalSessions, 0)}개
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            {studentStats.length === 0 ? (
+              <p className="text-center text-gray-500 py-8">등록된 학생이 없습니다</p>
+            ) : (
+              <div className="space-y-3">
+                {studentStats.map((student, idx) => (
+                  <div key={student.email} className="border-2 border-stone-200 rounded-lg">
+                    <div 
+                      className="p-4 cursor-pointer hover:bg-stone-50 transition-colors"
+                      onClick={() => setExpandedStudent(expandedStudent === student.email ? null : student.email)}
+                    >
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h4 className="text-lg font-bold text-[#4A2E2A]">{student.name}</h4>
+                            {student.totalSessions === 1 && student.confirmedSessions === 0 && (
+                              <span className="px-3 py-1 bg-[#B9F1E8] text-[#4A2E2A] rounded-full text-xs font-bold">
+                                🌟 첫 수업 무료
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-600 mb-2">{student.email}</p>
+                          <div className="flex gap-4 text-sm">
+                            <span className="text-gray-600">총 예약: <span className="font-bold text-[#4A2E2A]">{student.totalSessions}회</span></span>
+                            <span className="text-green-600">완료: <span className="font-bold">{student.confirmedSessions}회</span></span>
+                            <span className="text-orange-600">대기: <span className="font-bold">{student.pendingSessions}회</span></span>
+                          </div>
+                        </div>
+                        <button className="text-2xl text-gray-400 hover:text-gray-600">
+                          {expandedStudent === student.email ? '−' : '+'}
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {expandedStudent === student.email && (
+                      <div className="border-t-2 border-stone-200 p-4 bg-stone-50">
+                        <h5 className="font-bold mb-3 text-[#4A2E2A]">예약 내역</h5>
+                        <div className="space-y-2">
+                          {student.bookings.sort((a, b) => new Date(b.bookedAt) - new Date(a.bookedAt)).map((booking, idx) => (
+                            <div key={`${booking.id}-${idx}`} className="bg-white p-3 rounded-lg border border-stone-200">
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <p className="font-medium text-sm">{booking.date}</p>
+                                  <p className="text-sm text-gray-600">{booking.slots.join(', ')}</p>
+                                  <p className="text-xs text-gray-400 mt-1">
+                                    예약일: {new Date(booking.bookedAt).toLocaleDateString('ko-KR')}
+                                  </p>
+                                </div>
+                                <span className={`px-2 py-1 rounded text-xs font-bold ${
+                                  booking.paymentConfirmed 
+                                    ? 'bg-green-100 text-green-700' 
+                                    : 'bg-orange-100 text-orange-700'
+                                }`}>
+                                  {booking.paymentConfirmed ? '✓ 완료' : '대기'}
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <Navigation />
@@ -1584,6 +1815,7 @@ const KoreanLearningSite = () => {
       {currentPage === 'tutors' && <TutorsPage />}
       {currentPage === 'admin' && <AdminPage />}
       {currentPage === 'adminBookings' && <AdminBookingsPage />}
+      {currentPage === 'adminStudents' && <AdminStudentsPage />}
     </div>
   );
 };
