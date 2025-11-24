@@ -438,7 +438,7 @@ const KoreanLearningSite = () => {
           bookingInfo += `${date}: ${slots.join(', ')}\n`;
           slots.forEach(slot => {
             const link = createGoogleCalendarLink(date, slot, name, true);
-            calendarLinks += `${date} ${slot}: ${link}\n`;
+            calendarLinks += `📅 <a href="${link}" style="color: #0066cc; text-decoration: none;">${date} ${slot} - Add to Calendar</a><br>\n`;
           });
         });
         
@@ -1318,14 +1318,14 @@ const KoreanLearningSite = () => {
               allBookingInfo += `${b.date}: ${b.slots.join(', ')}\n`;
               b.slots.forEach(slot => {
                 const link = createStudentCalendarLink(b.date, slot);
-                calendarLinks += `${b.date} ${slot}: ${link}\n`;
+                calendarLinks += `📅 <a href="${link}" style="color: #0066cc; text-decoration: none;">${b.date} ${slot} - Add to Calendar</a><br>\n`;
               });
             });
           } else {
             allBookingInfo = `${booking.date}: ${booking.slots.join(', ')}`;
             booking.slots.forEach(slot => {
               const link = createStudentCalendarLink(booking.date, slot);
-              calendarLinks += `${booking.date} ${slot}: ${link}\n`;
+              calendarLinks += `📅 <a href="${link}" style="color: #0066cc; text-decoration: none;">${booking.date} ${slot} - Add to Calendar</a><br>\n`;
             });
           }
 
