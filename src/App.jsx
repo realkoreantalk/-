@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, User, BookOpen, Award, Globe } from 'lucide-react';
+import { User, BookOpen, Award } from 'lucide-react';
 import { db, auth, googleProvider, ADMIN_UID } from './firebase';
 import { collection, addDoc, getDocs, deleteDoc, doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
@@ -92,15 +92,8 @@ const KoreanLearningSite = () => {
           <h1 className="text-xl md:text-5xl font-bold text-[#4A2E2A] mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
           <p className="text-lg md:text-xl text-stone-700">With certified expert tutor Hannah!</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-6xl mx-auto">
-          <button onClick={() => setCurrentPage('levelTest')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
-            <div className="text-stone-600 mb-2 flex justify-center"><Award size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Level Test</h3>
-          </button>
-          <button onClick={() => setCurrentPage('booking')} className="bg-[#B9F1E8] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
-            <div className="mb-2 flex justify-center"><Calendar size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold">Book Now</h3>
-          </button>
+        {/* 모바일: 윗줄 1:1 Chat / Group Class, 아랫줄 Level Test / Tutor Info */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
           <button onClick={() => setCurrentPage('oneOnOne')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center gap-0">
               <User size={24} className="md:w-7 md:h-7" />
@@ -112,14 +105,14 @@ const KoreanLearningSite = () => {
             <div className="text-stone-600 mb-2 flex justify-center"><BookOpen size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Group Class</h3>
           </button>
+          <button onClick={() => setCurrentPage('levelTest')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
+            <div className="text-stone-600 mb-2 flex justify-center"><Award size={24} className="md:w-7 md:h-7" /></div>
+            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Level Test</h3>
+          </button>
           <button onClick={() => setCurrentPage('tutors')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><User size={24} className="md:w-7 md:h-7" /></div>
             <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Tutor Info</h3>
           </button>
-          <a href="https://realkoreantalk.wordpress.com/" target="_blank" rel="noopener noreferrer" className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400 text-center">
-            <div className="text-stone-600 mb-2 flex justify-center"><Globe size={24} className="md:w-7 md:h-7" /></div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">Blog</h3>
-          </a>
         </div>
         <div className="text-center mt-12 md:mt-16">
           <a 
@@ -236,9 +229,9 @@ const KoreanLearningSite = () => {
           <div className="mb-6 md:mb-8 bg-amber-50 border-2 border-amber-200 rounded-lg p-4 md:p-6">
             <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-3 md:mb-4">💰 Class Fees</h3>
             <div className="space-y-2">
-              <p className="text-lg md:text-xl font-bold text-[#14B8A6]">🌟 First lesson – FREE</p>
-              <p className="text-base md:text-lg font-bold text-amber-800">December promotion – $2.5</p>
-              <p className="text-base md:text-lg font-bold text-amber-800">Starting Jan 2026 – $3</p>
+              <p className="text-lg md:text-xl font-bold text-[#14B8A6]">🌟 First lesson: FREE</p>
+              <p className="text-base md:text-lg font-bold text-amber-800">Single Lesson (15 mins): $3</p>
+              <p className="text-base md:text-lg font-bold text-amber-800">10-Lesson Package: $30 + 🌟 1 Bonus Session FREE! (Total 11 sessions)</p>
             </div>
             <p className="text-xs md:text-sm text-[#4A2E2A] mt-3 md:mt-4"><span className="font-bold">Payment:</span> Please pay in advance via PayPal</p>
           </div>
