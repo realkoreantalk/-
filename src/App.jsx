@@ -92,14 +92,14 @@ const KoreanLearningSite = () => {
           <h1 className="text-xl md:text-5xl font-bold text-[#4A2E2A] mb-3 px-2">당신의 한국어가 진짜 한국어가 될 때까지!</h1>
           <p className="text-lg md:text-xl text-stone-700">With certified expert tutor Hannah!</p>
         </div>
-        {/* 모바일: 윗줄 1:1 Chat / Group Class, 아랫줄 Level Test / Tutor Info */}
+        {/* 모바일: 윗줄 1:1 Real Talk / Group Class, 아랫줄 Level Test / Tutor Info */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-4xl mx-auto">
-          <button onClick={() => setCurrentPage('oneOnOne')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
-            <div className="text-stone-600 mb-2 flex justify-center gap-0">
+          <button onClick={() => setCurrentPage('oneOnOne')} className="bg-[#F1B9D0] hover:bg-[#E6A2BE] p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all text-[#4A2E2A]">
+            <div className="mb-2 flex justify-center gap-0">
               <User size={24} className="md:w-7 md:h-7" />
               <User size={24} className="md:w-7 md:h-7 -ml-[10px]" />
             </div>
-            <h3 className="text-base md:text-xl font-bold text-[#4A2E2A]">1:1 Chat</h3>
+            <h3 className="text-base md:text-xl font-bold">1:1 Real Talk</h3>
           </button>
           <button onClick={() => setCurrentPage('group')} className="bg-white p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all border-2 hover:border-stone-400">
             <div className="text-stone-600 mb-2 flex justify-center"><BookOpen size={24} className="md:w-7 md:h-7" /></div>
@@ -143,13 +143,13 @@ const KoreanLearningSite = () => {
           <div className="bg-[#B9F1E8] border-2 border-[#B9F1E8] rounded-lg p-4 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 md:gap-3">
               <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
-              <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">15-min 1:1 Chat</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-[#4A2E2A]">15-min 1:1 Real Talk</h2>
               <User size={24} className="md:w-7 md:h-7 text-[#4A2E2A]" />
             </div>
             <p className="text-sm md:text-base text-gray-600 mt-2">(Beginner–Advanced)</p>
           </div>
           
-          <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-4">✨ 1:1 Chat — 15-Minute Real Korean Conversation</h3>
+          <h3 className="text-lg md:text-xl font-bold text-[#4A2E2A] mb-4">✨ 1:1 Real Talk — 15-Minute Real Korean Conversation</h3>
           <p className="text-sm md:text-base text-gray-700 mb-6">Practice real Korean with a certified native tutor. Short, practical, and designed for natural fluency.</p>
           
           <div className="mb-6 md:mb-8">
@@ -525,7 +525,7 @@ const KoreanLearningSite = () => {
                 </ul>
               </div>
               <div className="mb-6 text-[#4A2E2A] space-y-2 text-sm md:text-base">
-                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Only <span className="font-bold">1:1 Chat</span> sessions can be booked here.</span></p>
+                <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Only <span className="font-bold">1:1 Real Talk</span> sessions can be booked here.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>For <span className="font-bold">Group Lessons</span>, please use the Group Lesson page.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>Each session is <span className="font-bold">15 minutes</span>.</span></p>
                 <p className="flex items-start"><span className="text-amber-800 mr-2 mt-1 flex-shrink-0">✓</span><span>If you book 9:00, your class is <span className="font-bold">09:00–09:15</span>.</span></p>
@@ -539,7 +539,7 @@ const KoreanLearningSite = () => {
                 <button onClick={() => setAgreed(false)} className="text-gray-600 hover:text-[#4A2E2A] font-medium flex items-center gap-1">
                   ← Back
                 </button>
-                <h2 className="text-2xl font-bold text-[#4A2E2A]">Book 1:1 Chat</h2>
+                <h2 className="text-2xl font-bold text-[#4A2E2A]">Book 1:1 Real Talk</h2>
                 <div className="text-lg font-bold text-[#4A2E2A]">🕐 KST</div>
               </div>
               <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4 mb-6">
@@ -785,11 +785,11 @@ const KoreanLearningSite = () => {
       if (score <= 2) {
         return { level: 'Beginner', class: 'Group Class' };
       } else if (score <= 4) {
-        return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Chat' };
+        return { level: 'Pre-Intermediate', class: 'Group Class or 1:1 Real Talk' };
       } else if (score <= 5) {
-        return { level: 'Intermediate', class: 'Group Class or 1:1 Chat' };
+        return { level: 'Intermediate', class: 'Group Class or 1:1 Real Talk' };
       } else {
-        return { level: 'Advanced', class: '1:1 Chat' };
+        return { level: 'Advanced', class: '1:1 Real Talk' };
       }
     };
 
@@ -829,13 +829,13 @@ const KoreanLearningSite = () => {
               </div>
               <div className="flex gap-3">
                 <button onClick={reset} className="flex-1 bg-[#4A2E2A] text-white font-bold py-3 rounded-lg hover:bg-[#3a241f]">Retake Test</button>
-                {rec.class === 'Group Class or 1:1 Chat' ? (
+                {rec.class === 'Group Class or 1:1 Real Talk' ? (
                   <>
                     <button onClick={() => setCurrentPage('group')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Group Class</button>
-                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">1:1 Chat</button>
+                    <button onClick={() => setCurrentPage('oneOnOne')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">1:1 Real Talk</button>
                   </>
                 ) : (
-                  <button onClick={() => setCurrentPage(rec.class === '1:1 Chat' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Go to Class</button>
+                  <button onClick={() => setCurrentPage(rec.class === '1:1 Real Talk' ? 'oneOnOne' : 'group')} className="flex-1 bg-[#B9F1E8] text-[#4A2E2A] font-bold py-3 rounded-lg hover:bg-[#A0DED1]">Go to Class</button>
                 )}
               </div>
             </div>
